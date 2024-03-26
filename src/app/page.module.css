@@ -1,3 +1,5 @@
+/*이 파일은 현재 폴더의 page 파일의 CSS를 모듈화 시켜서 사용할수 있게 하는 파일 입니다. CSS 사용시 이 파일을 참고하여 개발하시면 됩니다.*/
+
 .main {
   display: flex;
   flex-direction: column;

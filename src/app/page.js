@@ -1,7 +1,8 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
-export default function Home() {
+// 웹사이트의 최초 진입점 입니다 이 페이지가 가장 먼저 보여지는 페이지 이므로 여기서부터 개발하시면 됩니다.
+export default function first() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
