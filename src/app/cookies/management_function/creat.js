@@ -58,12 +58,22 @@ export const checkCookieConsent = () => {
 
 
 export const giveConsent = () => {
-    createCookie('cookieConsent', 'true', 7);
-    localStorage.setItem('cookieConsent', 'true'); // 로컬 스토리지에도 저장
+    // 현재 날짜와 시간을 구함
+    const now = new Date();
+    const formattedDate = now.toISOString().slice(0, 10); // YYYY-MM-DD 형식
+    const formattedTime = now.toTimeString().slice(0, 8); // HH:MM:SS 형식
+
+    // 쿠키 값으로 "relife + 날짜 + 시간"을 설정
+    const cookieValue = `relife${formattedDate}${formattedTime}`;
+
+    // 쿠키 생성
+    createCookie('cookieConsent', cookieValue, 7);
+    localStorage.setItem('cookieConsent', cookieValue); // 로컬 스토리지에도 저장
+
     // 생성된 쿠키 값 출력
-    const cookieValue = readCookie('cookieConsent');
-    console.log("Created cookie value: ", cookieValue);
+    console.log("Created cookie value: ", readCookie('cookieConsent'));
 };
+
 
 
 //cookies 존재 여부 확인
