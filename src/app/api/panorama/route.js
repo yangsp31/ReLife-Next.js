@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { requestMask } from "../function/reimaginehomeAPI";
 import { uploadMultiImage } from "./multiUpload";
 import { requestPanorama } from "./requestFlask";
+import { korToEn } from "../function/translate";
 
 // 파노라마 이미지 요청 처리
 export async function POST(request) {
@@ -24,8 +25,14 @@ export async function POST(request) {
 
         // reimagineHome API의 응답에 따라 redis(Vercel KV)에 사용자의 작업정보 저장
         if(info.status === 'success') {
-            await setMaskId(info.data.job_id, cookie.get("user").value)
-            await setTaskData(cookie.get("user").value, panoramaUrl, formData.get("spaceType"), formData.get("designTheme"), formData.get("prompt"))
+            const result = await Promise.all([
+                setMaskId(info.data.job_id, cookie.get("user").value),
+                korToEn(formData.get("prompt"))
+            ])
+
+            const prompt = result[1]
+
+            await setTaskData(cookie.get("user").value, panoramaUrl, formData.get("spaceType"), formData.get("designTheme"), prompt)
         }
         else {
             console.log(info)
