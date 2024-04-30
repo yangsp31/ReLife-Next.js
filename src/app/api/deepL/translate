@@ -1,0 +1,9 @@
+import * as deepl from 'deepl-node';
+
+const authKey = "키값"; 
+const translator = new deepl.Translator(authKey);
+
+(async () => {
+    const result = await translator.translateText(prompt, null, 'en'); //안녕
+    console.log(result.text); // hello
+})();

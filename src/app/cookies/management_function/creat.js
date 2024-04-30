@@ -1,4 +1,4 @@
-//모든 쿠키 즉시 삭제
+///모든 쿠키 즉시 삭제
 export const clearAllCookies = () => {
     if (typeof window !== 'undefined') {
         const cookies = document.cookie.split(";");

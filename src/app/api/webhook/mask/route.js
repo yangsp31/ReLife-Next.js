@@ -7,7 +7,7 @@ export async function POST(request) {
     const body = await request.json();
     const urls = body.data.masks.map(mask => mask.url);
 
-    // 응답 상태에 따라 생성된 이미지URL redis(vercel KV)에 저장 후 reImagineHome API에 이미지 변환 요청
+    // 응답 상태에 따라 생성된 이미지UR f redis(vercel KV)에 저장 후 reImagineHome API에 이미지 변환 요청
     if(body.status === "success" && body.data.job_status === "done") {
         setMaskTaskData(body.data.job_id, urls)
         const generateId = await requestGenerate(body.data.job_id, urls)
@@ -19,5 +19,5 @@ export async function POST(request) {
     }
 
     return NextResponse.json({success : "ok"}, {status : 200});
-    
+
 }
