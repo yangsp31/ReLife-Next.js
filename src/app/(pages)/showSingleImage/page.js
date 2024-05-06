@@ -1,6 +1,6 @@
 //좌측 상단에는 기존의 이미지를, 나머지 3칸에는 생성된 이미지를 제공하는 코드 다운로드를 누르면 다운로드를, 리제너레이트를 누르면 이미지중 한장을 선택하여 기존의 페이지로 돌아가도록
 import { useState, useRef } from 'react';
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/button";
 
 export default function Component() {
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -29,8 +29,7 @@ export default function Component() {
   };
 
   const handleRegenerate = () => {
-    // Logic to regenerate the image and navigate back to the original page
-    navigation.push('/originalPage'); // Replace '/originalPage' with the actual path of the original page
+    router.push('/originalPage'); // Replace '/originalPage' with the actual path of the original page
   };
 
   return (

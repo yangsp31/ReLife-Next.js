@@ -1,13 +1,17 @@
 //메인페이지 이후 프로그램에 대한 설명이 적혀있는 코드
-import { useNavigation } from 'next/navigation';
-import { Button } from "@/components/ui/button";
+"use client";
+
+import { useRouter } from 'next/router';
+import { Button } from "@/Components/button";
 
 export default function Component() {
-  const navigation = useNavigation();
+  const router = useRouter();
 
   const handleGenerateClick = () => {
-    window.open('/imageUpload/page.js', '_blank');
+    router.push('/imageUpload/page.js', '_blank');
   };
+
+  
 
   return (
     <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px] bg-gradient-to-br from-purple-200 to-blue-200">
@@ -49,6 +53,7 @@ export default function Component() {
             <h2 className="text-2xl font-bold">Generate</h2>
             <p className="text-gray-500 dark:text-gray-400">Click the button below to generate your dream homepage.</p>
             <Button onClick={handleGenerateClick}>Generate</Button>
+            
           </div>
         </div>
       </div>
