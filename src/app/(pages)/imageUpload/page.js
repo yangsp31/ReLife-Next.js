@@ -1,8 +1,9 @@
+"use client";
+
 //이미지 박스를 클릭하면 이미지를 업로드하고, 버튼을 클릭하면 example주소로 가는 코드
 import { useState } from 'react';
-import { Label } from "@/components/ui/label"
-import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
+import { Label } from "@/components/components/label"
+import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "@/components/components"
 
 export default function Component() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -16,11 +17,7 @@ export default function Component() {
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const handleGenerateClick = () => {
-    window.open('\showSingleImage\page.js', '_blank');
-  };
+  }; 
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mx-auto py-12 md:py-16 bg-gradient-to-r from-[#e0b0ff] to-[#add8e6]">
@@ -115,13 +112,10 @@ export default function Component() {
             </SelectContent>
           </Select>
         </div>
-        <Button
-          className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-          type="button"
-          onClick={handleGenerateClick} 
-        >
-          Generate
-        </Button>
+  
+        <button type="button" onClick={() => router.push('/showSingleImage/page.js', '_blank')}>
+          Dashboard
+        </button>
       </div>
     </div>
   )

@@ -3,30 +3,26 @@
 // 웹사이트의 최초 진입점 입니다 이 페이지가 가장 먼저 보여지는 페이지 이므로 여기서부터 개발하시면 됩니다.
 import React from 'react';
 import Link from "next/link";
-import { useRouter } from 'next/router';
-import { Input, Button, Card, CardHeader, CardContent, Textarea } from "@/Components";
+import { Input, Button, Card, CardHeader, CardContent, Textarea } from "@/components/components";
 import styles from "./page.module.css";
+import CookieConsentBanner from './cookies/permit_banner/banner.client';
 
 export default function HomePage() {
-  const router = useRouter();
-    const handleAgreeClick = () => {
-      router.push("/explain/page");
-    }
-
   return (
     <div className={`flex flex-col min-h-screen ${styles.main}`}>
+      <CookieConsentBanner />
+
       <header className={`${styles.description} px-4 lg:px-6 h-14 flex items-center`}>
         <Link href="#">
-          <a className="flex items-center justify-center">
-            <MountainIcon className="h-6 w-6" />
-            <span className="sr-only">Acme Inc</span>
-          </a>
+          {/* `as` 속성으로 직접 HTML 요소를 지정하지 않고 `Link` 컴포넌트만 사용 */}
+          <MountainIcon className="h-6 w-6" />
+          <span className="sr-only">Acme Inc</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link href="/about"><a className="text-sm font-medium hover:underline underline-offset-4">About</a></Link>
-          <Link href="/services"><a className="text-sm font-medium hover:underline underline-offset-4">Services</a></Link>
-          <Link href="/portfolio"><a className="text-sm font-medium hover:underline underline-offset-4">Portfolio</a></Link>
-          <Link href="/contact"><a className="text-sm font-medium hover:underline underline-offset-4">Contact</a></Link>
+          <Link href="/explain/page">About</Link>
+          <Link href="/imageUpload/page.js">Services</Link>
+          <Link href="/portfolio">Portfolio</Link>
+          <Link href="/contact">Contact</Link>
         </nav>
       </header>
       <main className="flex-1">
@@ -41,11 +37,13 @@ export default function HomePage() {
             <div className="mx-auto w-full max-w-sm space-y-2">
               <form className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
                 <Input className="max-w-lg flex-1" placeholder="Generate" type="text" />
-                <Button onClick={handleAgreeClick}>Agree</Button>
+                <Link href="/explain/page">
+                  <Button>Generation</Button>
+                </Link>
               </form>
               <p className="text-xs text-gray-500 dark:text-gray-400">
                 By clicking "Agree," you consent to the use of cookies.
-                <Link href="/terms"><a className="underline">Terms & Conditions</a></Link>
+                <Link href="/terms">Terms & Conditions</Link>
               </p>
             </div>
           </div>
@@ -55,8 +53,8 @@ export default function HomePage() {
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full items-center px-4 md:px-6 border-t">
         <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Acme Inc. All rights reserved.</p>
         <nav className="ml-auto flex gap-4">
-          <Link href="/terms"><a className="text-xs hover:underline">Terms of Service</a></Link>
-          <Link href="/privacy"><a className="text-xs hover:underline">Privacy</a></Link>
+          <Link href="/terms">Terms of Service</Link>
+          <Link href="/privacy">Privacy</Link>
         </nav>
       </footer>
     </div>
