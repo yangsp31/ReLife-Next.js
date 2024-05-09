@@ -1,4 +1,3 @@
-// SpaceTypeSelector.js
 import React, { useState } from 'react';
 import masktheme from './masktheme';
 
