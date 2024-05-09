@@ -1,4 +1,5 @@
-"use client";
+//src\app\(pages)\explain\page.js
+"use client"; //서버 컴포넌트에서 지원하지 않는 기능(useState, useEffect와 같은 리액트 훅(Hook), 브라우저 API 접근 등)을 가능하게 함, 상호작용적인 UI를 위한 이벤트 핸들러
 
 //메인페이지 이후 프로그램에 대한 설명이 적혀있는 코드
 export default function Component() {
