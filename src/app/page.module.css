@@ -1,136 +1,88 @@
+/*이 파일은 현재 폴더의 page 파일의 CSS를 모듈화 시켜서 사용할 수 있게 하는 파일 입니다. CSS 사용시 이 파일을 참고하여 개발하시면 됩니다.*/
+
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between; /* from conflict resolution */
   align-items: center;
-  padding: 4rem 2rem;
+  padding: 6rem; /* adjusted from both branches */
   min-height: 100vh;
-  text-align: center;
-  gap: 1.5rem;
-  background-color: rgba(99, 28, 158, 0.6); /* 배경 색상 조절 */
+  background-color: rgba(99, 28, 158, 0.6); /* custom purple background */
 }
 
 .description {
-  font-size: 1.2rem;
-  max-width: 90%;
+  display: inherit; /* inherited alignment from second branch */
+  justify-content: inherit;
+  align-items: inherit;
+  font-size: 1.2rem; /* larger font size from first branch */
+  max-width: var(--max-width); /* controlled max width */
   z-index: 2;
-  color: #ffffff; /* 흰색 폰트로 변경 */
-  font-family: 'Arial', sans-serif;
+  color: #ffffff; /* white text for readability */
+  font-family: var(--font-mono); /* monospace font from second branch */
 }
 
 .description a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem; /* smaller gap for tighter design */
   text-decoration: none;
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.code {
-  font-weight: 700;
-  font-family: var(--font-mono);
-}
-
-.button {
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  background-color: #007BFF;
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border: none;
-  transition: all 0.2s ease;
-}
-
-.button:hover {
-  background-color: #0056b3;
+  color: #ffffff; /* white text for consistency */
+  font-weight: bold; /* bold text for emphasis */
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(20%, auto));
-  max-width: 90%;
-  gap: 2rem;
+  grid-template-columns: repeat(4, minmax(25%, auto)); /* adapted from both branches */
+  max-width: 100%; /* full width from second branch */
+  width: var(--max-width);
+  gap: 2rem; /* increased gap for better spacing */
 }
 
 .card {
-  padding: 1.5rem 2rem;
-  border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.8); /* 투명도 조절된 흰색 */
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  transition: all 0.2s ease;
-  text-align: left;
-}
-
-.card span {
-  display: inline-block;
-  transition: transform 200ms;
+  padding: 1.5rem 2rem; /* ample padding from first branch */
+  border-radius: 12px; /* rounded corners for aesthetics */
+  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white from first branch */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* subtle white border */
+  text-align: left; /* text alignment for better readability */
 }
 
 .card h2 {
   font-weight: 600;
   margin-bottom: 0.7rem;
-  font-size: 1.4rem;
+  font-size: 1.4rem; /* larger font size for headings */
 }
 
 .card p {
   margin: 0;
-  opacity: 0.8;
-  font-size: 1rem;
-  line-height: 1.4;
-  color: #333333;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 4rem 0;
+  opacity: 0.8; /* slightly transparent for softer appearance */
+  font-size: 1rem; /* readable text size */
+  line-height: 1.4; /* comfortable line height */
+  color: #333333; /* dark text for contrast */
 }
 
 @media (max-width: 700px) {
   .main {
-    padding: 3rem 1rem;
-    border-radius: 12px;
+    padding: 3rem 1rem; /* reduced padding on mobile */
   }
 
-  .button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+  .description {
+    font-size: 0.9rem; /* smaller font size for mobile screens */
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    max-width: 80%;
+    grid-template-columns: 1fr; /* single column layout on mobile */
   }
 
   .card {
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
+    padding: 1rem 1.5rem; /* reduced padding in cards for mobile */
   }
 
   .card h2 {
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* adjusted heading size for mobile */
   }
 
   .card p {
-    font-size: 0.9rem;
-  }
-
-  .center {
-    padding: 6rem 0;
+    font-size: 0.9rem; /* smaller paragraph text on mobile */
   }
 }
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert(1);
-  }
-}
-

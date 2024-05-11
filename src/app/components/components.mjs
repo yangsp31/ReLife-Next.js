@@ -20,6 +20,7 @@ export const Button = ({ className, children, href }) => {
   return href ? (
     <Link href={href} passHref>
       <a className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}>
+
         {children}
       </a>
     </Link>
@@ -43,6 +44,7 @@ export const Label = ({ htmlFor, children, className = '' }) => {
     </label>
   );
 };
+
 
 // Card 컴포넌트
 export const Card = ({ children }) => {
