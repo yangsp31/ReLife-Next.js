@@ -1,9 +1,9 @@
 "use client";
-
-//이미지 박스를 클릭하면 이미지를 업로드하고, 버튼을 클릭하면 example주소로 가는 코드
+// 이미지 박스를 클릭하면 이미지를 업로드하고, 버튼을 클릭하면 example 주소로 가는 코드
 import { useState } from 'react';
-import { Label } from "@/components/components/label"
-import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "@/components/components"
+import { Label } from "../../../components/components.mjs";
+import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "../../../components/components.mjs";
+import Link from 'next/link';
 
 export default function Component() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -17,7 +17,7 @@ export default function Component() {
       };
       reader.readAsDataURL(file);
     }
-  }; 
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mx-auto py-12 md:py-16 bg-gradient-to-r from-[#e0b0ff] to-[#add8e6]">
@@ -112,11 +112,13 @@ export default function Component() {
             </SelectContent>
           </Select>
         </div>
-  
-        <button type="button" onClick={() => router.push('/showSingleImage/page.js', '_blank')}>
-          Dashboard
-        </button>
+       
+        <Link href="image/showSingleImage" passHref>
+        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">
+            디자인 생성
+          </button>
+        </Link>
       </div>
     </div>
-  )
+  );
 }

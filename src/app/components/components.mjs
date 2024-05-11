@@ -18,10 +18,8 @@ export const Input = ({ className, placeholder, type }) => {
 export const Button = ({ className, children, href }) => {
   // `href`를 받아서 `Link` 컴포넌트로 감싸는 방식으로 처리
   return href ? (
-    <Link href={href}>
-      <a
-        className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
-      >
+    <Link href={href} passHref>
+      <a className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}>
         {children}
       </a>
     </Link>
@@ -31,6 +29,18 @@ export const Button = ({ className, children, href }) => {
     >
       {children}
     </button>
+  );
+};
+
+// Label 컴포넌트
+export const Label = ({ htmlFor, children, className = '' }) => {
+  return (
+    <label
+      htmlFor={htmlFor}
+      className={`block text-sm font-medium text-gray-700 dark:text-gray-300 ${className}`}
+    >
+      {children}
+    </label>
   );
 };
 
@@ -75,4 +85,35 @@ export const MountainIcon = (props) => {
       <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
     </svg>
   );
+};
+
+// Select 컴포넌트
+export const Select = ({ children, className }) => {
+  return (
+    <div className={`relative ${className}`}>
+      <select className="appearance-none block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+        {children}
+      </select>
+    </div>
+  );
+};
+
+// SelectItem 컴포넌트
+export const SelectItem = ({ value, children }) => {
+  return <option value={value}>{children}</option>;
+};
+
+// SelectValue 컴포넌트
+export const SelectValue = ({ placeholder }) => {
+  return <option value="">{placeholder}</option>;
+};
+
+// SelectTrigger 컴포넌트
+export const SelectTrigger = ({ children }) => {
+  return <>{children}</>;
+};
+
+// SelectContent 컴포넌트
+export const SelectContent = ({ children }) => {
+  return <>{children}</>;
 };

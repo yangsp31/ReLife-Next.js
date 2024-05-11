@@ -1,33 +1,80 @@
 "use client";
-
 // 웹사이트의 최초 진입점 입니다 이 페이지가 가장 먼저 보여지는 페이지 이므로 여기서부터 개발하시면 됩니다.
+
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import backgroundImage from "./1.gif";
 import styles from "./page.module.css";
 
-export default function CombinedComponent() {
+// Button 컴포넌트
+const Button = ({ href, className, children }) => {
   return (
-    <div className={`${styles.main} ${styles.flex} ${styles.flexCol} ${styles.itemsCenter} ${styles.justifyCenter} ${styles.minHScreen}`} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <header className={`${styles.absolute} ${styles.top0} ${styles.left0} ${styles.right0} ${styles.flex} ${styles.justifyBetween} ${styles.p5}`}>
+    <Link href={href}>
+        className={`bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
+        {children}
+    </Link>
+  );
+};
+
+export default function CombinedComponent() {
+  const backgroundImage = "/1.gif"; // public 폴더의 이미지 경로
+
+  return (
+    <div
+      className={`${styles.main} ${styles.flex} ${styles.flexCol} ${styles.itemsCenter} ${styles.justifyCenter} ${styles.minHScreen}`}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <header
+        className={`${styles.absolute} ${styles.top0} ${styles.left0} ${styles.right0} ${styles.flex} ${styles.justifyBetween} ${styles.p5}`}
+      >
         <div className={`${styles.flex} ${styles.itemsCenter} ${styles.spaceX4}`}>
-          <LightbulbIcon className={`${styles.textWhite} ${styles.h6} ${styles.w6}`} />
-          <span className={`${styles.text2xl} ${styles.fontBold} ${styles.textWhite}`}>INTERIOR SIMULATOR</span>
+          <LightbulbIcon
+            className={`${styles.textWhite} ${styles.h6} ${styles.w6}`}
+          />
+          <span
+            className={`${styles.text2xl} ${styles.fontBold} ${styles.textWhite}`}
+          >
+            INTERIOR SIMULATOR
+          </span>
         </div>
-        <nav className={`${styles.flex} ${styles.itemsCenter} ${styles.spaceX4}`}>
-          <Link href="#" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>about</Link>
-          <Link href="#" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>resource</Link>
-          <Link href="#" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>inquiry</Link>
-          <Button className={`${styles.bgBlue500} ${styles.hoverBgBlue600} ${styles.textWhite} ${styles.fontSemibold} ${styles.py2} ${styles.px4} ${styles.roundedMd} ${styles.shadowLg}`}>
+        <nav
+          className={`${styles.flex} ${styles.itemsCenter} ${styles.spaceX4}`}
+        >
+          <Link
+            href="/about"
+            className={`${styles.textWhite} ${styles.hoverTextGray300}`}
+          >
+            about
+          </Link>
+          <Link
+            href="/resource"
+            className={`${styles.textWhite} ${styles.hoverTextGray300}`}
+          >
+            resource
+          </Link>
+          <Link
+            href="/inquire"
+            className={`${styles.textWhite} ${styles.hoverTextGray300}`}
+          >
+            inquiry
+          </Link>
+          <Button href="/explain" className="">
             Start
           </Button>
         </nav>
       </header>
-      <h1 className={`${styles.text6xl} ${styles.fontExtrabold} ${styles.textWhite} ${styles.trackingTight} ${styles.textCenter} ${styles.mb16}`}>인테리어 프로그램 이용</h1>
+      <h1
+        className={`${styles.text6xl} ${styles.fontExtrabold} ${styles.textWhite} ${styles.trackingTight} ${styles.textCenter} ${styles.mb16}`}
+      >
+        인테리어 프로그램 이용
+      </h1>
     </div>
   );
 }
 
+// 아이콘 컴포넌트
 function LightbulbIcon(props) {
   return (
     <svg
