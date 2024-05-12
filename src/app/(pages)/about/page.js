@@ -1,14 +1,10 @@
-import backgroundImg from './1.gif';
-//import image1 from './2.png';
-//import image2 from './3.png';
-//import image3 from './4.png';
 
 export default function Component() {
   return (
     <div
       className="text-white p-12 flex justify-center"
       style={{
-        backgroundImage: `url(${backgroundImg})`, 
+        backgroundImage: "url('/placeholder.svg')",
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
@@ -21,7 +17,7 @@ export default function Component() {
               alt="elaborate details"
               className="rounded-lg"
               height="400"
-              src={image1}
+              src="/placeholder.svg"
               style={{
                 aspectRatio: "300/400",
                 objectFit: "cover",
@@ -29,14 +25,14 @@ export default function Component() {
               width="300"
             />
             <h2 className="text-xl font-semibold">elaborate details</h2>
-            <p>내용</p>
+            <p>내용1</p>
           </div>
           <div className="flex flex-col items-center space-y-4">
             <img
               alt="instead of a professional, ai"
               className="rounded-lg"
               height="400"
-              src={image2} 
+              src="/placeholder.svg"
               style={{
                 aspectRatio: "300/400",
                 objectFit: "cover",
@@ -48,17 +44,17 @@ export default function Component() {
           </div>
           <div className="flex flex-col items-center space-y-4">
             <img
-              alt="수기한 내용"
+              alt="내용33"
               className="rounded-lg"
               height="400"
-              src={image3} // 변경된 부분
+              src="/placeholder.svg"
               style={{
                 aspectRatio: "300/400",
                 objectFit: "cover",
               }}
               width="300"
             />
-            <h2 className="text-xl font-semibold">수기한 내용</h2>
+            <h2 className="text-xl font-semibold">내용33</h2>
             <p>내용3</p>
           </div>
         </div>

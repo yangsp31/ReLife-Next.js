@@ -1,88 +1,98 @@
-/*이 파일은 현재 폴더의 page 파일의 CSS를 모듈화 시켜서 사용할 수 있게 하는 파일 입니다. CSS 사용시 이 파일을 참고하여 개발하시면 됩니다.*/
+/* 이 파일은 현재 폴더 내의 page 파일의 CSS를 모듈화하여 사용할 수 있도록 하는 파일입니다. CSS 사용 시 이 파일을 참조하여 개발하시면 됩니다. */
 
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* from conflict resolution */
+  justify-content: space-between;
   align-items: center;
-  padding: 6rem; /* adjusted from both branches */
+  padding: 6rem;
   min-height: 100vh;
-  background-color: rgba(99, 28, 158, 0.6); /* custom purple background */
+  background-color: rgba(99, 28, 158, 0.6); /* 배경색 조절 */
+  color: #ffffff; /* 텍스트 색상을 흰색으로 설정 */
+}
+
+/* 모든 하위 요소에 흰색 텍스트 적용 */
+.main * {
+  color: inherit; /* 상속받은 색상 적용 */
 }
 
 .description {
-  display: inherit; /* inherited alignment from second branch */
+  display: inherit; /* 상속된 정렬을 유지 */
   justify-content: inherit;
   align-items: inherit;
-  font-size: 1.2rem; /* larger font size from first branch */
-  max-width: var(--max-width); /* controlled max width */
+  font-size: 1.2rem; /* 더 큰 폰트 크기 */
+  max-width: var(--max-width); /* 최대 너비 설정 */
   z-index: 2;
-  color: #ffffff; /* white text for readability */
-  font-family: var(--font-mono); /* monospace font from second branch */
+  color: #ffffff; /* 가독성을 위한 흰색 텍스트 */
+  font-family: var(--font-mono); /* 모노스페이스 폰트 사용 */
 }
 
 .description a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem; /* smaller gap for tighter design */
+  gap: 0.5rem; /* 간격을 좁게 설정 */
   text-decoration: none;
-  color: #ffffff; /* white text for consistency */
-  font-weight: bold; /* bold text for emphasis */
+  color: #ffffff; /* 일관성을 위한 흰색 텍스트 */
+  font-weight: bold; /* 강조를 위한 볼드체 */
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(25%, auto)); /* adapted from both branches */
-  max-width: 100%; /* full width from second branch */
+  grid-template-columns: repeat(4, minmax(25%, auto)); /* 두 가지 스타일 적용 */
+  max-width: 100%; /* 전체 너비 사용 */
   width: var(--max-width);
-  gap: 2rem; /* increased gap for better spacing */
+  gap: 2rem; /* 더 큰 간격으로 설정 */
 }
 
 .card {
-  padding: 1.5rem 2rem; /* ample padding from first branch */
-  border-radius: 12px; /* rounded corners for aesthetics */
-  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white from first branch */
-  border: 1px solid rgba(255, 255, 255, 0.5); /* subtle white border */
-  text-align: left; /* text alignment for better readability */
+  padding: 1.5rem 2rem; /* 충분한 패딩 제공 */
+  border-radius: 12px; /* 미적 외관을 위한 둥근 모서리 */
+  background-color: rgba(255, 255, 255, 0.8); /* 반투명한 흰색 배경 */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* 섬세한 흰색 테두리 */
+  text-align: left; /* 텍스트 왼쪽 정렬 */
 }
 
 .card h2 {
   font-weight: 600;
   margin-bottom: 0.7rem;
-  font-size: 1.4rem; /* larger font size for headings */
+  font-size: 1.4rem; /* 더 큰 제목 폰트 크기 */
 }
 
 .card p {
   margin: 0;
-  opacity: 0.8; /* slightly transparent for softer appearance */
-  font-size: 1rem; /* readable text size */
-  line-height: 1.4; /* comfortable line height */
-  color: #333333; /* dark text for contrast */
+  opacity: 0.8; /* 약간 투명한 외관 */
+  font-size: 1rem; /* 읽기 쉬운 텍스트 크기 */
+  line-height: 1.4; /* 편안한 줄 간격 */
+  color: #333333; /* 대비를 위한 어두운 텍스트 */
 }
 
 @media (max-width: 700px) {
   .main {
-    padding: 3rem 1rem; /* reduced padding on mobile */
+    padding: 3rem 1rem; /* 모바일에서 패딩 감소 */
   }
 
   .description {
-    font-size: 0.9rem; /* smaller font size for mobile screens */
+    font-size: 0.9rem; /* 모바일 화면에 맞는 작은 폰트 크기 */
   }
 
   .grid {
-    grid-template-columns: 1fr; /* single column layout on mobile */
+    grid-template-columns: 1fr; /* 모바일에서 한 열 레이아웃 */
   }
 
   .card {
-    padding: 1rem 1.5rem; /* reduced padding in cards for mobile */
+    padding: 1rem 1.5rem; /* 모바일 카드의 패딩 감소 */
   }
 
   .card h2 {
-    font-size: 1.2rem; /* adjusted heading size for mobile */
+    font-size: 1.2rem; /* 모바일에서 조정된 제목 크기 */
   }
 
   .card p {
-    font-size: 0.9rem; /* smaller paragraph text on mobile */
+    font-size: 0.9rem; /* 모바일에서 작은 단락 텍스트 크기 */
   }
+}
+
+.justifyStart {
+  justify-content: flex-start
 }

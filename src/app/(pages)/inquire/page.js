@@ -27,7 +27,7 @@ export default function Component() {
           alt="Background Image"
           className="w-full h-full object-cover"
           height={1080}
-          src="/1.gif" {/* 1.gif 파일의 경로 */}
+          src="/1.gif" 
           style={{
             aspectRatio: "1920/1080",
             objectFit: "cover",

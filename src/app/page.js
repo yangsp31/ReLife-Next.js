@@ -4,7 +4,7 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 
-//아이콘 컴포넌트
+// 아이콘 컴포넌트
 function LightbulbIcon(props) {
   return (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -18,9 +18,8 @@ function LightbulbIcon(props) {
 // Button 컴포넌트
 const Button = ({ href, className, children }) => {
   return (
-    <Link href={href}>
-        className={`bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
-        {children}
+    <Link href={href} className={`bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}>
+      {children}
     </Link>
   );
 };
@@ -29,17 +28,8 @@ export default function CombinedComponent() {
   const backgroundImage = "/1.gif"; // public 폴더의 이미지 경로
 
   return (
-    <div
-      className={`${styles.main} ${styles.flex} ${styles.flexCol} ${styles.itemsCenter} ${styles.justifyCenter} ${styles.minHScreen}`}
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <header
-        className={`${styles.absolute} ${styles.top0} ${styles.right0} ${styles.flex} ${styles.justifyBetween} ${styles.p5}`}
-      >
+    <div className={`${styles.main} ${styles.flex} ${styles.flexCol} ${styles.itemsCenter} ${styles.justifyCenter} ${styles.minHScreen}`} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+      <header className={`${styles.absolute} ${styles.top0} ${styles.right0} ${styles.flex} ${styles.justifyEnd} ${styles.p5}`}>
         <div className={`${styles.flex} ${styles.itemsCenter} ${styles.spaceX4}`}>
           <LightbulbIcon className={`${styles.textWhite} ${styles.h6} ${styles.w6}`} />
           <span className={`${styles.text2xl} ${styles.fontBold} ${styles.textWhite}`}>INTERIOR SIMULATOR</span>
@@ -48,7 +38,7 @@ export default function CombinedComponent() {
           <Link href="/about" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>about</Link>
           <Link href="/resource" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>resource</Link>
           <Link href="/inquire" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>inquiry</Link>
-          <Button href="/explain" className="">Start</Button>
+          <Button href="/explain">Start</Button>
         </nav>
       </header>
       <h1 className={`${styles.text6xl} ${styles.fontExtrabold} ${styles.textWhite} ${styles.trackingTight} ${styles.textCenter} ${styles.mb16}`}>
