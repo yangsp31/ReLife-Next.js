@@ -35,9 +35,9 @@ export default function CombinedComponent() {
           <span className={`${styles.text2xl} ${styles.fontBold} ${styles.textWhite}`}>INTERIOR SIMULATOR</span>
         </div>
         <nav className={`${styles.flex} ${styles.itemsCenter} ${styles.spaceX4}`}>
-          <Link href="/about" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>about</Link>
-          <Link href="/resource" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>resource</Link>
-          <Link href="/inquire" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>inquiry</Link>
+          <Link href="/about" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>about   </Link>
+          <Link href="/resource" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>resource   </Link>
+          <Link href="/inquire" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>inquiry   </Link>
           <Button href="/explain">Start</Button>
         </nav>
       </header>

@@ -6,27 +6,35 @@ import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from ".
 import Link from 'next/link';
 
 export default function Component() {
+   // selectedImage 상태관리, 초기값은 null
   const [selectedImage, setSelectedImage] = useState(null);
 
+  // 이미지 파일을 처리하고 상태를 업데이트
   const handleImageChange = (event) => {
+    //사용자가 선택한 파일 가져옴
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
+        // 파일 읽기가 완료되면, 읽은 결과를 selectedImage 상태에 저장
         setSelectedImage(reader.result);
       };
+      //파일을 데이터 url로 읽음
       reader.readAsDataURL(file);
     }
   };
 
+  //UI 구조 설계
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mx-auto py-12 md:py-16 bg-gradient-to-r from-[#e0b0ff] to-[#add8e6]">
       <div className="flex items-center justify-center">
+                {/* 이미지 업로드 영역 */}
         <label htmlFor="upload-image" className="cursor-pointer">
           <img
             alt="Placeholder"
             className="rounded-xl"
             height="500"
+            // 업로드된 이미지 표시
             src={selectedImage || '/placeholder.svg'}
             style={{
               aspectRatio: "500/500",
@@ -50,8 +58,10 @@ export default function Component() {
           </Label>
           <Select className="w-full" id="category">
             <SelectTrigger>
+              {/* SelectValue: 선택된 값을 보여줌 */}
               <SelectValue placeholder="Select Category" />
             </SelectTrigger>
+            {/*드롭다운 메뉴의 항목을 포함*/}
             <SelectContent>
               <SelectItem value="illustration">Illustration</SelectItem>
               <SelectItem value="logo">Logo</SelectItem>
@@ -113,7 +123,7 @@ export default function Component() {
           </Select>
         </div>
        
-        <Link href="image/showSingleImage" passHref>
+        <Link href="/showSingleImage" passHref>
         <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">
             디자인 생성
           </button>
