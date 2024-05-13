@@ -31,13 +31,14 @@ export const createCookie = (ck_01, id, days=7) => {
             let date = new Date();
             //현재 시간을 기준으로 만료일(days)을 밀리초 단위로 계산
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            // UTC(협정세계시) 형식으로 만료일 설정
             expires = '; expires=' + date.toUTCString();
         }
+        //쿠키 설정
         document.cookie = ck_01 + '=' + (id || '') + expires + '; path=/';
     }
 };
 
-//ck_01 쿠키 읽음
 export const readCookie = (ck_01) => {
     if (typeof window !== 'undefined') { //클라이언트 환경확인
         let nameEQ = ck_01 + '=';
