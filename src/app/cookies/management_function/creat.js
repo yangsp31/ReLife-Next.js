@@ -37,9 +37,9 @@ export const createCookie = (ck_01, id, days=7) => {
     }
 };
 
-
+//ck_01 쿠키 읽음
 export const readCookie = (ck_01) => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') { //클라이언트 환경확인
         let nameEQ = ck_01 + '=';
         let ca = document.cookie.split(';');
         for (let i = 0; i < ca.length; i++) {
@@ -83,5 +83,5 @@ export const giveConsent = () => {
 
 
 
-//cookies 존재 여부 확인
+//cookies 존재 여부 확인(콘솔창)
 console.log("User consent status: ", readCookie('cookieConsent'));
