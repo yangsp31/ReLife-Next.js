@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { checkCookieConsent, giveConsent  } from "@/app/cookies/management_function/creat";
 
-
 const CookieConsentBanner = () => {
     const [showBanner, setShowBanner] = useState(false);
 
@@ -24,7 +23,7 @@ const CookieConsentBanner = () => {
             top: 0,
             left: 0,
             right: 0,
-            backgroundColor: '#f7f7f7',
+            backgroundColor: 'white', 
             color: '#333',
             padding: '20px',
             display: 'flex',

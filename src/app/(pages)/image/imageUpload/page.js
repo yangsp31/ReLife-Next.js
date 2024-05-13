@@ -1,4 +1,5 @@
 "use client";
+
 // 이미지 박스를 클릭하면 이미지를 업로드하고, 버튼을 클릭하면 example 주소로 가는 코드
 import { useState } from 'react';
 import { Label } from "../../../components/components.mjs";
@@ -6,7 +7,6 @@ import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from ".
 import Link from 'next/link';
 
 export default function Component() {
-   // selectedImage 상태관리, 초기값은 null
   const [selectedImage, setSelectedImage] = useState(null);
 
   // 이미지 파일을 처리하고 상태를 업데이트
@@ -16,10 +16,10 @@ export default function Component() {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        // 파일 읽기가 완료되면, 읽은 결과를 selectedImage 상태에 저장
-        setSelectedImage(reader.result);
+   // selectedImage: 이미지가 저장되는 변수, 이미지 데이터의 URL 형식, Base64 인코딩된 문자열(string), 초기값은 null
+       setSelectedImage(reader.result);
       };
-      //파일을 데이터 url로 읽음
+      //파일 데이터를 url로 읽음
       reader.readAsDataURL(file);
     }
   };

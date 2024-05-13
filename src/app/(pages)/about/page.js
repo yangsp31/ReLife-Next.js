@@ -1,6 +1,9 @@
+import styles from "../../page.module.css";
 
 export default function Component() {
   return (
+    <div className={`${styles.main} ${styles.flex} ${styles.flexCol} ${styles.itemsCenter} ${styles.justifyCenter} ${styles.minHScreen}`} style={{ backgroundImage: `url()`, backgroundSize: "cover", backgroundPosition: "center" }}>
+
     <div
       className="text-white p-12 flex justify-center"
       style={{
@@ -11,7 +14,6 @@ export default function Component() {
     >
       <div className="flex flex-col items-center space-y-8">
         <h1 className="text-5xl font-bold">why we made?</h1>
-        <div className="grid grid-cols-3 gap-8">
           <div className="flex flex-col items-center space-y-4">
             <img
               alt="elaborate details"

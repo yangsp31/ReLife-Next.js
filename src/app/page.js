@@ -3,6 +3,8 @@
 
 import Link from "next/link";
 import styles from "./page.module.css";
+import CookieConsentBanner from './cookies/permit_banner/banner.client';
+
 
 // 아이콘 컴포넌트
 function LightbulbIcon(props) {
@@ -29,6 +31,7 @@ export default function CombinedComponent() {
 
   return (
     <div className={`${styles.main} ${styles.flex} ${styles.flexCol} ${styles.itemsCenter} ${styles.justifyCenter} ${styles.minHScreen}`} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+      <CookieConsentBanner />
       <header className={`${styles.absolute} ${styles.top0} ${styles.right0} ${styles.flex} ${styles.justifyEnd} ${styles.p5}`}>
         <div className={`${styles.flex} ${styles.itemsCenter} ${styles.spaceX4}`}>
           <LightbulbIcon className={`${styles.textWhite} ${styles.h6} ${styles.w6}`} />
