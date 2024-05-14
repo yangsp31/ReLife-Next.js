@@ -8,7 +8,8 @@ import { setMaskId, setTaskData } from "../function/kvRedis";
 export async function POST(request) {
     try {
         const cookie = cookies();
-        const formData = await request.formData();
+
+
         const file = formData.get("file");
 
         // 쿠키와 파일과 같은 필수 리소스 확인

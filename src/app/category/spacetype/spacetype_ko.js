@@ -18,9 +18,9 @@ const spacetype2 = {
     해가드는방: 'Sunroom',
     뒷마당: 'Backyard',
     정원: 'Garden',
-    야외생활: 'Outdoor Living',
-    풀사이드: 'Poolside',
-    데크,파티오: 'Deck/Patio'
+    야외: 'Outdoor Living',
+    수영장주변: 'Poolside',
+    발코니: 'Deck/Patio'
     
   };
   

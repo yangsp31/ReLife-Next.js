@@ -1,4 +1,4 @@
-const spaceTypes = {
+const spacetypes = {
   Bar: 'ST-INT-001',
   Bathroom: 'ST-INT-002',
   Bedroom: 'ST-INT-003',
@@ -24,5 +24,5 @@ const spaceTypes = {
   DeckPatio: 'ST-EXT-005'
   };
   
-  export default spaceTypes;
+  export default spacetypes;
   
