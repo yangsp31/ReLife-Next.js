@@ -1,4 +1,5 @@
 import { createClient } from "@vercel/kv";
+import { requestDistortion } from "./requestFlask";
 
 // redis (Vercel KV)와 연결
 const relifeKv = createClient({
@@ -26,9 +27,9 @@ export async function setTaskData(cookie, url, spaceType, designTheme, prompt) {
 }
 
 // API로 부터 받아온 mask작업ID를 키값으로 요청한 사용자의 쿠키와 매칭
-export async function setMaskId(jobId, cookie) {
+export async function setMaskId(jobId, cookie, type) {
     try {
-        await relifeKv.set(`${jobId}`, `${cookie}`, {ex : 300, nx : true})
+        await relifeKv.hset(`${jobId}`, {cookie : cookie, type : type})
     }
     catch (error) {
         console.log(error)
@@ -39,9 +40,9 @@ export async function setMaskId(jobId, cookie) {
 // API로 부터 받아온 generate작업ID를 키값으로 요청한 사용자의 쿠키와 매칭
 export async function setGenerateId(maskJobId, generateJobId) {
     try {
-        const cookie = await relifeKv.get(`${maskJobId}`)
+        const data = await relifeKv.hgetall(`${maskJobId}`)
 
-        await relifeKv.set(`${generateJobId}`, `${cookie}`, {ex : 300, nx : true})
+        await relifeKv.hset(`${generateJobId}`,{cookie : data.cookie, type : data.type})
     }
     catch (error) {
         console.log(error)
@@ -52,7 +53,7 @@ export async function setGenerateId(maskJobId, generateJobId) {
 // 웹훅을 통해 API로부터 받아온 mask이미지URL을 사용자와 매칭후 저장
 export async function setMaskTaskData(jobId, url) {
     try {
-        const cookie = await relifeKv.get(`${jobId}`)
+        const cookie = await relifeKv.hget(`${jobId}`, 'cookie')
 
         await relifeKv.hset(`${cookie}`, {maskUrl : url})
     }
@@ -65,9 +66,17 @@ export async function setMaskTaskData(jobId, url) {
 // 웹훅을 통해 API로부터 받아온 generate이미지URL을 사용자와 매칭후 저장
 export async function setGenerateTaskData(jobId, url) {
     try {
-        const cookie = await relifeKv.get(`${jobId}`)
+        const data = await relifeKv.hgetall(`${jobId}`)
 
-        await relifeKv.hset(`${cookie}`, {generateUrl : url})
+        if(data.type == 'panorama') {
+            const distortionurl = await requestDistortion(data.cookie, url)
+
+            await relifeKv.hset(`${data.cookie}`, {generateUrl : distortionurl})
+            console.log(distortionurl)
+        }
+        else {
+            await relifeKv.hset(`${data.cookie}`, {generateUrl : url})
+        }
     } 
     catch (error) {
         console.log(error)
@@ -78,7 +87,7 @@ export async function setGenerateTaskData(jobId, url) {
 // mask작업ID를 이용하여 사용자 탐색 후 사용자 작업정보에서 필요한 값 가져오기
 export async function getMaskTaskData(jobId) {
     try {
-        const cookie = await relifeKv.get(`${jobId}`)
+        const cookie = await relifeKv.hget(`${jobId}`, 'cookie')
         const fields = ["imageUrl", "spaceType", "designTheme", "prompt"]
         const values = {}
 
@@ -129,9 +138,9 @@ export async function reGenerateTask(cookie, data) {
 }
 
 // 재요청한 이미지 변환 작업ID 쿠키와 매칭
-export async function setReGenerateId(cookie, generateJobId) {
+export async function setReGenerateId(cookie, generateJobId, type) {
     try {
-        await relifeKv.set(`${generateJobId}`, `${cookie}`, {ex : 300, nx : true})
+        await relifeKv.hset(`${generateJobId}`,{cookie : cookie, type : type})
     }
     catch (error) {
         console.log(error)

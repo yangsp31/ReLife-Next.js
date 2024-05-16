@@ -25,7 +25,7 @@ export async function POST(request) {
         // reimagineHome API의 응답에 따라 redis(Vercel KV)에 사용자의 작업정보 저장
         if(info.status === 'success') {
             const result = await Promise.all([
-                setMaskId(info.data.job_id, cookie.get("user").value),
+                setMaskId(info.data.job_id, cookie.get("user").value, 'single'),
                 korToEn(formData.get("prompt"))
             ])
 
