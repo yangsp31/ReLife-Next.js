@@ -9,7 +9,8 @@ import { korToEn } from "../function/translate";
 export async function POST(request) {
     try {
         const cookie = cookies();
-        const formData = await request.formData();
+
+
         const file = formData.get("file");
         var prompt
 
