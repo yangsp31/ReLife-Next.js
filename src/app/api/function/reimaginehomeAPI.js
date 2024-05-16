@@ -9,7 +9,7 @@ export async function requestMask(url) {
     try {
         const body = JSON.stringify({
             "image_url" : `${url}`,
-            "webhook_url" : "https://b320-211-179-47-118.ngrok-free.app/api/webhook/mask"
+            "webhook_url" : "https://8103-211-179-47-118.ngrok-free.app/api/webhook/mask"
         });
 
         const requestOption = {
@@ -18,6 +18,8 @@ export async function requestMask(url) {
             body : body,
             redirect : 'follow'
         };
+
+        console.log(url)
 
         const response = await fetch(`${process.env.NEXT_PUBLIC_REIMAGINEHOME_API_URL}/v1/create_mask`, requestOption);
         const result = await response.json()
@@ -42,8 +44,8 @@ export async function requestGenerate(jobId, maskUrl) {
             "space_type" : `${data.spaceType}`,
             "design_theme" : `${data.designTheme}`,
             "additional_prompt" : `${data.prompt}`,
-            "generation_count" : 3,
-            "webhook_url" : "https://b320-211-179-47-118.ngrok-free.app/api/webhook/generate"
+            "generation_count" : 1,
+            "webhook_url" : "https://8103-211-179-47-118.ngrok-free.app/api/webhook/generate"
         });
         
         const requestOption = {
@@ -55,7 +57,6 @@ export async function requestGenerate(jobId, maskUrl) {
 
         const response = await fetch(`${process.env.NEXT_PUBLIC_REIMAGINEHOME_API_URL}/v1/generate_image`, requestOption)
         const result = await response.json()
-        console.log(result)
 
         return result.data.job_id
     }
@@ -77,7 +78,7 @@ export async function reGenerate(taskData) {
             "design_theme" : `${taskData.designTheme}`,
             "additional_prompt" : `${taskData.prompt}`,
             "generation_count" : 3,
-            "webhook_url" : "https://dc7d-211-179-47-118.ngrok-free.app/api/webhook/generate"
+            "webhook_url" : "https://8103-211-179-47-118.ngrok-free.app/api/webhook/generate"
         });
         
         const requestOption = {

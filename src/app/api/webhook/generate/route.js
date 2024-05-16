@@ -6,8 +6,6 @@ export async function POST(request) {
     const body = await request.json();
     const urls = body.data.generated_images
 
-    console.log(body)
-
     // 응답 상태에 따라 생성된 이미지URL redis(vercel KV)에 저장
     if(body.status === "success" && body.data.job_status === "done") {
         setGenerateTaskData(body.data.job_id, urls)
