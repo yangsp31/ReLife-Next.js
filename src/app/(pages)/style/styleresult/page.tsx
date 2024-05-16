@@ -1,42 +1,82 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
-import Button from "@/app/_components/Button";
-// import QuizCard from "./QuizCard";
-import QuizCard from "./quiz-card/page";
-import QuizResult from "./QuizResult";
+import QuizResultCard from "./QuizResultCard";
+import PinterestLayout from "@/app/_components/PinterestLayout";
+import Modal from "@/app/_components/LoginModal";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import Router, { withRouter } from "next/router";
+import { Suspense } from "react";
 
-export default function QuizTest() {
+interface ResultItem {
+  [key: string]: string;
+}
+
+interface QuizResultProps {
+  result: ResultItem[];
+}
+
+interface FetchedDataItem {
+  // Define the structure of the fetched data
+  // Adjust the types based on the actual structure of your fetched data
+  key: string;
+  value: string;
+}
+
+export default function QuizResult({ result }: QuizResultProps) {
+  const styles = result.map((item) => Object.keys(item)[0]);
+
+  const [fetchedData, setFetchedData] = useState<string[]>([]);
+
+  const getStyleImage = async (styles: string[]) => {
+    const fetchedDataArray: string[] = [];
+    for (const style of styles) {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER}/style/${style}`, // Individual style route
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            style: style,
+          }),
+        }
+      );
+      const data = await response.json();
+      fetchedDataArray.push(data);
+    }
+    setFetchedData(fetchedDataArray);
+  };
+
+  useEffect(() => {
+    // Call getStyleImage when the component mounts
+    getStyleImage(styles);
+  }, []);
+
   return (
-    <div className="flex-row">
-      <div className="flexCenter lg:max-container relative w-full lg:pb-12 pb-5">
-        <div className="hide-scrollbar flex w-full items-start justify-start gap-8 overflow-x-auto lg:h-[400px] xl:h-[640px]">
-          <Image
-            src="/home-cover-4.jpg"
-            alt="Home Cover"
-            width={1440}
-            height={700}
-            className="h-full w-full min-w-[1100px] bg-home-cover-1 bg-cover bg-no-repeat"
-          />
+    <div className="flex flex-col sm:flex-row lg:py-10 lg:px-12">
+      <div className="lg:w-1/2 xs:w-full flex-col items-center justify-between p-6 ml-5">
+        <p className="bold-32 p-3 lg:mb-20 mb-15 text-blue-100">
+          Based on our prediction, here is your style ✨
+        </p>
+        <div className="flex flex-wrap gap-3 lg:mb-20">
+          {result.map((item, index) => (
+            <div key={index} className="gap-2 mb-4 rounded-lg bg-slate-100">
+              <QuizResultCard cardInfo={item} />
+            </div>
+          ))}
+        
         </div>
-        <div className="flex absolute flex-col bg-white lg:py-8 py-5 pl-5 pr-7 gap-5 rounded-3xl border shadow-md items-center text-center ">
-          <p className="flex-wrap xs:bold-20 md:bold-32 lg:bold-60 lg:max-w-[400px] text-blue-100">
-            Find your interior design style
-          </p>
-          <p className="text-gray-50">
-            Take our interior design style quiz to discover your unique home
-            style!
-          </p>
-          <button className="btn-yellow">
-            <Link href="/gallery">Pick Images Styles You Like</Link>
-          </button>
-          <button className="btn-yellow">
-            <Link href="/quiz-test/quiz-card">Answer Questions</Link>
-          </button>
-        </div>
+        <button className="btn-yellow mr-5">
+          <Link href="/quiz-test">Do Quiz Again</Link>
+        </button>
+        <button className="btn-yellow">
+          <Link href="/design-idea">Explore Style</Link>
+        </button>
+      </div>
+
+      <div className="w-full sm:w-1/2">
+        <PinterestLayout images={fetchedData} isLoop={true} />
       </div>
     </div>
+    
+
   );
 }

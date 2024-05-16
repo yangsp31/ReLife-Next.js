@@ -1,7 +1,7 @@
 "use client";
 
 // 이미지 박스를 클릭하면 이미지를 업로드하고, 버튼을 클릭하면 showSingleImage\page.js 주소로 가는 코드
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Label } from "../../../components/components.mjs";
 import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "../../../components/components.mjs";
 import Link from 'next/link';
@@ -18,36 +18,29 @@ export default function Component() {
   const [spaceType, setSpaceType] = useState('');
   const [resultUrl, setResultUrl] = useState(''); 
 
-      useEffect(() => {
-            // 이 효과는 navigateToUrl이 변경되고 빈 문자열이 아닐 때 실행됩니다.
-        if (navigateToUrl) {
-          window.location.href = navigateToUrl;   // 내비게이션을 위해 window.location 사용
-        }
-      }, [navigateToUrl]);
-
-// 이미지 파일을 처리하고 상태를 업데이트
-if (!event.target.files || event.target.files.length === 0) {
-  console.log("파일이 선택되지 않았습니다.");
-  return;  // 파일이 없으면 함수 종료
-}
-const handleImageChange = async (event) => {
-
-  const file = event.target.files[0];
-  if (file) {
-    try {
-      uploadSingleImage('user_cookie', file)
-        .then(uploadResult => {
-          setSelectedImage(URL.createObjectURL(file));
-          setNavigateToUrl(`/image/showSingleImage?uploadedImage=${encodeURIComponent(URL.createObjectURL(file))}&resultUrl=${encodeURIComponent(uploadResult)}`);
-        })
-        .catch(error => {
-          console.error('이미지 업로드 실패:', error);
-        });
-    } catch (error) {
-      console.error('파일 처리 중 오류 발생:', error);
-    }
+  // 이미지 파일을 처리하고 상태를 업데이트
+  if (!event.target.files || event.target.files.length === 0) {
+    console.log("파일이 선택되지 않았습니다.");
+    return;  // 파일이 없으면 함수 종료
   }
-};
+  const handleImageChange = async (event) => {
+
+    const file = event.target.files[0];
+    if (file) {
+      try {
+        uploadSingleImage('user_cookie', file)
+          .then(uploadResult => {
+            setSelectedImage(URL.createObjectURL(file));
+            setNavigateToUrl(`/image/showSingleImage?uploadedImage=${encodeURIComponent(URL.createObjectURL(file))}&resultUrl=${encodeURIComponent(uploadResult)}`);
+          })
+          .catch(error => {
+            console.error('이미지 업로드 실패:', error);
+          });
+      } catch (error) {
+        console.error('파일 처리 중 오류 발생:', error);
+      }
+    }
+  };
   /*
     const file = event.target.files[0]; //file : 사용자가 선택한 선택된 파일의 객체를 참조(이미지의 url주소 저장 공간)
     //선택된 파일이 있을경우 실행
@@ -58,11 +51,11 @@ const handleImageChange = async (event) => {
         // 결과 이미지 URL을 쿼리 파라미터로 포함하여 라우팅
         setNavigateToUrl(`/image/showSingleImage?uploadedImage=${encodeURIComponent(URL.createObjectURL(file))}&resultUrl=${encodeURIComponent(uploadResult)}`);
       } catch (error) {
-        console.error('이미지 업로드 실패:', error);
+          console.error('이미지 업로드 실패:', error);
+        }
       }
-    }
-  } 
-};*/
+    } 
+  };*/
 
   //DesignTheme값 바꾸기
   const handleDesignThemeChange = (event) => {
