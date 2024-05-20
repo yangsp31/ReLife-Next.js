@@ -26,29 +26,41 @@ const Button = ({ href, className, children }) => {
   );
 };
 
+const Logo = {
+  fontWeight: 'bold',
+  marginLeft: '10px',
+  fontSize: '20px',
+}
+
+const mainLogo = {
+  fontWeight: 'bold',
+  fontSize: '50px',
+  marginBottom : '60px',
+}
+
 export default function CombinedComponent() {
   const backgroundImage = "/1.gif"; // public 폴더의 이미지 경로
 
   return (
-    <div className={`${styles.main} ${styles.flex} ${styles.flexCol} ${styles.itemsCenter} ${styles.justifyCenter} ${styles.minHScreen}`} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+    <div className={`${styles.main}`} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }}>
       <CookieConsentBanner />
-      <header className={`${styles.absolute} ${styles.top0} ${styles.right0} ${styles.flex} ${styles.justifyEnd} ${styles.p5}`}>
-        <div className={`${styles.flex} ${styles.itemsCenter} ${styles.spaceX4}`}>
-          <LightbulbIcon className={`${styles.textWhite} ${styles.h6} ${styles.w6}`} />
-          <span className={`${styles.text2xl} ${styles.fontBold} ${styles.textWhite}`}>INTERIOR SIMULATOR</span>
+      <div className = {`${styles.mainUpper}`}>
+        <div className={`${styles.box}`}>
+        <LightbulbIcon/>
+        <span style = {Logo}>INTERIOR SIMULATOR</span>
         </div>
-        <nav className={`${styles.flex} ${styles.itemsCenter} ${styles.spaceX4}`}>
-          <Link href="/about" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>about   </Link>
-          <Link href="/resource" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>resource   </Link>
-          <Link href="/inquire" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>inquiry   </Link>
-          <Link href="/stylequiz" className={`${styles.textWhite} ${styles.hoverTextGray300}`}>style find   </Link>
-
-          <Button href="/explain">Start</Button>
+        <div className={`${styles.box2}`}/>
+        <nav className={`${styles.box}`}>
+          <Link href="/about" className={`${styles.tab}`}>about</Link>
+          <Link href="/resource" className={`${styles.tab}`}>resource</Link>
+          <Link href="/inquire" className={`${styles.tab}`}>inquiry</Link>
+          <Link href="/stylequiz" className={`${styles.tab}`}>style find</Link>
+          <Button href="/explain" className={`${styles.tab}`}>Start</Button> 
         </nav>
-      </header>
-      <h1 className={`${styles.text6xl} ${styles.fontExtrabold} ${styles.textWhite} ${styles.trackingTight} ${styles.textCenter} ${styles.mb16}`}>
-        인테리어 프로그램 이용
-      </h1>
+      </div>
+      <div className = {`${styles.mainCenter}`}>
+        <span style={mainLogo}>인테리어 프로그램 이용</span>
+      </div>
     </div>
   );
 }

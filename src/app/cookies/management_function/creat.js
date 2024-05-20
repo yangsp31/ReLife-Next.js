@@ -68,7 +68,7 @@ export const deleteCookie = (ck_01) => {
 // 쿠키와 로컬 스토리지에서 사용자 동의 확인
 export const checkCookieConsent = () => {
     const consentFromCookie = readCookie('cookieConsent') === 'true';    //쿠키에서 동의여부 확인 
-    return !!consentFromCookie; //동의했으면 true반환 
+    return !consentFromCookie; //동의했으면 true반환 
 
 };
 

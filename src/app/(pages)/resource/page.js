@@ -1,7 +1,9 @@
+import styles from '../../page.module.css'
+
 
 export default function Component() {
   return (
-    <div className="relative">
+    <div className={`${styles.main}`}>
       <div className="absolute inset-0 bg-[#0c0032] bg-gradient-to-r from-[#190061] to-[#240090] text-white p-12">
         <h1 className="text-4xl font-bold mb-8">Write the contents of the one-on-one consultation</h1>
         <div className="space-y-6">

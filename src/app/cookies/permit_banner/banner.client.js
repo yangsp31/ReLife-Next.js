@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { checkCookieConsent, giveConsent  } from "@/app/cookies/management_function/creat";
+import { checkCookieConsent, giveConsent  } from "../management_function/creat";
 
 const CookieConsentBanner = () => {
     const [showBanner, setShowBanner] = useState(false);

@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  transpilePackages : ['three'],
 
   webpack(config) {
     config.resolve.alias = {

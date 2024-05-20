@@ -124,7 +124,7 @@ export async function reGenerateTask(cookie, data) {
         await relifeKv.hdel(`${cookie}`, "generateUrl")
 
         if(data.setting === true) {
-            await relifeKv.hset(`${cookie}`, {designTheme : data.designTheme, prompt : data.prompt})
+            await relifeKv.hset(`${cookie}`, {designTheme : data.designTheme, spaceType : data.spaceType, prompt : data.prompt})
         }
 
         const taskData = await relifeKv.hgetall(`${cookie}`)

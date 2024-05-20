@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
   min-height: 100vh;
   background-color: rgba(99, 28, 158, 0.6); /* 배경색 조절 */
   color: #ffffff; /* 텍스트 색상을 흰색으로 설정 */
@@ -14,6 +13,220 @@
 /* 모든 하위 요소에 흰색 텍스트 적용 */
 .main * {
   color: inherit; /* 상속받은 색상 적용 */
+}
+
+.startLogo {
+  font-weight: bold;
+  font-Size: 60px;
+  white-space: nowrap;
+  margin-bottom: 70px;
+}
+
+.startButton {
+  padding: 20px;
+  white-space: nowrap; 
+  margin-right: 60px;
+}
+
+.box {
+  flex :1;
+  padding: 20px;
+  white-space: nowrap; 
+  
+}
+
+.box2 {
+  flex : 2;
+  padding: 20px;
+}
+
+.box3 {
+  padding: 20px;
+  white-space: nowrap; 
+}
+
+.box4 {
+  display: flex;
+  min-width:20%;
+  padding: 20px;
+  white-space: nowrap; 
+  margin-top: 6%;
+  margin-left: 10%;
+  justify-content: space-between;
+  
+}
+
+.box5 {
+  display: flex;
+  flex-direction: column;
+  width : 450px;
+}
+
+.inputBox {
+  width : 400px;
+}
+
+.promptBox {
+  display: flex;
+  flex: 1;
+  align-items:center;
+  width: 60%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.selectBox{
+  display: flex;
+  flex: 1;
+  flex-direction:row;
+  justify-content:space-around;
+  
+  width: 55%;
+  
+}
+
+.itemContainer {
+  display: flex;
+  flex: 1;
+  flex-direction:column;
+  justify-content:space-around;
+  width: 55%;
+}
+
+.item {
+  display: flex;
+  margin-bottom: 5%;
+  justify-content:space-around;
+  
+}
+
+.itemContainer2 {
+  display: flex;
+  flex: 1;
+  justify-content:space-around;
+  width: 55%;
+  margin-top: 5%;
+}
+
+.box6 {
+  display: flex;
+  flex:1;
+  flex-direction: column;
+  align-items:center;
+}
+
+.tab {
+  margin-right: 35px;
+  font-size: 20px;
+}
+.mainUpper {
+  display: flex;
+  align-items:flex-start;
+  margin-top:2%;
+  min-width:95%;
+  overflow-x: auto;
+}
+
+.mainCenter {
+  display: flex;
+  flex: 4;
+  align-items: center;
+  white-space: nowrap; 
+}
+
+.startUpper {
+  display: flex;
+  align-items:flex-start;
+  margin-top:2%;
+  min-width:95%;
+  overflow-x: auto;
+}
+
+.startCenter {
+  display: flex;
+  flex: 1;
+  min-width:95%;
+  align-items: flex-start;
+  white-space: nowrap;
+  flex-direction: column;
+}
+
+.resultCenter {
+  display: flex;
+  flex: 1;
+  min-width:100%;
+  align-items: flex-start;
+  white-space: nowrap;
+  flex-direction: row;
+}
+
+.resultImageContainer {
+  display: flex;
+  min-width:50%;
+  white-space: nowrap;
+  flex-direction: column;
+  justify-content:space-around;
+}
+
+.resultItem {
+  display: flex;
+  min-width:100%;
+  justify-content:space-around;
+  margin-bottom: 2%;
+}
+
+.startImageCenter {
+  display: flex;
+  flex: 1;
+  min-width:95%;
+  align-items: flex-start;
+  white-space: nowrap;
+  flex-direction: row;
+}
+
+.imageContainer {
+  width : 400px;
+  height : 400px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.input {
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.select {
+  color: #333;
+  background-color: #fff;
+  font-size: 16px;
+  padding: 8px;
+  outline: none;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.generateButton {
+  background-color: #4CAF50; /* 배경색 */
+  color: white; /* 텍스트 색상 */
+  padding: 15px 32px; /* 패딩 */
+  text-align: center; /* 텍스트 정렬 */
+  text-decoration: none; /* 텍스트 밑줄 제거 */
+  display: inline-block; /* 인라인 블록 요소 */
+  font-size: 16px; /* 폰트 크기 */
+  margin: 4px 2px; /* 여백 */
+  cursor: pointer; /* 마우스 커서 */
+  border: none; /* 경계선 제거 */
+  border-radius: 4px; /* 둥근 모서리 */
+  width: 50%;
 }
 
 .description {

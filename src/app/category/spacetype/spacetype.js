@@ -1,28 +1,22 @@
-const spacetypes = {
-  Bar: 'ST-INT-001',
-  Bathroom: 'ST-INT-002',
-  Bedroom: 'ST-INT-003',
-  DiningRoom: 'ST-INT-004',
-  Lounge: 'ST-INT-005',
-  GameRoom: 'ST-INT-006',
-  HobbyRoom: 'ST-INT-007',
-  Playroom: 'ST-INT-008',
-  Kitchen: 'ST-INT-009',
-  LaundryRoom: 'ST-INT-010',
-  LivingRoom: 'ST-INT-011',
-  MediaRoom: 'ST-INT-012',
-  Nursery: 'ST-INT-013',
-  Pantry: 'ST-INT-014',
-  Studio: 'ST-INT-015',
-  Study: 'ST-INT-016',
-  Sunroom: 'ST-INT-017',
-
-  Backyard: 'ST-EXT-001',
-  Garden: 'ST-EXT-002',
-  OutdoorLiving: 'ST-EXT-003',
-  Poolside: 'ST-EXT-004',
-  DeckPatio: 'ST-EXT-005'
-  };
+const spacetypes = [
+  {value : 'ST-INT-001', name : '술집'},
+  {value : 'ST-INT-002', name : '화장실'},
+  {value : 'ST-INT-003', name : '침실'},
+  {value : 'ST-INT-004', name : '다이닝룸'},
+  {value : 'ST-INT-005', name : '휴게실'},
+  {value : 'ST-INT-006', name : '게임룸'},
+  {value : 'ST-INT-007', name : '취미방'},
+  {value : 'ST-INT-008', name : '놀이방'},
+  {value : 'ST-INT-009', name : '부엌'},
+  {value : 'ST-INT-010', name : '세탁방'},
+  {value : 'ST-INT-011', name : '거실'},
+  {value : 'ST-INT-012', name : '미디어룸'},
+  {value : 'ST-INT-013', name : '육아실'},
+  {value : 'ST-INT-014', name : '식품저장실'},
+  {value : 'ST-INT-015', name : '작업실'},
+  {value : 'ST-INT-016', name : '서재'},
+  {value : 'ST-INT-017', name : '해가드는방'}
+]
   
   export default spacetypes;
   

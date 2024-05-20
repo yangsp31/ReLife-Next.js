@@ -19,14 +19,14 @@ export const Button = ({ className, children, href }) => {
   // `href`를 받아서 `Link` 컴포넌트로 감싸는 방식으로 처리
   return href ? (
     <Link href={href} passHref>
-      <a className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}>
+      <a className={`inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#FF6B6B] to-[#FFA500] px-8 py-3 text-2xl font-bold text-white shadow-lg transition-colors hover:from-[#FFA500] hover:to-[#FF6B6B] focus:outline-none focus:ring-2 focus:ring-[#FF6B6B] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed`}>
 
         {children}
       </a>
     </Link>
   ) : (
     <button
-      className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
+      className={`inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#FF6B6B] to-[#FFA500] px-8 py-3 text-2xl font-bold text-white shadow-lg transition-colors hover:from-[#FFA500] hover:to-[#FF6B6B] focus:outline-none focus:ring-2 focus:ring-[#FF6B6B] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed`}
     >
       {children}
     </button>

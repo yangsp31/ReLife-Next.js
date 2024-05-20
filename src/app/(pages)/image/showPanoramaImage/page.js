@@ -1,7 +1,9 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'; // OrbitControls 임포트
-import { Button } from "@/components/ui/button";
+import { Button } from "../../../components/components";
 
 export default function Component() {
   const containerRef = useRef(null);
@@ -19,7 +21,7 @@ export default function Component() {
 
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load(
-      '/path/to/your/image.jpg', // 이미지 경로
+      'https://irsstorage.s3.ap-northeast-2.amazonaws.com/185528682/short/frf.jpg', // 이미지 경로
       (texture) => {
         const geometry = new THREE.PlaneGeometry(10, 10);
         const material = new THREE.MeshBasicMaterial({ map: texture });
