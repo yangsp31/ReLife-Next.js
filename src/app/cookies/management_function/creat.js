@@ -46,13 +46,19 @@ export const readCookie = (ck_01) => {
         let nameEQ = ck_01 + '=';
         //각 쿠키는 ;으로 구분
         let ca = document.cookie.split(';');
+        console.log('hi' + document.cookie)
         //document.cookie에서 반환된 모든 쿠키를 순차적으로 검사
         for (let i = 0; i < ca.length; i++) {
             let c = ca[i];
             //앞 공백제거(공백을 제거하지 않으면 올바르게 비교X-> 원하는 쿠키 값을 찾을 수 없음)
             while (c.charAt(0) === ' ') c = c.substring(1, c.length);
             //nameEQ = 쿠키이름(46번줄)->동일한 쿠키이름임이 성립되면 쿠키이름을 제외한값 추출(substring 명령어)
-            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            if (c.indexOf(nameEQ) === 0) {
+                return true
+            }
+            else {
+                return false
+            }
         }
     }
     return null;
@@ -67,8 +73,8 @@ export const deleteCookie = (ck_01) => {
 
 // 쿠키와 로컬 스토리지에서 사용자 동의 확인
 export const checkCookieConsent = () => {
-    const consentFromCookie = readCookie('cookieConsent') === 'true';    //쿠키에서 동의여부 확인 
-    return !consentFromCookie; //동의했으면 true반환 
+    const consentFromCookie = readCookie('cookieConsent');    //쿠키에서 동의여부 확인 
+    return consentFromCookie; //동의했으면 true반환 
 
 };
 

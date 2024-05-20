@@ -48,22 +48,17 @@ export default function Component() {
     const response = await fetch('http://localhost:3000/api/getImage', {
       method : 'POST',
       headers : {'Content-Type' : 'application/json'},
-      body : JSON.stringify({url : '185528682/short/frf.jpg'})
+      body : JSON.stringify({url : `${resultUrl}`, type : 'single'})
     })
 
-    console.log(response)
-
-    const imageUrl = URL.createObjectURL(await response.blob())
-
-    const downloadLink = document.createElement('a');
-    downloadLink.href = imageUrl;
-    downloadLink.download = 'image'; // 다운로드될 파일의 이름을 설정합니다.
-
-  // 다운로드 링크를 클릭하여 다운로드를 시작합니다.
-    downloadLink.click();
-
-  // 다운로드가 완료된 후에는 URL을 해제합니다.
-    URL.revokeObjectURL(imageUrl);
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `dream.${response.headers.get('content-type')}`);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   }
 
   const setPromptText = (text) => {
@@ -83,13 +78,14 @@ export default function Component() {
       const data = {
         prompt : prompt,
         designTheme : designTheme,
-        spaceType : spaceType
+        spaceType : spaceType,
+        type : 'single'
       }
 
       try {
         const response = await fetch('http://localhost:3000/api/retry', {
           method : 'POST',
-          body : JSON.stringify(data)
+          body : JSON.stringify(data),
         })
 
         if(response.ok) {
@@ -106,7 +102,7 @@ export default function Component() {
     router.back()
   }
 
-  /*useEffect(() => {
+  useEffect(() => {
     const id = setInterval(async () => {
       const success = await fetching()
 
@@ -119,7 +115,7 @@ export default function Component() {
     return () => {
       clearInterval(id);
     };
-  }, [render]);*/
+  }, [render]);
   
 
   return (
@@ -131,8 +127,8 @@ export default function Component() {
       <div className={`${styles.resultImageContainer}`}>
         <div className={`${styles.resultItem}`}>
         <ReactCompareSlider
-            itemOne = {<ReactCompareSliderImage src = 'https://irsstorage.s3.ap-northeast-2.amazonaws.com/185528682/short/444.jpg' alt = 'Image One'/>}
-            itemTwo = {<ReactCompareSliderImage src = 'https://irsstorage.s3.ap-northeast-2.amazonaws.com/185528682/short/frf.jpg' alt = 'Image Two'/>}
+            itemOne = {<ReactCompareSliderImage src = {selectImage} alt = 'Image One'/>}
+            itemTwo = {<ReactCompareSliderImage src = {resultUrl} alt = 'Image Two'/>}
         />
         </div>
         <div className={`${styles.resultItem}`}>

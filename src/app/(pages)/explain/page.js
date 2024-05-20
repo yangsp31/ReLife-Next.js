@@ -27,7 +27,7 @@ export default function Component() {
         <Button href="/image/imageUpload">
         go single
       </Button>
-      <Button href="/image/showPanoramaImage">
+      <Button href="/image/panoramaUpload">
         go panorama
       </Button>
         </div>

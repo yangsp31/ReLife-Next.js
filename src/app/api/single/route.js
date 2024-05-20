@@ -20,22 +20,23 @@ export async function POST(request) {
 
         // AWS S3에 파일 업로드 후 reimagineHone API에 mask 생성 요청
         const fileUrl = await uploadSingleImage(cookie.get("cookieConsent").value, file);
-        //const info = await requestMask(fileUrl);
+        const info = await requestMask(fileUrl);
 
         // reimagineHome API의 응답에 따라 redis(Vercel KV)에 사용자의 작업정보 저장
-        /*if(info.status === 'success') {
+        if(info.status === 'success') {
             const result = await Promise.all([
                 setMaskId(info.data.job_id, cookie.get("cookieConsent").value, 'single'),
                 korToEn(formData.get("prompt"))
             ])
 
             const prompt = result[1]
+            console.log(prompt)
             await setTaskData(cookie.get("cookieConsent").value, fileUrl, formData.get("spaceType"), formData.get("designTheme"), prompt)
         }
         else {
             console.log(info)
             return NextResponse.json({error : "Error service"}, {status : 500});
-        }*/
+        }
 
         return NextResponse.json({true : "success"}, {status : 200});
     }
