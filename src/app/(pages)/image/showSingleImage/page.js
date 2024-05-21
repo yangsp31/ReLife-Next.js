@@ -83,7 +83,8 @@ export default function Component() {
       const data = {
         prompt : prompt,
         designTheme : designTheme,
-        spaceType : spaceType
+        spaceType : spaceType,
+        type : "single"
       }
 
       try {
@@ -106,7 +107,7 @@ export default function Component() {
     router.back()
   }
 
-  /*useEffect(() => {
+  useEffect(() => {
     const id = setInterval(async () => {
       const success = await fetching()
 
@@ -119,7 +120,7 @@ export default function Component() {
     return () => {
       clearInterval(id);
     };
-  }, [render]);*/
+  }, [render]);
   
 
   return (
@@ -131,8 +132,8 @@ export default function Component() {
       <div className={`${styles.resultImageContainer}`}>
         <div className={`${styles.resultItem}`}>
         <ReactCompareSlider
-            itemOne = {<ReactCompareSliderImage src = 'https://irsstorage.s3.ap-northeast-2.amazonaws.com/185528682/short/444.jpg' alt = 'Image One'/>}
-            itemTwo = {<ReactCompareSliderImage src = 'https://irsstorage.s3.ap-northeast-2.amazonaws.com/185528682/short/frf.jpg' alt = 'Image Two'/>}
+            itemOne = {<ReactCompareSliderImage src = {selectImage} alt = 'Image One'/>}
+            itemTwo = {<ReactCompareSliderImage src = {resultUrl} alt = 'Image Two'/>}
         />
         </div>
         <div className={`${styles.resultItem}`}>

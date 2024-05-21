@@ -108,6 +108,26 @@
   margin-top: 5%;
 }
 
+.gallery-item {
+  position: relative;
+  display: inline-block;
+}
+
+.check-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background: url('/check-icon.png') no-repeat center center;
+  background-size: contain;
+  display: none; /* 기본적으로 아이콘을 숨김 */
+}
+
+.gallery-item.selected .check-icon {
+  display: block; /* 선택된 경우 아이콘을 표시 */
+}
+
 .box6 {
   display: flex;
   flex:1;

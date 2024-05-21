@@ -12,20 +12,7 @@ const masktheme2 = {
     러스틱: 'Rustic',
     스칸디나비아: 'Scandinavian',
     전통: 'Traditional',
-    과도기: 'Transitional',
-    아름다운정원: 'Beautiful Garden',
-    매력적인극장정원조경: 'Charming Theater Garden Landscaping',
-    코티지가든의다채로운식목팔레트: 'Colorful Plant Palette Cottage Garden',
-    화덕과좌석이있는아늑한코너: 'Cozy Corner with Firepit and Seating',
-    자갈조경을이용한정원조경: 'Gravel Garden Landscaping',
-    힙합캘리포니아정원조경: 'Hip Hop California Garden Landscaping',
-    무성한녹색잔디: 'Lush Green Grass',
-    지중해정원조경: 'Mediterranean Garden Landscaping',
-    이끼정원: 'Moss Garden',
-    야외식사및좌석공간: 'Outdoor Dining and Seating Area',
-    수영장스파및화재기능을갖춘파티준비야외공간: 'Party Ready Outdoor Space with Pool, Spa, and Fire Features',
-    리조트스타일조경및수영장: 'Resort Style Landscaping and Pool',
-    잔디밭과풀하우스가있는원형수영장: 'Circular Pool with Lawn and Pool House'
+    과도기: 'Transitional'
   };
   
   export default masktheme2;

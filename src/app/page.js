@@ -54,7 +54,7 @@ export default function CombinedComponent() {
           <Link href="/about" className={`${styles.tab}`}>about</Link>
           <Link href="/resource" className={`${styles.tab}`}>resource</Link>
           <Link href="/inquire" className={`${styles.tab}`}>inquiry</Link>
-          <Link href="/stylequiz" className={`${styles.tab}`}>style find</Link>
+          <Link href="/style" className={`${styles.tab}`}>style find</Link>
           <Button href="/explain" className={`${styles.tab}`}>Start</Button> 
         </nav>
       </div>

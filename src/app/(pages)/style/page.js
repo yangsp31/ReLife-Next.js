@@ -1,0 +1,104 @@
+"use client"; // 클라이언트 사이드 렌더링을 활성화 
+import StyleGallery from "./styleGallery"; // StyleGallery 컴포넌트를 가져옴
+import { useEffect, useState } from "react"; // useEffect와 useState 훅을 가져옴
+import Masonry from "react-responsive-masonry"; // 반응형 masonry 레이아웃을 위한 컴포넌트를 가져옴
+import { shuffleArray, calculateResult } from "../../style-function/function"; 
+import imageList from '../../category/imageList'; // 이미지 목록을 가져옴
+import Image from 'next/image'; // next/image :최적화된 이미지 로딩, 자동 크기 조절, 지연 로딩(화면을 스크롤할 때 필요한 이미지만 로드), 최신 웹 표준 지원
+
+
+
+// 이미지 목록을 가져오는 함수
+function getImages() {
+  return imageList;
+}
+
+// Home 컴포넌트를 정의 
+export default function Home() {
+  const [images, setImages] = useState([]);  //useState : 상태변수(true/false)
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [quizResult, setQuizResult] = useState(null);
+
+  
+  useEffect(() => {
+    const allImages = getImages();
+    const shuffledImages = shuffleArray(allImages);
+    setImages(shuffledImages.slice(0, 30)); // 무작위로 30개 이미지 선택
+    setLoading(false);
+  }, []);
+
+  // 이미지 클릭 이벤트 핸들러
+  const handleImageClick = (image) => { //url : 이미지 이름
+    if (selectedIds.includes(image.path)) {
+      setSelectedIds((prevSelected) => prevSelected.filter((id) => id !== image.path));
+    } else {
+      setSelectedIds((prevSelected) => [...prevSelected, image.path]);
+    }
+  };
+
+ // 제출 버튼 클릭 시 호출되는 함수
+ const handleSubmit = () => {
+  const result = calculateResult(selectedIds, images);
+  console.log("Quiz Result: ", result);
+  setQuizResult(result);
+};
+
+  return (
+    <main style={{ backgroundImage: "url('/back.jpg')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', minHeight: '100vh', padding: '2rem' }}>
+      {loading ? (
+        <div className="min-h-screen flex justify-center items-center">
+          <p>Loading images...</p>
+          <div className="relative">
+            <Image
+              src="/spinner-square.svg"
+              alt="Loading Spinner"
+              width={200}
+              height={200}
+              className="h-full w-full"
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-col sm:flex-row lg:py-10 lg:px-12">
+          <div className="lg:w-1/2 md:w-1/3 xs:w-full flex-col items-center justify-between p-6 ml-5">
+            <p className="regular-40 mb-4">
+              마음에 드는 방을 선택하세요.
+            </p>
+            <p className="regular-18">
+              원하는만큼 선택한 후 제출하기 버튼을 누르세요.
+            </p>
+          </div>
+          <div className="w-full md:w-2/3 sm:w-1/2 relative">
+            <Masonry columnsCount={3} gutter="3px">
+            {images.map((image, index) => (
+                <StyleGallery
+                  _id={image.id.toString()}
+                  image={image.path}
+                  name={image.name}
+                  key={index}
+                  index={index}
+                  onClick={() => handleImageClick(image)} // 이미지 객체를 매개변수로 전달
+                />
+              ))}
+            </Masonry>
+            <div className="bg-gray-100 bg-opacity-75 fixed bottom-0 lg:w-1/2 sm:w-full xs:w-full text-center p-4">
+              <button
+                className="mt-auto btn-yellow"
+                onClick={handleSubmit}
+              >
+                제출하기
+              </button>
+              {quizResult && (
+                <div className="mt-4">
+                  <h3>Quiz Result:</h3>
+                  <pre>{JSON.stringify(quizResult, null, 2)}</pre>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </main>
+  );
+}
