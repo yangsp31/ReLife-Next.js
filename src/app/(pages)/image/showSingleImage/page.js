@@ -57,12 +57,12 @@ export default function Component() {
 
     const downloadLink = document.createElement('a');
     downloadLink.href = imageUrl;
-    downloadLink.download = 'image'; // 다운로드될 파일의 이름을 설정합니다.
+    downloadLink.download = 'image'; // 다운로드될 파일의 이름을 설정함
 
-  // 다운로드 링크를 클릭하여 다운로드를 시작합니다.
+  // 다운로드 링크를 클릭하여 다운로드를 시작함
     downloadLink.click();
 
-  // 다운로드가 완료된 후에는 URL을 해제합니다.
+  // 다운로드가 완료된 후에는 URL을 해제함
     URL.revokeObjectURL(imageUrl);
   }
 

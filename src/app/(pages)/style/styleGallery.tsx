@@ -1,5 +1,5 @@
-import React, { useState } from "react"; // React와 useState 훅을 가져옵니다.
-import { FaCheckCircle } from "react-icons/fa"; // React Icons 라이브러리에서 FaCheckCircle 아이콘을 가져옵니다.
+import React, { useState } from "react"; // React와 useState 훅을 가져옴
+import { FaCheckCircle } from "react-icons/fa"; // React Icons 라이브러리에서 FaCheckCircle 아이콘을 가져옴
 
 // StyleGallery 컴포넌트가 받을 props 타입을 정의 
 interface StyleGalleryProps {
