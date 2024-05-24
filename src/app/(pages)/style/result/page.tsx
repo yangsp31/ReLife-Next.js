@@ -10,17 +10,17 @@ export default function QuizResultPage() {
   const [quizResult, setQuizResult] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     const quizResult = JSON.parse(localStorage.getItem("quizResult") || "[]");
     setQuizResult(quizResult); // quizResult 상태를 설정
     if (quizResult.length > 0) {
       const firstResult = quizResult[0];
       fetchStyleData(firstResult);
+    } else {
+      setLoading(false); // quizResult가 없는 경우 로딩을 false로 설정
     }
   }, []);
 
- 
   // fetchStyleData 함수는 퀴즈 결과에 따라 스타일 데이터를 설정
 const fetchStyleData = async (result) => {
   // result("테마이름":"설명") 객체에서 첫 번째 키(테마 이름)를 가져옴
@@ -46,13 +46,18 @@ const fetchStyleData = async (result) => {
 
   // styleData 상태를 설정하여 화면에 표시될 데이터 업데이트
   setStyleData(data);
+  setLoading(false); // 데이터 로딩 완료 후 로딩 상태를 false로 설정
 };
 
-if (!styleData) {
+if (!styleData && !loading) {
+  // 스타일 데이터가 없고 로딩이 완료된 경우
   return (
     <div className="fullscreen-center">
       <div className="text-center">
         <p>스타일을 선택해주세요</p>
+        <Link href="/style">
+          <a>스타일 선택 페이지로 이동</a>
+        </Link>
       </div>
     </div>
   );
@@ -60,9 +65,9 @@ if (!styleData) {
 
   return (
     <main className={styles.main}> 
-      {loading ? ( // loading이 true인 경우 로딩 스피너를 표시
-        <div className={styles.fullscreenCente}>
-         <div className="text-center"> {/* 텍스트를 중앙에 정렬 */}
+     {loading ? ( // loading이 true인 경우 로딩 스피너를 표시
+        <div className={styles.fullscreenCenter}>
+          <div className="text-center"> {/* 텍스트를 중앙에 정렬 */}
             <p>이미지 로딩 중...</p>
             <div className="relative">
               <Image
@@ -71,8 +76,6 @@ if (!styleData) {
                 height={200} // 이미지 높이
                 alt="Loading" // alt 속성 추가 (이미지가 로드되지 않을 때 대신 표시할 텍스트를 지정)
                 className="h-full w-full"
-                style={{ marginTop: '20px' }} // 원하는 만큼 아래로 이동
-
               />
             </div>
           </div>

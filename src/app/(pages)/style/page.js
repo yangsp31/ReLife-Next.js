@@ -61,7 +61,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      ) : ( // loading이 false인 경우 실제 컨텐츠를 표시
+    ) : ( // loading이 false인 경우 실제 컨텐츠를 표시
         <div className={styles.fullContainer}>
           <div className={styles.leftBox}>
           <p className={`${styles['regular-40']} mb-4`}> {/*객체 형식으로 접근하여 스타일 접근*/}
@@ -81,14 +81,15 @@ export default function Home() {
           <div className={styles.rightBox}>
             <Masonry columnsCount={3} gutter="3px"> // Masonry 레이아웃을 사용하여 이미지들을 3열로 배치하고 간격을 3px로 설정
               {images.map((image, index) => (
-                <StyleGallery
-                  _id={image.id.toString()} // 각 이미지의 고유한 ID를 문자열로 변환하여 _id 속성에 전달
-                  image={image.path} // 이미지 경로
-                  name={image.name} // 이미지 이름
-                  key={image.id.toString()} // 고유한 이미지 ID를 키로 사용 (React의 리스트 렌더링 최적화를 위해 필요)
-                  onClick={() => handleImageClick(image)} // 이미지 클릭 시 handleImageClick 함수를 호출, 이미지 객체를 매개변수로 전달
-                />
-              ))}
+               <StyleGallery
+                _id={image.id.toString()} 
+                image={image.path} 
+                name={image.name} 
+                key={image.id.toString()} 
+                onClick={() => handleImageClick(image)}
+                isSelected={selectedIds.includes(image.path)} 
+             />
+           ))}
             </Masonry>
           </div>
         </div>

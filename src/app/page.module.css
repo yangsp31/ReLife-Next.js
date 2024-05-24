@@ -125,14 +125,16 @@
   position: relative;
   display: inline-block;
 }
-
+.image-container {
+  position: relative;
+}
 .check-icon {
   position: absolute;
   top: 8px;
   right: 8px;
   width: 24px;
   height: 24px;
-  background: url('/check-icon.png') no-repeat center center;
+  background: url('/check.jpg') no-repeat center center;
   background-size: contain;
   display: none; /* 기본적으로 아이콘을 숨김 */
 }

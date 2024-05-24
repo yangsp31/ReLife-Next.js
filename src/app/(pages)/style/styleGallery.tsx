@@ -51,9 +51,15 @@ const StyleGallery: React.FC<StyleGalleryProps> = ({
             }}
           />
           {selected && ( // 선택된 상태일 때만 체크 아이콘 버튼을 렌더링 
-            <button className="absolute top-0 right-2 border-none rounded-full p-2 cursor-pointer">
-              <FaCheckCircle color="#304561" size={20} /> {/* 체크 아이콘을 표시  */}
-            </button>
+            <FaCheckCircle 
+              style={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                color: "#304561",
+                fontSize: "24px",
+              }} 
+            />
           )}
         </div>
       </div>
