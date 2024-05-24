@@ -20,7 +20,7 @@ export async function POST (request) {
         const info = await reGenerate(taskData)
 
         // 쿠키와 이미지 재변환ID 매칭
-        await setReGenerateId(cookie.get("cookieConsent").value, info,data.type)
+        await setReGenerateId(cookie.get("cookieConsent").value, info, data.type)
 
         return NextResponse.json({true : "success"}, {status : 200});
     }

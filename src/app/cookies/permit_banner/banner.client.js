@@ -3,19 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { checkCookieConsent, giveConsent  } from "../management_function/creat";
 
 const CookieConsentBanner = () => {
-    const [showBanner, setShowBanner] = useState(false);
+    const [showBanner, setShowBanner] = useState(true);
 
     useEffect(() => {
         const hasConsent = checkCookieConsent();
-        setShowBanner(!hasConsent);
+        console.log(hasConsent)
+        setShowBanner(hasConsent);
     }, []);
 
     const handleGiveConsent = () => {
         giveConsent();
-        setShowBanner(false);
+        setShowBanner(true);
     };
 
-    if (!showBanner) return null;
+    if (showBanner) return null;
 
     return (
         <div style={{

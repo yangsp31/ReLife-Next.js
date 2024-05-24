@@ -1,76 +1,183 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'; // OrbitControls 임포트
-import { Button } from "../../../components/components";
+import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
+import styles from "../../../page.module.css";
+import { Sphere, OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
+import masktheme from '../../../category/masktheme/masktheme'
+import spacetype from '../../../category/spacetype/spacetype'
+
 
 export default function Component() {
-  const containerRef = useRef(null);
-  const rotationSpeed = 0.005;
+  const [image, setImage] = useState(null)
+  const [resultUrl, setResultUrl] = useState('')
+  const [render, setRender] = useState(false);
+  const [prompt, setprompt] = useState('');
+  const [designTheme, setDesignTheme] = useState('');
+  const [spaceType, setSpaceType] = useState('');
+  const router = useRouter();
+
+  const fetching = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/result?type=panorama');
+
+      if(response.ok) {
+        const result = await response.json();
+
+        if(result.process == 'success') {
+          setResultUrl(result.url)
+
+          return true
+        }
+      }
+
+      return false
+    }
+    catch (error) {
+      console.log(error)
+
+      return false
+    }
+  }
+
+  const downloadButton = async () => {
+    const response = await fetch('http://localhost:3000/api/getImage', {
+      method : 'POST',
+      headers : {'Content-Type' : 'application/json'},
+      body : JSON.stringify({url : `${resultUrl}`, type : 'panorama'})
+    })
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `dream.${response.headers.get('content-type')}`);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
+  const setPromptText = (text) => {
+    setprompt(text.target.value)
+  }
+
+  const setDesignThemeCode = (Theme) => {
+    setDesignTheme(Theme.target.value)
+  }
+
+  const setSpaceTypeCode = (Type) => {
+    setSpaceType(Type.target.value)
+  }
+
+  const handleGenerate = async () => {
+    if(designTheme != '' || spaceType != '') {
+      const data = {
+        prompt : prompt,
+        designTheme : designTheme,
+        spaceType : spaceType,
+        type : 'panorama'
+      }
+
+      try {
+        const response = await fetch('http://localhost:3000/api/retry', {
+          method : 'POST',
+          body : JSON.stringify(data),
+        })
+
+        if(response.ok) {
+          setRender(true)
+        }
+      } 
+      catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  const handleNewGenerate = () => {
+    router.back()
+  }
 
   useEffect(() => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    containerRef.current.appendChild(renderer.domElement);
+    /*const id = setInterval(async () => {
+      const success = await fetching()
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableZoom = true;
-
-    const textureLoader = new THREE.TextureLoader();
-    textureLoader.load(
-      'https://irsstorage.s3.ap-northeast-2.amazonaws.com/185528682/short/frf.jpg', // 이미지 경로
-      (texture) => {
-        const geometry = new THREE.PlaneGeometry(10, 10);
-        const material = new THREE.MeshBasicMaterial({ map: texture });
-        const plane = new THREE.Mesh(geometry, material);
-        scene.add(plane);
-      },
-      undefined,
-      (error) => {
-        console.error('An error happened', error);
+      if(success) {
+        clearInterval(id)
+        setRender(false)
       }
-    );
+    }, 5000);*/
 
-    camera.position.z = 5;
+    const loader = new THREE.TextureLoader();
+    loader.load('https://irsstorage.s3.ap-northeast-2.amazonaws.com/185528682/panorama/result/distortionPanorama.jpg', (loadedTexture) => {
+      setImage(loadedTexture);
+    });
 
-    const animate = function () {
-      requestAnimationFrame(animate);
-      scene.rotation.y += rotationSpeed;
-      renderer.render(scene, camera);
-    };
-
-    animate();
-
-    return () => {
-      renderer.dispose();
-    };
-  }, []);
+    /*return () => {
+      clearInterval(id);
+    };*/
+  }, [render])
 
   return (
-    <div className="flex justify-end items-center h-screen bg-gradient-to-br from-purple-200 to-blue-200">
-      <div className="flex items-center w-full min-h-[700px] gap-4 px-4 md:px-8 xl:gap-8 mr-auto translate-x-[3cm]">
-        <div className="relative">
-          <div
-            ref={containerRef}
-            className="aspect-video overflow-hidden rounded-xl object-cover object-center border"
-            style={{ width: '1280px', height: '720px' }}
-          />
-          <div className="absolute top-4 left-4 bg-white px-3 py-1 rounded-md text-sm font-medium text-gray-900 dark:bg-gray-900 dark:text-gray-50">
-            A
+    <div className={`${styles.panoramaMain}`} style={{backgroundImage: `url(../../1.gif)`, backgroundSize: "cover", backgroundPosition: "center"}}>
+      <Canvas style={{ height: '100vh', width : '95%'}}>
+      <Sphere args={[500, 50, 50]}>
+        <meshBasicMaterial attach="material" 
+         map={image}
+         side={THREE.BackSide} 
+        />
+      </Sphere>
+      <OrbitControls />
+     </Canvas>
+      <div className={`${styles.panoramaCenter}`}>
+      <div className={`${styles.resultItem}`}>
+          <button className={`${styles.generateButton}`} onClick={downloadButton}>Download Image</button>
+        </div>
+          <div className={`${styles.promptBox}`}>
+            <input type = 'text' placeholder = 'Enter any additional comments' className={`${styles.input}`} value = {prompt} onChange = {setPromptText}/>
+          </div>
+          <div className={`${styles.selectBox}`}>
+            <div className={`${styles.itemContainer}`}>
+              <div className={`${styles.item}`}>
+                <label htmlFor = 'DesignTheme'>Select DesignTheme</label>
+              </div>
+              <div className={`${styles.item}`}>
+                <select id = 'DesignTheme' onChange = {setDesignThemeCode} value = {designTheme} className={`${styles.select}`}>
+                  <option value = '' disabled hidden>Design Theme</option>
+                  {masktheme.map((item) => (
+                    <option value = {item.value} key = {item.value}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className={`${styles.itemContainer}`}>
+              <div className={`${styles.item}`}>
+                <label htmlFor = 'SpaceType'>Select SpaceType</label>
+              </div>
+              <div className={`${styles.item}`}>
+                <select id = 'SpaceType' onChange = {setSpaceTypeCode} value = {spaceType} className={`${styles.select}`}>
+                  <option value = '' disabled hidden>Space Type</option>
+                  {spacetype.map((item) => (
+                    <option value = {item.value} key = {item.value}>
+                      {item.name}
+                    </option>
+                  ))}
+               </select>
+              </div>
+            </div>
+          </div>
+          <div className={`${styles.itemContainer2}`}>
+          <button className={`${styles.generateButton}`} onClick = {handleGenerate}>Re.Generate</button>
+          </div>
+          <div className={`${styles.itemContainer2}`}>
+            <button className={`${styles.generateButton}`} onClick = {handleNewGenerate}>New Generate</button>
           </div>
         </div>
-        <div className="flex flex-col gap-2 h-full justify-center">
-          <Button className="w-24 h-24" variant="outline">
-            Download
-          </Button>
-          <Button className="w-24 h-24" variant="outline">
-            Regenerate
-          </Button>
         </div>
-      </div>
-    </div>
-  );
+    
+  )
 }

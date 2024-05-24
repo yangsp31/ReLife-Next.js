@@ -9,7 +9,7 @@ export async function requestMask(url) {
     try {
         const body = JSON.stringify({
             "image_url" : `${url}`,
-            "webhook_url" : "https://e1eb-61-34-253-110.ngrok-free.app/api/webhook/mask"
+            "webhook_url" : "https://e208-211-179-47-118.ngrok-free.app/api/webhook/mask"
         });
 
         const requestOption = {
@@ -45,7 +45,7 @@ export async function requestGenerate(jobId, maskUrl) {
             "design_theme" : `${data.designTheme}`,
             "additional_prompt" : `${data.prompt}`,
             "generation_count" : 1,
-            "webhook_url" : "https://e1eb-61-34-253-110.ngrok-free.app/api/webhook/generate"
+            "webhook_url" : "https://e208-211-179-47-118.ngrok-free.app/api/webhook/generate"
         });
         
         const requestOption = {
@@ -78,7 +78,7 @@ export async function reGenerate(taskData) {
             "design_theme" : `${taskData.designTheme}`,
             "additional_prompt" : `${taskData.prompt}`,
             "generation_count" : 1,
-            "webhook_url" : "https://e1eb-61-34-253-110.ngrok-free.app/api/webhook/generate"
+            "webhook_url" : "https://e208-211-179-47-118.ngrok-free.app/api/webhook/generate"
         });
         
         const requestOption = {

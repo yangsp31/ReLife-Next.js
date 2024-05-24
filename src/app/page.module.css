@@ -15,6 +15,16 @@
   color: inherit; /* 상속받은 색상 적용 */
 }
 
+.panoramaMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex : 1;
+  background-color: rgba(99, 28, 158, 0.6); /* 배경색 조절 */
+  color: #ffffff; /* 텍스트 색상을 흰색으로 설정 */
+  overflow-y: auto;
+}
+
 .startLogo {
   font-weight: bold;
   font-Size: 60px;
@@ -179,6 +189,16 @@
   white-space: nowrap;
   flex-direction: row;
 }
+.panoramaCenter {
+  display: flex;
+  min-width:100%;
+  align-items: flex-start;
+  white-space: nowrap;
+  flex-direction: column;
+  align-items:center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
 
 .resultImageContainer {
   display: flex;
@@ -213,6 +233,15 @@
   align-items: center;
   overflow: hidden;
   margin-bottom: 10px;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.panoramaImage {
+  width: 50%;
+  height: 50%;
+  box-sizing: border-box;
+  border: 1px solid #000;
 }
 
 .input {

@@ -48,22 +48,17 @@ export default function Component() {
     const response = await fetch('http://localhost:3000/api/getImage', {
       method : 'POST',
       headers : {'Content-Type' : 'application/json'},
-      body : JSON.stringify({url : '185528682/short/frf.jpg'})
+      body : JSON.stringify({url : `${resultUrl}`, type : 'single'})
     })
 
-    console.log(response)
-
-    const imageUrl = URL.createObjectURL(await response.blob())
-
-    const downloadLink = document.createElement('a');
-    downloadLink.href = imageUrl;
-    downloadLink.download = 'image'; // 다운로드될 파일의 이름을 설정함
-
-  // 다운로드 링크를 클릭하여 다운로드를 시작함
-    downloadLink.click();
-
-  // 다운로드가 완료된 후에는 URL을 해제함
-    URL.revokeObjectURL(imageUrl);
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `dream.${response.headers.get('content-type')}`);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   }
 
   const setPromptText = (text) => {
@@ -84,13 +79,13 @@ export default function Component() {
         prompt : prompt,
         designTheme : designTheme,
         spaceType : spaceType,
-        type : "single"
+        type : 'single'
       }
 
       try {
         const response = await fetch('http://localhost:3000/api/retry', {
           method : 'POST',
-          body : JSON.stringify(data)
+          body : JSON.stringify(data),
         })
 
         if(response.ok) {

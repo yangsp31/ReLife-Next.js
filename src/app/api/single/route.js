@@ -30,6 +30,7 @@ export async function POST(request) {
             ])
 
             const prompt = result[1]
+            console.log(prompt)
             await setTaskData(cookie.get("cookieConsent").value, fileUrl, formData.get("spaceType"), formData.get("designTheme"), prompt)
         }
         else {
