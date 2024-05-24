@@ -46,42 +46,45 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      {loading ? (
-        <div className="min-h-screen flex justify-center items-center">
-          <p>Loading images...</p>
+    {loading ? ( // loading이 true인 경우 로딩 스피너를 표시
+      <div className={styles.fullscreenCenter}>
+        <div className="text-center"> {/* 텍스트를 중앙에 정렬 */}
+          <p>이미지 로딩 중...</p>
           <div className="relative">
             <Image
-              src="/spinner-square.svg"
-              alt="Loading Spinner"
-              width={200}
-              height={200}
+              src="/loading.svg" // 로딩 스피너 이미지 소스
+              width={200} // 이미지 너비
+              height={200} // 이미지 높이
+              alt="Loading" // alt 속성 추가 (이미지가 로드되지 않을 때 대신 표시할 텍스트를 지정)
               className="h-full w-full"
             />
           </div>
         </div>
-      ) : (
+      </div>
+      ) : ( // loading이 false인 경우 실제 컨텐츠를 표시
         <div className={styles.fullContainer}>
           <div className={styles.leftBox}>
-            <p className="regular-40 mb-4">
-              마음에 드는 방을 선택하세요.
+          <p className={`${styles['regular-40']} mb-4`}> {/*객체 형식으로 접근하여 스타일 접근*/}
+              {/* CSS 모듈에서 정의된 클래스 regular-40과 mb-4을 추가하여 요소에 하단 마진을 부여 */}
+              당신의 방을 선택하세요.
             </p>
-            <p className="regular-18">
-              원하는만큼 선택한 후 제출하기 버튼을 누르세요.
+            <p className={styles['regular-18']}> 
+              마음에 드는 이미지를 모두 선택한 후 제출하기 버튼을 누르세요.
             </p>
             <button
-              className="mt-auto btn-yellow"
+              className={`${styles['btn']} mt-auto`}
               onClick={handleSubmit}
             >
               제출하기
             </button>
           </div>
           <div className={styles.rightBox}>
-            <Masonry columnsCount={3} gutter="3px">
+            <Masonry columnsCount={3} gutter="3px"> // Masonry 레이아웃을 사용하여 이미지들을 3열로 배치하고 간격을 3px로 설정
               {images.map((image, index) => (
                 <StyleGallery
-                  _id={image.id.toString()}
-                  image={image.path}
-                  name={image.name}
+                  _id={image.id.toString()} // 각 이미지의 고유한 ID를 문자열로 변환하여 _id 속성에 전달
+                  image={image.path} // 이미지 경로
+                  name={image.name} // 이미지 이름
                   key={image.id.toString()} // 고유한 이미지 ID를 키로 사용 (React의 리스트 렌더링 최적화를 위해 필요)
                   onClick={() => handleImageClick(image)} // 이미지 클릭 시 handleImageClick 함수를 호출, 이미지 객체를 매개변수로 전달
                 />
@@ -92,4 +95,5 @@ export default function Home() {
       )}
     </main>
   );
+  
 }

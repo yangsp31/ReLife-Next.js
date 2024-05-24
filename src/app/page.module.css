@@ -1,13 +1,19 @@
 /* 이 파일은 현재 폴더 내의 page 파일의 CSS를 모듈화하여 사용할 수 있도록 하는 파일입니다. CSS 사용 시 이 파일을 참조하여 개발하시면 됩니다. */
 
 .main {
-  min-height: 100vh;
-  padding: 2rem;
-  background-image: url('/public/1.gif');
-  background-size: cover;
-  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100%;
+  background-image: url('/1.gif'); /* 배경 이미지 설정 */
+  background-size: cover; /* 배경 이미지를 페이지 전체에 맞춤 */
+  background-position: center; /* 배경 이미지를 중앙에 배치 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */
+  color: #ffffff; /* 텍스트 색상을 흰색으로 설정 */
 }
 
+/* 모든 하위 요소에 흰색 텍스트 적용 */
 .main * {
   color: inherit; /* 상속받은 색상 적용 */
 }
@@ -152,6 +158,14 @@
   margin-top:2%;
   min-width:95%;
   overflow-x: auto;
+}
+
+.fullscreen-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 전체 화면 높이 */
+  
 }
 
 .mainCenter {
@@ -326,38 +340,54 @@
   color: #333333; /* 대비를 위한 어두운 텍스트 */
 }
 
-.container {
+/* 컨테이너와 박스 스타일 */
+.fullContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  min-height: 100vh; /* 화면 전체 높이를 차지 */
+  background-image: url('/back.png'); /* 배경 이미지 설정 */
+  background-size: cover; /* 배경 이미지를 페이지 전체에 맞춤 */
+  background-position: center; /* 배경 이미지를 중앙에 배치 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */
   align-items: stretch;
-  min-height: 100vh;
+  height: 100%; 
+  width: 100%; 
   padding: 2rem;
-  background-color: rgba(99, 28, 158, 0.6); /* 배경색 조절 */
 }
-
-.leftBox, .rightBox {
-  flex: 1;
-  padding: 1rem;
+.fullscreenCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* 화면 전체 높이를 차지 */
+  width: 100%;
 }
 
 .leftBox {
   flex: 1;
   display: flex;
+  margin-top: -600px; /* 원하는 만큼 위쪽으로 이동 */
   flex-direction: column;
   justify-content: center;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* 약간의 투명도를 가진 배경색 */
 }
-
+.leftBoxResult {
+  flex: 1;
+  display: flex;
+  margin-top: 0px; /* 원하는 만큼 위쪽으로 이동 */
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
 .rightBox {
   flex: 2;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* 약간의 투명도를 가진 배경색 */
+  overflow-y: auto; /* 수직 스크롤 가능하게 설정 */
+  max-height: 100vh; /* 최대 높이를 설정하여 스크롤 영역을 제한 */
 }
 
 .buttonGroup {
@@ -365,11 +395,17 @@
   flex-direction: column;
   gap: 10px;
 }
-.btn-yellow {
-  background-color: yellow;
-  padding: 10px 20px;
+
+.btn {
+  background-color: rgb(250, 234, 255);
+  padding: 10px 10px;
   border: none;
   cursor: pointer;
+  color: rgba(102, 39, 131, 0.89);
+  font-size: 20px;
+  width: 150px; /* 버튼의 가로 길이를 150px로 설정 */
+
+
 }
 
 .bold-32 {
@@ -378,14 +414,15 @@
 }
 
 .regular-40 {
-  font-size: 40px;
-  font-weight: regular;
+  font-size: 48px;
+  font-weight: normal; 
 }
 
 .regular-18 {
   font-size: 18px;
-  font-weight: regular;
+  font-weight: normal;
 }
+
 
 @media (max-width: 700px) {
   .main {
