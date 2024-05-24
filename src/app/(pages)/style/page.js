@@ -5,6 +5,7 @@ import Masonry from "react-responsive-masonry"; // 반응형 masonry 레이아�
 import { shuffleArray, calculateResult } from "../../style-function/function"; 
 import imageList from '../../category/imageList'; // 이미지 목록을 가져옴
 import Image from 'next/image'; // next/image :최적화된 이미지 로딩, 자동 크기 조절, 지연 로딩(화면을 스크롤할 때 필요한 이미지만 로드), 최신 웹 표준 지원
+import styles from '../../page.module.css'; // CSS 모듈 import
 
 // 이미지 목록을 가져오는 함수
 function getImages() {
@@ -13,7 +14,7 @@ function getImages() {
 
 // Home 컴포넌트를 정의 
 export default function Home() {
-  const [images, setImages] = useState([]);  //useState : 상태변수(true/false)
+  const [images, setImages] = useState([]);  // useState : 상태변수(true/false)
   const [selectedIds, setSelectedIds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [quizResult, setQuizResult] = useState(null);
@@ -26,7 +27,7 @@ export default function Home() {
   }, []);
 
   // 이미지 클릭 이벤트 핸들러
-  const handleImageClick = (image) => { //image : 이미지 이름
+  const handleImageClick = (image) => { // image : 이미지 이름
     if (selectedIds.includes(image.path)) {
       setSelectedIds((prevSelected) => prevSelected.filter((id) => id !== image.path));
     } else {
@@ -44,7 +45,7 @@ export default function Home() {
   };
 
   return (
-    <main style={{ backgroundImage: "url('style/back.jpg')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', minHeight: '100vh', padding: '2rem' }}>
+    <main className={styles.main}>
       {loading ? (
         <div className="min-h-screen flex justify-center items-center">
           <p>Loading images...</p>
@@ -59,13 +60,13 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col lg:flex-row lg:py-10 lg:px-12">
-          <div className="lg:w-1/4 md:w-1/3 xs:w-full flex flex-col justify-between p-6">
+        <div className={styles.fullContainer}>
+          <div className={styles.leftBox}>
             <p className="regular-40 mb-4">
-                마음에 드는 방을 선택하세요.
+              마음에 드는 방을 선택하세요.
             </p>
             <p className="regular-18">
-                원하는만큼 선택한 후 제출하기 버튼을 누르세요.
+              원하는만큼 선택한 후 제출하기 버튼을 누르세요.
             </p>
             <button
               className="mt-auto btn-yellow"
@@ -74,7 +75,7 @@ export default function Home() {
               제출하기
             </button>
           </div>
-          <div className="lg:w-3/4 md:w-2/3 sm:w-full relative">
+          <div className={styles.rightBox}>
             <Masonry columnsCount={3} gutter="3px">
               {images.map((image, index) => (
                 <StyleGallery
@@ -82,7 +83,7 @@ export default function Home() {
                   image={image.path}
                   name={image.name}
                   key={image.id.toString()} // 고유한 이미지 ID를 키로 사용 (React의 리스트 렌더링 최적화를 위해 필요)
-                  onClick={() => handleImageClick(image)} //이미지 클릭 시 handleImageClick 함수를 호출, 이미지 객체를 매개변수로 전달
+                  onClick={() => handleImageClick(image)} // 이미지 클릭 시 handleImageClick 함수를 호출, 이미지 객체를 매개변수로 전달
                 />
               ))}
             </Masonry>

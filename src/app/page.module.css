@@ -1,16 +1,13 @@
 /* 이 파일은 현재 폴더 내의 page 파일의 CSS를 모듈화하여 사용할 수 있도록 하는 파일입니다. CSS 사용 시 이 파일을 참조하여 개발하시면 됩니다. */
 
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   min-height: 100vh;
-  background-color: rgba(99, 28, 158, 0.6); /* 배경색 조절 */
-  color: #ffffff; /* 텍스트 색상을 흰색으로 설정 */
+  padding: 2rem;
+  background-image: url('/public/1.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-/* 모든 하위 요소에 흰색 텍스트 적용 */
 .main * {
   color: inherit; /* 상속받은 색상 적용 */
 }
@@ -327,6 +324,67 @@
   font-size: 1rem; /* 읽기 쉬운 텍스트 크기 */
   line-height: 1.4; /* 편안한 줄 간격 */
   color: #333333; /* 대비를 위한 어두운 텍스트 */
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: rgba(99, 28, 158, 0.6); /* 배경색 조절 */
+}
+
+.leftBox, .rightBox {
+  flex: 1;
+  padding: 1rem;
+}
+
+.leftBox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* 약간의 투명도를 가진 배경색 */
+}
+
+.rightBox {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* 약간의 투명도를 가진 배경색 */
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn-yellow {
+  background-color: yellow;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.bold-32 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.regular-40 {
+  font-size: 40px;
+  font-weight: regular;
+}
+
+.regular-18 {
+  font-size: 18px;
+  font-weight: regular;
 }
 
 @media (max-width: 700px) {

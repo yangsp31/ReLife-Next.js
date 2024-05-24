@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { masktheme, themeRanges } from "../../../category/masktheme/masktheme"; 
+import styles from '../../../page.module.css'; // CSS 모듈 import
 
 export default function QuizResultPage() {
   const [styleData, setStyleData] = useState(null);
@@ -54,29 +55,34 @@ const fetchStyleData = async (result) => {
   }
 
   return (
-    <div className="flex flex-col sm:flex-row lg:py-10 lg:px-12 min-h-screen">
-      <div className="w-full lg:w-1/2 xs:w-full flex flex-col items-center justify-between p-6">
+    <div className={styles.container}>
+      {/* 왼쪽 박스 - 텍스트와 버튼 */}
+      <div className={styles.leftBox}>
         <p className="bold-32 p-3 lg:mb-20 mb-15 text-blue-100">
           {styleData.name} Style
         </p>
         {quizResult && (
-        <div className="mt-4">
-          <h3>Quiz Result:</h3>
-          <pre>{JSON.stringify(quizResult, null, 2)}</pre>
-        </div>
-      )}
+          <div className="mt-4">
+            <h3>Quiz Result:</h3>
+            <pre>{JSON.stringify(quizResult, null, 2)}</pre>
+          </div>
+        )}
         <p className="text-gray-50 lg:mb-20 mb-15">
           {styleData.description}
         </p>
-        <button className="btn-yellow mr-5">
-          <Link href="/style">스타일 다시 찾아보기</Link>
-        </button>
-        <button className="btn-yellow">
-          <Link href="/image/imageUpload">찾은 테마로 방꾸미기</Link>
-        </button>
+        <div className={styles.buttonGroup}>
+          <button className="btn-yellow">
+            <Link href="/style">스타일 다시 찾아보기</Link>
+          </button>
+          <button className="btn-yellow">
+            <Link href="/image/imageUpload">찾은 테마로 방꾸미기</Link>
+          </button>
+        </div>
       </div>
-      <div className="w-full lg:w-1/2 xs:w-full flex flex-wrap justify-center items-center p-6">
-      {(styleData.images || []).map((image, index) => (
+
+      {/* 오른쪽 박스 - 이미지 */}
+      <div className={styles.rightBox}>
+        {(styleData.images || []).map((image, index) => (
           <div key={index} className="m-2">
             <Image
               src={image}
@@ -86,9 +92,8 @@ const fetchStyleData = async (result) => {
               className="rounded-xl"
             />
           </div>
-          ))}
+        ))}
       </div>
-    
     </div>
   );
 }
