@@ -243,7 +243,7 @@
 .imageContainer {
   width : 400px;
   height : 400px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -379,7 +379,7 @@
 .leftBoxResult {
   flex: 1;
   display: flex;
-  margin-top: 0px; /* 원하는 만큼 위쪽으로 이동 */
+  margin-top: -450px; /* 원하는 만큼 위쪽으로 이동 */
   flex-direction: column;
   justify-content: center;
   padding: 20px;
@@ -394,20 +394,28 @@
   overflow-y: auto; /* 수직 스크롤 가능하게 설정 */
   max-height: 100vh; /* 최대 높이를 설정하여 스크롤 영역을 제한 */
 }
-/* 이미지 컨테이너 스타일 */
-.imageContainer {
-  flex: 1 0 48%; /* 두 열로 나열되도록 설정, 48% 너비 */
-  margin: 4px; /* 이미지 간의 간격을 4px로 설정 */
+.rightBoxResult {
+  display: flex;
+  flex-wrap: wrap; /* Flex 항목을 여러 줄로 나열 */
+  justify-content: space-between; /* 항목 간의 공간을 균등하게 분배 */
+  padding: 20px;
+  overflow-y: auto; /* 수직 스크롤 가능하게 설정 */
+  max-height: 100vh; /* 최대 높이를 설정하여 스크롤 영역을 제한 */
 }
 
 /* 이미지 스타일 */
 .image {
-  width: 100%; /* 컨테이너의 너비에 맞게 이미지 크기 조정 */
+  flex: 1 0 48%; /* 두 열로 나열되도록 설정, 각 항목의 너비를 48%로 설정 */
+  margin: 1%; /* 항목 간의 간격을 1%로 설정 */
+  box-sizing: border-box; /* 박스 크기를 포함한 모든 요소를 계산 */
+  width: 100%; /* Flex 항목의 너비에 맞게 이미지 크기 조정 */
   height: auto; /* 이미지 높이를 자동으로 조정 */
+  object-fit: cover; /* 이미지 비율 유지 */
 }
+
 .buttonGroup {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
 }
 

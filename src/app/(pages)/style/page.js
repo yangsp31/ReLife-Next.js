@@ -3,7 +3,7 @@ import StyleGallery from "./styleGallery"; // StyleGallery 컴포넌트를 가�
 import { useEffect, useState } from "react"; // useEffect와 useState 훅을 가져옴
 import Masonry from "react-responsive-masonry"; // 반응형 masonry 레이아웃을 위한 컴포넌트를 가져옴
 import { shuffleArray, calculateResult } from "../../style-function/function"; 
-import imageList from '../../category/imageList'; // 이미지 목록을 가져옴
+import imageList from '../../category/imageList.ts'; // 이미지 목록을 가져옴
 import Image from 'next/image'; // next/image :최적화된 이미지 로딩, 자동 크기 조절, 지연 로딩(화면을 스크롤할 때 필요한 이미지만 로드), 최신 웹 표준 지원
 import styles from '../../page.module.css'; // CSS 모듈 import
 
@@ -46,21 +46,21 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-    {loading ? ( // loading이 true인 경우 로딩 스피너를 표시
-      <div className={styles.fullscreenCenter}>
-        <div className="text-center"> {/* 텍스트를 중앙에 정렬 */}
-          <p>이미지 로딩 중...</p>
-          <div className="relative">
-            <Image
-              src="/loading.svg" // 로딩 스피너 이미지 소스
-              width={200} // 이미지 너비
-              height={200} // 이미지 높이
-              alt="Loading" // alt 속성 추가 (이미지가 로드되지 않을 때 대신 표시할 텍스트를 지정)
-              className="h-full w-full"
-            />
+      {loading ? ( // loading이 true인 경우 로딩 스피너를 표시
+        <div className={styles.fullscreenCenter}>
+          <div className="text-center"> {/* 텍스트를 중앙에 정렬 */}
+            <p>이미지 로딩 중...</p>
+            <div className="relative">
+              <Image
+                src="/loading.svg" // 로딩 스피너 이미지 소스
+                width={200} // 이미지 너비
+                height={200} // 이미지 높이
+                alt="Loading" // alt 속성 추가 (이미지가 로드되지 않을 때 대신 표시할 텍스트를 지정)
+                className="h-full w-full"
+              />
+            </div>
           </div>
         </div>
-      </div>
     ) : ( // loading이 false인 경우 실제 컨텐츠를 표시
         <div className={styles.fullContainer}>
           <div className={styles.leftBox}>

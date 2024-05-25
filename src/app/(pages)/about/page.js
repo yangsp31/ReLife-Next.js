@@ -2,7 +2,7 @@ import styles from "../../page.module.css";
 
 export default function Component() {
   return (
-    <div className={`${styles.main} ${styles.flex} ${styles.flexCol} ${styles.itemsCenter} ${styles.justifyCenter} ${styles.minHScreen}`} style={{ backgroundImage: `url()`, backgroundSize: "cover", backgroundPosition: "center" }}>
+    <div className={`${styles.main} ${styles.flex} ${styles.flexCol} ${styles.itemsCenter} ${styles.justifyCenter} ${styles.minHScreen}`} >
 
     <div
       className="text-white p-12 flex justify-center"

@@ -1,4 +1,4 @@
-import { masktheme, themeRanges } from './masktheme/masktheme'; // masktheme 및 themeRanges를 masktheme 모듈에서 가져옴
+import { masktheme, themeRanges } from './masktheme/masktheme'; // masktheme 및themeRanges를 masktheme 모듈에서 가져옴
 
 // 이미지 ID로 테마를 가져오는 함수
 function getThemeByImageId(id) {

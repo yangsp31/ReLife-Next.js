@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from "../../../page.module.css"
 import Image from 'next/image.js';
-import masktheme from '../../../category/masktheme/masktheme'
+import { masktheme, themeRanges } from '../../../category/masktheme/masktheme'; // 정확한 경로 확인
 import spacetype from '../../../category/spacetype/spacetype'
 
 export default function Component() {

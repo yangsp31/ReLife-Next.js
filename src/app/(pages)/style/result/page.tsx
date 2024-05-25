@@ -18,6 +18,8 @@ export default function QuizResultPage() {
       fetchStyleData(firstResult);
     } else {
       setLoading(false); // quizResult가 없는 경우 로딩을 false로 설정
+      alert('이미지를 선택해주세요.');
+      window.location.href = "/style";
     }
   }, []);
 
@@ -49,23 +51,9 @@ const fetchStyleData = async (result) => {
   setLoading(false); // 데이터 로딩 완료 후 로딩 상태를 false로 설정
 };
 
-if (!styleData && !loading) {
-  // 스타일 데이터가 없고 로딩이 완료된 경우
-  return (
-    <div className="fullscreen-center">
-      <div className="text-center">
-        <p>스타일을 선택해주세요</p>
-        <Link href="/style">
-          <a>스타일 선택 페이지로 이동</a>
-        </Link>
-      </div>
-    </div>
-  );
-}
-
   return (
     <main className={styles.main}> 
-     {loading ? ( // loading이 true인 경우 로딩 스피너를 표시
+      {loading ? ( // loading이 true인 경우 로딩 스피너를 표시
         <div className={styles.fullscreenCenter}>
           <div className="text-center"> {/* 텍스트를 중앙에 정렬 */}
             <p>이미지 로딩 중...</p>
@@ -92,27 +80,28 @@ if (!styleData && !loading) {
           </p>
           <div className={styles.buttonGroup}>
             <button className={`${styles['btn']} mt-auto`}>
-              <Link href="/style">스타일 다시 찾아보기</Link>
+              <Link href="/style">다시 찾기</Link>
             </button>
             <button className={`${styles['btn']} mt-auto`}>
-              <Link href="/image/imageUpload">찾은 테마로 방꾸미기</Link>
+              <Link href="/image/imageUpload">방 꾸미기</Link>
             </button>
           </div>
         </div>
 
         {/* 오른쪽 박스 - 이미지 */}
-        <div className={styles.rightBox}>
-          {(styleData.images || []).map((image, index) => (
-            <div key={index} className="m-2">
-              <Image
-                src={image}
-                alt={`${styleData.name} Style ${index + 1}`}
-                width={250}
-                height={250}
-                className="rounded-xl"
-              />
-            </div>
-          ))}
+        <div className={styles.rightBoxResult}>
+            {(styleData.images || []).map((image, index) => (
+              <div key={index} className={styles.imageContainer}>
+                <Image
+                  src={image}
+                  alt={`${styleData.name} Style ${index + 1}`}
+                  layout="responsive" // 이미지 비율 유지
+                  width={250}
+                  height={250}
+                  className={styles.image}
+                  />
+              </div>
+            ))}
         </div>
       </div>
     )}

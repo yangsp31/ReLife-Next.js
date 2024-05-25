@@ -30,7 +30,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/category/imageList.ts", "src/app/category/imageList", "src/app/category/imageList.ts"  ],
   "exclude": [
     "node_modules"
   ]
