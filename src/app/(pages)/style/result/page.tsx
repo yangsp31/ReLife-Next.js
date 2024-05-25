@@ -87,13 +87,7 @@ if (!styleData && !loading) {
           <p className={`${styles['regular-40']} mb-4`}> {/*객체 형식으로 접근하여 스타일 접근*/}
             {styleData.name} 스타일
           </p>
-          {quizResult && (
-            <div className="mt-4">
-              <h3>Quiz Result:</h3>
-              <pre>{JSON.stringify(quizResult, null, 2)}</pre>
-            </div>
-          )}
-          <p className="text-gray-50 lg:mb-20 mb-15">
+          <p className={styles['regular-18']}> 
             {styleData.description}
           </p>
           <div className={styles.buttonGroup}>

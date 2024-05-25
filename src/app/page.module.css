@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100%;
+  min-height: 100vh;
   background-image: url('/1.gif'); /* 배경 이미지 설정 */
   background-size: cover; /* 배경 이미지를 페이지 전체에 맞춤 */
   background-position: center; /* 배경 이미지를 중앙에 배치 */
@@ -156,10 +156,11 @@
 }
 .mainUpper {
   display: flex;
-  align-items:flex-start;
-  margin-top:2%;
-  min-width:95%;
-  overflow-x: auto;
+  align-items: center;
+  justify-content: space-between; /* 요소들을 양쪽 끝으로 정렬 */
+  margin-top: 2rem;
+  width: 100%; /* 전체 너비 사용 */
+  padding: 1rem; /* 여백 추가 */
 }
 
 .fullscreen-center {
@@ -172,11 +173,13 @@
 
 .mainCenter {
   display: flex;
-  flex: 4;
+  justify-content: center;
   align-items: center;
-  white-space: nowrap; 
+  flex: 1;
+  text-align: center;
+  width: 100%; /* 전체 너비 사용 */
+  padding: 1rem; /* 여백 추가 */
 }
-
 .startUpper {
   display: flex;
   align-items:flex-start;
@@ -391,7 +394,17 @@
   overflow-y: auto; /* 수직 스크롤 가능하게 설정 */
   max-height: 100vh; /* 최대 높이를 설정하여 스크롤 영역을 제한 */
 }
+/* 이미지 컨테이너 스타일 */
+.imageContainer {
+  flex: 1 0 48%; /* 두 열로 나열되도록 설정, 48% 너비 */
+  margin: 4px; /* 이미지 간의 간격을 4px로 설정 */
+}
 
+/* 이미지 스타일 */
+.image {
+  width: 100%; /* 컨테이너의 너비에 맞게 이미지 크기 조정 */
+  height: auto; /* 이미지 높이를 자동으로 조정 */
+}
 .buttonGroup {
   display: flex;
   flex-direction: column;
@@ -421,7 +434,7 @@
 }
 
 .regular-18 {
-  font-size: 18px;
+  font-size: 23px;
   font-weight: normal;
 }
 
