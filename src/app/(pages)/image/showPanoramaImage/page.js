@@ -113,13 +113,13 @@ export default function Component() {
         clearInterval(id)
         setRender(false)
         setLoading(false)
+
+        const loader = new THREE.TextureLoader();
+        loader.load(`${success}`, (loadedTexture) => {
+          setImage(loadedTexture);
+    });
       }
     }, 5000);
-
-    const loader = new THREE.TextureLoader();
-    loader.load(success, (loadedTexture) => {
-      setImage(loadedTexture);
-    });
 
     return () => {
       clearInterval(id);
