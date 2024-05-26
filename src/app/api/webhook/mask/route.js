@@ -12,7 +12,7 @@ export async function POST(request) {
         setMaskTaskData(body.data.job_id, urls)
         const generateId = await requestGenerate(body.data.job_id, urls)
 
-        setGenerateId(body.data.job_id, generateId)
+        await setGenerateId(body.data.job_id, generateId)
     }
     else {
         console.log(JSON.stringify(body));
