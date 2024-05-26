@@ -6,7 +6,6 @@ import { getGenerateUrl } from "../function/kvRedis"
 export async function GET(request) {
     try {
         const cookie = cookies()
-        const type = request.query;
 
         // 쿠키값 존재 확인
         if(!cookie.has("cookieConsent")) {
