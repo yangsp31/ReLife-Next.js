@@ -80,10 +80,10 @@ const fetchStyleData = async (result) => {
           </p>
           <div className={styles.buttonGroup}>
             <button className={`${styles['btn']} mt-auto`}>
-              <Link href="/style">다시 찾기</Link>
+              <Link href="/style" className={styles.noneDec}>다시 찾기</Link>
             </button>
             <button className={`${styles['btn']} mt-auto`}>
-              <Link href="/image/imageUpload">방 꾸미기</Link>
+              <Link href="/image/imageUpload"  className={styles.noneDec}>방 꾸미기</Link>
             </button>
           </div>
         </div>

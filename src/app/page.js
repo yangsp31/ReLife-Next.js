@@ -19,7 +19,7 @@ export default function CombinedComponent() {
     <div className={`${styles.main}`} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }}>
       <CookieConsentBanner />
       <div className = {`${styles.mainCenter}`}>
-        <span style={mainLogo}>인테리어 프로그램 이용</span>
+        <span style={mainLogo}>상상을 눈으로 확인하세요</span>
       </div>
     </div>
   );

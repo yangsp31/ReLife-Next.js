@@ -13,51 +13,13 @@ export default function Component() {
       }}
     >
       <div className="flex flex-col items-center space-y-8">
-        <h1 className="text-5xl font-bold">why we made?</h1>
-          <div className="flex flex-col items-center space-y-4">
-            <img
-              alt="elaborate details"
-              className="rounded-lg"
-              height="400"
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/400",
-                objectFit: "cover",
-              }}
-              width="300"
-            />
-            <h2 className="text-xl font-semibold">elaborate details</h2>
-            <p>내용1</p>
+        <h1 className="text-5xl font-bold">목적</h1>
+          <div className={styles.aboutBox}>
+            <h2 className="text-xl font-semibold">머리로만 상상하는것은 그만, 상상을 눈으로 보며 계획해보세요.</h2>
           </div>
           <div className="flex flex-col items-center space-y-4">
-            <img
-              alt="instead of a professional, ai"
-              className="rounded-lg"
-              height="400"
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/400",
-                objectFit: "cover",
-              }}
-              width="300"
-            />
-            <h2 className="text-xl font-semibold">instead of a professional, ai</h2>
-            <p>내용2</p>
-          </div>
-          <div className="flex flex-col items-center space-y-4">
-            <img
-              alt="내용33"
-              className="rounded-lg"
-              height="400"
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "300/400",
-                objectFit: "cover",
-              }}
-              width="300"
-            />
-            <h2 className="text-xl font-semibold">내용33</h2>
-            <p>내용3</p>
+            <h1 className="text-xl font-semibold">A.I</h1>
+            <h2 className="text-xl font-semibold">ReimagineHome A.I 서비스의 API를 사용 하였습니다.</h2>
           </div>
         </div>
       </div>

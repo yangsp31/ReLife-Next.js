@@ -5,7 +5,7 @@ import styles from "../../page.module.css";
 
 const Button = ({ href, className, children }) => {
   return (
-    <Link href={href}>
+    <Link href={href} className={styles.tab2}>
       {children}
     </Link>
   );
@@ -16,19 +16,19 @@ export default function Component() {
   return (
     <div className={`${styles.main}`} style={{ backgroundImage: `url(../../1.gif)`, backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className = {`${styles.startUpper}`}>
-        <span className = {`${styles.startLogo}`}>Fast. Secure. Scalable.</span>
+        <span className = {`${styles.startLogo}`}>빠르고 안전하게 상상을 눈으로</span>
       </div>
       <div className = {`${styles.startCenter}`}>
-        <h1 className={`${styles.box3}`}>Steps to realize your dreams</h1>
-        <h2 className={`${styles.box3}`}>1. Decide if you want to view in 360 or as a single image</h2>
-        <h2 className={`${styles.box3}`}>2. Prepare a photo of the room you&apos;re trying to transform</h2>
-        <h2 className={`${styles.box3}`}>3. Receive your dreams</h2>
+        <h1 className={`${styles.box3}`}>상상을 실현하기 위한 단계</h1>
+        <h2 className={`${styles.box3}`}>1. 360도로 볼지 단일 이미지로 볼지 결정합니다.</h2>
+        <h2 className={`${styles.box3}`}>2. 바꾸고자 하는 방의 사진을 준비하세요.</h2>
+        <h2 className={`${styles.box3}`}>3. 상상을 실현 하세요.</h2>
         <div className={`${styles.box4}`}>
         <Button href="/image/imageUpload">
-        go single
+        단일 이미지로 보기
       </Button>
       <Button href="/image/panoramaUpload">
-        go panorama
+        360도로 보기
       </Button>
         </div>
       </div>

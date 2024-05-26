@@ -79,7 +79,7 @@ export default function Home() {
             </button>
           </div>
           <div className={styles.rightBox}>
-            <Masonry columnsCount={3} gutter="3px"> // Masonry 레이아웃을 사용하여 이미지들을 3열로 배치하고 간격을 3px로 설정
+            <Masonry columnsCount={3} gutter="3px">
               {images.map((image, index) => (
                <StyleGallery
                 _id={image.id.toString()} 

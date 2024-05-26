@@ -35,14 +35,13 @@ export default function TopBar() {
     <div className={styles.mainUpper}>
       <div className={styles.box}>
         <LightbulbIcon />
-        <Link href="/">
+        <Link href="/" className={styles.tab}>
           <span style={Logo}>INTERIOR SIMULATOR</span>
         </Link>      </div>
       <div className={styles.box2} />
       <nav className={styles.box}>
         <Link href="/about" className={styles.tab}>about</Link>
         <Link href="/resource" className={styles.tab}>resource</Link>
-        <Link href="/inquire" className={styles.tab}>inquiry</Link>
         <Link href="/style" className={styles.tab}>style find</Link>
         <Button href="/explain" className={styles.tab}>Start</Button>
       </nav>
