@@ -1,5 +1,4 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import fs from 'fs/promises';
 
 // AWS S3와 연결될 client 생성
 const s3Client = new S3Client({
