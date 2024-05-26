@@ -13,7 +13,7 @@ const mainLogo = {
 }
 
 export default function CombinedComponent() {
-  const backgroundImage = "/1.gif"; // public 폴더의 이미지 경로
+  const backgroundImage = "/1.png"; // public 폴더의 이미지 경로
 
   return (
     <div className={`${styles.main}`} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }}>
