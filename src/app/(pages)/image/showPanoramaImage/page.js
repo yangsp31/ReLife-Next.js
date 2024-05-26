@@ -150,7 +150,7 @@ export default function Component() {
     };
   }, [render])
 
-  if(loading) {
+  if(!loading) {
     return (
       <div className={styles.fullscreenCenter} style={{ backgroundImage: 'url(../../../1.png)', backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="text-center" style={{ color: 'white' }}> {/* 텍스트를 중앙에 정렬 */}

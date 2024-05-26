@@ -128,7 +128,6 @@ export default function Component() {
     useEffect(() => {
         const id = setInterval(async () => {
             const success = await fetching();
-
             if (success) {
                 clearInterval(id);
                 setRender(false);
@@ -140,8 +139,7 @@ export default function Component() {
             clearInterval(id);
         };
     }, [render]);
-
-    if(loading) {
+    if(!loading) {
         return (
           <div className={styles.fullscreenCenter} style={{ backgroundImage: 'url(../../../1.png)', backgroundSize: "cover", backgroundPosition: "center" }}>
               <div className="text-center" style={{ color: 'white' }}> {/* 텍스트를 중앙에 정렬 */}

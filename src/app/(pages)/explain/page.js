@@ -24,12 +24,12 @@ export default function Component() {
         <h2 className={`${styles.box3}`}>2. 바꾸고자 하는 방의 사진을 준비하세요.</h2>
         <h2 className={`${styles.box3}`}>3. 상상을 실현 하세요.</h2>
         <div className={`${styles.box4}`}>
-        <Button href="/image/imageUpload">
+        <a className={styles.btn} href="/image/imageUpload">
         단일 이미지로 보기
-      </Button>
-      <Button href="/image/panoramaUpload">
-        360도로 보기
-      </Button>
+      </a>
+      <a className={styles.btn} href="/image/panoramaUpload">
+        360˚로 보기
+      </a>
         </div>
       </div>
     </div>
