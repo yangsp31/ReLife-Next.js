@@ -126,7 +126,8 @@ export default function Component() {
   }
 
   useEffect(() => {
-    let success
+    let success = ''
+    setImage(null)
 
     const id = setInterval(async () => {
       success = await fetching()
