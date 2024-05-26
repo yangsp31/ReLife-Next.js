@@ -147,11 +147,6 @@ export default function Component() {
   else {
     return (
       <div className={`${styles.panoramaMain}`} style={{backgroundImage: `url(../../1.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
-        {loading && (
-          <div className={`${styles.overlay}`}>
-            <div className={`${styles.loader}`}/>
-          </div>
-        )}
         <Canvas style={{ height: '100vh', width : '95%'}}>
         <Sphere args={[500, 50, 50]}>
           <meshBasicMaterial attach="material" 

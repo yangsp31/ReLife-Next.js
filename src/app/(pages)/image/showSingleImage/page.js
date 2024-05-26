@@ -140,11 +140,6 @@ export default function Component() {
       else {
         return (
             <div className={styles.main}>
-              {loading && (
-                <div className={`${styles.overlay}`}>
-                  <div className={`${styles.loader}`}/>
-                </div>
-              )}
                 <div className={styles.startUpper}>
                     <span className={styles.startLogo}>당신의 상상</span>
                 </div>
