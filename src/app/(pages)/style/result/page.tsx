@@ -83,7 +83,7 @@ const fetchStyleData = async (result) => {
               <Link href="/style" className={styles.noneDec}>다시 찾기</Link>
             </button>
             <button className={`${styles['btn']} mt-auto`}>
-              <Link href="/image/imageUpload"  className={styles.noneDec}>방 꾸미기</Link>
+              <Link href="/explain"  className={styles.noneDec}>방 꾸미기</Link>
             </button>
           </div>
         </div>
