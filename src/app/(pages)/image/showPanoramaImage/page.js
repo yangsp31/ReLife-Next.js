@@ -80,9 +80,30 @@ export default function Component() {
         prompt : prompt,
         designTheme : designTheme,
         spaceType : spaceType,
-        type : 'panorama'
+        type : 'panorama',
+        setting : true
       }
 
+      try {
+        const response = await fetch('https://relife-xi.vercel.app/api/retry', {
+          method : 'POST',
+          body : JSON.stringify(data),
+        })
+
+        if(response.ok) {
+          setRender(true)
+        }
+      } 
+      catch (error) {
+        console.log(error)
+      }
+    }
+    else {
+      const data = {
+        prompt : prompt,
+        setting : false
+      }
+      
       try {
         const response = await fetch('https://relife-xi.vercel.app/api/retry', {
           method : 'POST',
