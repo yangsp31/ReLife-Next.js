@@ -23,7 +23,7 @@ export default function Component() {
 
   const fetching = async () => {
     try {
-      const response = await fetch('https://relife-sigma.vercel.app/api/result?type=panorama');
+      const response = await fetch('https://relife-inzzywwlb-yyangs-projects.vercel.app/api/result?type=panorama');
 
       if(response.ok) {
         const result = await response.json();

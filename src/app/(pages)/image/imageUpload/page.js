@@ -54,7 +54,7 @@ export default function Component() {
       formData.append('spaceType', spaceType);
 
       try {
-        const response = await fetch('https://relife-sigma.vercel.app/api/single', {
+        const response = await fetch('https://relife-inzzywwlb-yyangs-projects.vercel.app/api/single', {
           method : 'POST',
           body : formData
         })
