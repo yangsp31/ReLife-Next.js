@@ -20,7 +20,7 @@ export async function POST(request) {
         }
 
         // AWS S3에 파일 업로드 후 flask 서버에 파노라마 이미지 요청 후 reimagineHone API에 mask 생성 요청
-        /*const fileUrls = await uploadMultiImage(cookie.get("cookieConsent").value, images)
+        const fileUrls = await uploadMultiImage(cookie.get("cookieConsent").value, images)
         const panoramaUrl = await requestPanorama(cookie.get('cookieConsent').value, fileUrls)
         const info = await requestMask(panoramaUrl);
 
@@ -38,7 +38,7 @@ export async function POST(request) {
         else {
             console.log(info)
             return NextResponse.json({error : "Error service"}, {status : 500});
-        }*/
+        }
 
         return NextResponse.json({true : "success"}, {status : 200});
 

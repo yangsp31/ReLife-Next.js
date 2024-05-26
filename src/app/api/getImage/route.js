@@ -7,10 +7,9 @@ export async function POST(request) {
     try {
         const data = await request.json();
     
-        const image = await getResult(data.url, data.type)
+        const image = await getResult(data.url)
         const ext = extname(data.url).slice(1)
         
-        console.log(ext)
         return new NextResponse(image, {
             status : 200,
             headers : {

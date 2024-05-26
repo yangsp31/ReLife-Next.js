@@ -15,6 +15,7 @@ export default function Component() {
   const [prompt, setprompt] = useState('');
   const [designTheme, setDesignTheme] = useState('');
   const [spaceType, setSpaceType] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const setHandleImageChange = (image) => {
@@ -45,6 +46,7 @@ export default function Component() {
 
   const handleGenerate = async () => {
     if(!selectImage || designTheme != '' || spaceType != '') {
+      setLoading(true)
       const formData = new FormData()
       formData.append('file', selectImage);
       formData.append('prompt',prompt);
@@ -58,6 +60,7 @@ export default function Component() {
         })
 
         if(response.ok) {
+          setLoading(false)
           router.push('/image/showSingleImage')
         }
       } 
@@ -81,6 +84,11 @@ export default function Component() {
 
   return (
     <div className={`${styles.main}`} style={{ backgroundImage: 'url(../../../1.gif)', backgroundSize: "cover", backgroundPosition: "center" }}>
+      {loading && (
+        <div className={`${styles.overlay}`}>
+          <div className={`${styles.loader}`}/>
+        </div>
+      )}
       <div className = {`${styles.startUpper}`}>
         <span className = {`${styles.startLogo}`}>Set Picture. Space Type. Theme. Prompt</span>
       </div>

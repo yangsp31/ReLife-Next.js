@@ -17,6 +17,7 @@ export default function Component() {
   const [prompt, setprompt] = useState('');
   const [designTheme, setDesignTheme] = useState('');
   const [spaceType, setSpaceType] = useState('');
+  const [loading, setLoading] = useState(true)
   const router = useRouter();
 
   const fetching = async () => {
@@ -29,16 +30,16 @@ export default function Component() {
         if(result.process == 'success') {
           setResultUrl(result.url)
 
-          return true
+          return result.url
         }
       }
 
-      return false
+      return ''
     }
     catch (error) {
       console.log(error)
 
-      return false
+      return ''
     }
   }
 
@@ -46,7 +47,7 @@ export default function Component() {
     const response = await fetch('http://localhost:3000/api/getImage', {
       method : 'POST',
       headers : {'Content-Type' : 'application/json'},
-      body : JSON.stringify({url : `${resultUrl}`, type : 'panorama'})
+      body : JSON.stringify({url : `${resultUrl}`})
     })
 
     const blob = await response.blob();
@@ -72,6 +73,7 @@ export default function Component() {
   }
 
   const handleGenerate = async () => {
+    setLoading(true)
     if(designTheme != '' || spaceType != '') {
       const data = {
         prompt : prompt,
@@ -101,27 +103,35 @@ export default function Component() {
   }
 
   useEffect(() => {
-    /*const id = setInterval(async () => {
-      const success = await fetching()
+    let success
 
-      if(success) {
+    const id = setInterval(async () => {
+      success = await fetching()
+
+      if(success !== '') {
         clearInterval(id)
         setRender(false)
       }
-    }, 5000);*/
+    }, 5000);
 
     const loader = new THREE.TextureLoader();
-    loader.load('https://irsstorage.s3.ap-northeast-2.amazonaws.com/185528682/panorama/result/distortionPanorama.jpg', (loadedTexture) => {
+    loader.load(success, (loadedTexture) => {
       setImage(loadedTexture);
+      setLoading(false)
     });
 
-    /*return () => {
+    return () => {
       clearInterval(id);
-    };*/
+    };
   }, [render])
 
   return (
     <div className={`${styles.panoramaMain}`} style={{backgroundImage: `url(../../1.gif)`, backgroundSize: "cover", backgroundPosition: "center"}}>
+      {loading && (
+        <div className={`${styles.overlay}`}>
+          <div className={`${styles.loader}`}/>
+        </div>
+      )}
       <Canvas style={{ height: '100vh', width : '95%'}}>
       <Sphere args={[500, 50, 50]}>
         <meshBasicMaterial attach="material" 

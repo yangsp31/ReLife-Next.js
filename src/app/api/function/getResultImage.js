@@ -9,26 +9,12 @@ const s3Client = new S3Client({
     }
 })
 
-// 단일 이미지 업로드
-export async function getResult(url, type) {
+export async function getResult(url) {
     try {
-        if(type == 'single') {
-            const response = await fetch(url)
-            const data = await response.arrayBuffer()
+        const response = await fetch(url)
+        const data = await response.arrayBuffer()
 
-            return data
-        }
-        else {
-            const params = {
-                Bucket : process.env.AWS_S3_BUCKET_NAME,
-                Key : url,
-            }
-    
-            const command = new GetObjectCommand(params);
-            const data = await s3Client.send(command);
-    
-            return data.Body
-        }
+        return data
     }
     catch (error) {
         console.log(error)
