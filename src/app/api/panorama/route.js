@@ -11,8 +11,7 @@ export async function POST(request) {
     try {
         const cookie = cookies()
         const formData = await request.formData()
-        const images = formData.getAll("file")
-        const parameter = [formData.get("spaceType"), formData.get("prompt")]
+        const images = formData.get("file")
 
         // 쿠키와 파일과 같은 필수 리소스 확인
         if(!cookie.has('cookieConsent') || images.length === 0) {
