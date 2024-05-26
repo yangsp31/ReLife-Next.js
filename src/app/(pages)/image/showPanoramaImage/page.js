@@ -76,7 +76,7 @@ export default function Component() {
   const handleGenerate = async () => {
     setLoading(true)
     setImage(null)
-    if(designTheme != '' || spaceType != '') {
+    if(designTheme !== '' && spaceType !== '') {
       const data = {
         prompt : prompt,
         designTheme : designTheme,
