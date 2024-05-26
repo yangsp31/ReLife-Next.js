@@ -15,8 +15,6 @@ export async function requestPanorama(cookie, fileUrls) {
             body : body,
         }
 
-        console.log(requestOption)
-
         const response = await fetch('http://3.37.56.42:5000/Flask/Generate', requestOption)
 
         if(response.ok) {
