@@ -20,7 +20,7 @@ export default function Component() {
 
     const fetching = async () => {
         try {
-            const response = await fetch('https://relife-inzzywwlb-yyangs-projects.vercel.app/api/result?type=single');
+            const response = await fetch('https://relife-sigma.vercel.app/api/result?type=single');
 
             if (response.ok) {
                 const result = await response.json();
@@ -45,7 +45,7 @@ export default function Component() {
     }
 
     const downloadButton = async () => {
-        const response = await fetch('https://relife-inzzywwlb-yyangs-projects.vercel.app/api/getImage', {
+        const response = await fetch('https://relife-sigma.vercel.app/api/getImage', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ url: `${resultUrl}`})
@@ -84,7 +84,7 @@ export default function Component() {
             };
 
             try {
-                const response = await fetch('https://relife-inzzywwlb-yyangs-projects.vercel.app/api/retry', {
+                const response = await fetch('https://relife-sigma.vercel.app/api/retry', {
                     method: 'POST',
                     body: JSON.stringify(data),
                 });
