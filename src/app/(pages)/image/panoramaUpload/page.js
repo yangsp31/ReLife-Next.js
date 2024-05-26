@@ -58,7 +58,10 @@ export default function Component() {
     if(!selectImage || designTheme != '' || spaceType != '') {
       setLoading(true)
       const formData = new FormData()
-      formData.append('file', selectImage);
+
+      for(let i = 0; i < selectImage.length; i++) {
+        formData.append('file', selectImage[i]);
+      }
       formData.append('prompt',prompt);
       formData.append('designTheme', designTheme);
       formData.append('spaceType', spaceType);
