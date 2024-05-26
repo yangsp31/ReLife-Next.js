@@ -9,7 +9,7 @@ export async function POST(request) {
 
     // 응답 상태에 따라 생성된 이미지UR f redis(vercel KV)에 저장 후 reImagineHome API에 이미지 변환 요청
     if(body.status === "success" && body.data.job_status === "done") {
-        setMaskTaskData(body.data.job_id, urls)
+        await setMaskTaskData(body.data.job_id, urls)
         const generateId = await requestGenerate(body.data.job_id, urls)
 
         await setGenerateId(body.data.job_id, generateId)
