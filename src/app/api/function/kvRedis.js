@@ -119,12 +119,12 @@ export async function getGenerateUrl (cookie) {
 }
 
 // 쿠키와 사용자에게 받아온 데이터를 활용하여 작업 데이터 갱신/가져오기
-export async function reGenerateTask(cookie, data) {
+export async function reGenerateTask(cookie, data, prompt) {
     try {
         await relifeKv.hdel(`${cookie}`, "generateUrl")
 
         if(data.setting === true) {
-            await relifeKv.hset(`${cookie}`, {designTheme : data.designTheme, spaceType : data.spaceType, prompt : data.prompt})
+            await relifeKv.hset(`${cookie}`, {designTheme : data.designTheme, spaceType : data.spaceType, prompt : prompt})
         }
 
         const taskData = await relifeKv.hgetall(`${cookie}`)

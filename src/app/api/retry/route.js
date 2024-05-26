@@ -2,19 +2,25 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { reGenerate } from "../function/reimaginehomeAPI";
 import { reGenerateTask, setReGenerateId } from "../function/kvRedis";
+import { korToEn } from "../function/translate";
 
 //이미지 변환 재요청 처리
 export async function POST (request) {
     try {
         const cookie = cookies();
         const data = await request.json();
+        let prompt
 
         if(!cookie.has("cookieConsent")) {
             return NextResponse.json({error : "require cookie"}, {status : 400})
         }
 
+        if(data.prompt !== '') {
+            prompt = await korToEn(data.prompt)
+        }
+
         // redis(vercel KV)에 사용자의 데이터 입력 여부에 따라 작업정보를 갱신
-        const taskData = await reGenerateTask(cookie.get("cookieConsent").value, data)
+        const taskData = await reGenerateTask(cookie.get("cookieConsent").value, data, prompt)
 
         // 갱신된 사용자 작업 정보를 바탕으로 reimagineHome API로 이미지 재변환 요청
         const info = await reGenerate(taskData)

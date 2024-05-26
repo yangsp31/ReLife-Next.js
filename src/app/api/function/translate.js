@@ -14,7 +14,8 @@ export async function korToEn(prompt) {
             return prompt;
         }
     }
-    catch (e) {
-
+    catch (error) {
+        console.log(error)
+        throw error;
     }
 }
