@@ -26,5 +26,6 @@ export async function GET(request) {
     }
     catch (error) {
         console.log(error)
+        return NextResponse.json({process : "fail"}, {status : 500})
     }
 }
