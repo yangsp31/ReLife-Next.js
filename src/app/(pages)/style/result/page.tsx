@@ -69,7 +69,7 @@ const fetchStyleData = async (result) => {
           </div>
         </div>
     ) : ( 
-      <div className={styles.fullContainer}>
+      <div className={styles.fullscreenCenter}>
         {/* 왼쪽 박스 - 텍스트와 버튼 */}
         <div className={styles.leftBoxResult}>
           <p className={`${styles['regular-40']} mb-4`}> {/*객체 형식으로 접근하여 스타일 접근*/}
@@ -91,7 +91,7 @@ const fetchStyleData = async (result) => {
         {/* 오른쪽 박스 - 이미지 */}
         <div className={styles.rightBoxResult}>
             {(styleData.images || []).map((image, index) => (
-              <div key={index} className={styles.imageContainer}>
+              <div key={index} className={styles.imageContainerstyle}>
                 <Image
                   src={image}
                   alt={`${styleData.name} Style ${index + 1}`}

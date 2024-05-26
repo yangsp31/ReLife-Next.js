@@ -62,7 +62,7 @@ export default function Home() {
           </div>
         </div>
     ) : ( // loading이 false인 경우 실제 컨텐츠를 표시
-        <div className={styles.fullContainer}>
+        <div className={styles.fullscreenCenter}>
           <div className={styles.leftBox}>
           <p className={`${styles['regular-40']} mb-4`}> {/*객체 형식으로 접근하여 스타일 접근*/}
               {/* CSS 모듈에서 정의된 클래스 regular-40과 mb-4을 추가하여 요소에 하단 마진을 부여 */}
