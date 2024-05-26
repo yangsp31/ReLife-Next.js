@@ -1,4 +1,5 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import fs from 'fs/promises';
 
 // AWS S3와 연결될 client 생성
 const s3Client = new S3Client({
@@ -15,7 +16,7 @@ export async function uploadMultiImage(cookie, files) {
 
     try {
         for (const file of files) {
-            const buffer = Buffer.from(await file.arrayBuffer())
+            const buffer = await fs.readFile(file.path)
             const params = {
                 Bucket : process.env.AWS_S3_BUCKET_NAME,
                 Key : `${cookie}/panorama/piece/${file.name}`,

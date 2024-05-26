@@ -110,10 +110,9 @@ export default function Component() {
             if (success) {
                 clearInterval(id);
                 setRender(false);
+                setLoading(false)
             }
         }, 5000);
-
-        setLoading(false)
 
         return () => {
             clearInterval(id);
@@ -140,7 +139,7 @@ export default function Component() {
       }
       else {
         return (
-            <div className={styles.main} style={{ backgroundImage: `url(../../1.png)`, backgroundSize: "cover", backgroundPosition: "center" }}>
+            <div className={styles.main}>
               {loading && (
                 <div className={`${styles.overlay}`}>
                   <div className={`${styles.loader}`}/>

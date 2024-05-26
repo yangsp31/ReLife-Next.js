@@ -112,13 +112,13 @@ export default function Component() {
       if(success !== '') {
         clearInterval(id)
         setRender(false)
+        setLoading(false)
       }
     }, 5000);
 
     const loader = new THREE.TextureLoader();
     loader.load(success, (loadedTexture) => {
       setImage(loadedTexture);
-      setLoading(false)
     });
 
     return () => {
