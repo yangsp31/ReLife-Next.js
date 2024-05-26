@@ -171,7 +171,7 @@ export default function Component() {
   else {
     return (
       <div className={`${styles.panoramaMain}`} style={{backgroundImage: `url(../../1.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
-        <Canvas style={{ height: '100vh', width : '95%'}}>
+        <Canvas key = {image} style={{ height: '100vh', width : '95%'}}>
         <Sphere args={[500, 50, 50]}>
           <meshBasicMaterial attach="material" 
            map={image}
