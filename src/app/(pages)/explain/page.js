@@ -14,7 +14,7 @@ const Button = ({ href, className, children }) => {
 //메인페이지 이후 프로그램에 대한 설명이 적혀있는 코드
 export default function Component() {
   return (
-    <div className={`${styles.main}`} style={{ backgroundImage: `url(../../1.gif)`, backgroundSize: "cover", backgroundPosition: "center" }}>
+    <div className={`${styles.main}`} style={{ backgroundImage: `url(../../1.png)`, backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className = {`${styles.startUpper}`}>
         <span className = {`${styles.startLogo}`}>빠르고 안전하게 상상을 눈으로</span>
       </div>

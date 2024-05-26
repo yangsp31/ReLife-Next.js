@@ -64,7 +64,7 @@ export default function Component() {
       formData.append('spaceType', spaceType);
 
       try {
-        const response = await fetch('http://localhost:3000/api/panorama', {
+        const response = await fetch('https://relife-sigma.vercel.app/api/panorama', {
           method : 'POST',
           body : formData
         })
@@ -105,7 +105,7 @@ export default function Component() {
 
   if(loading) {
     return (
-      <div className={styles.fullscreenCenter} style={{ backgroundImage: 'url(../../../1.gif)', backgroundSize: "cover", backgroundPosition: "center" }}>
+      <div className={styles.fullscreenCenter} style={{ backgroundImage: 'url(../../../1.png)', backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="text-center" style={{ color: 'white' }}> {/* 텍스트를 중앙에 정렬 */}
             <p>이미지 로딩 중...</p>
             <div className="relative">
@@ -123,7 +123,7 @@ export default function Component() {
   }
   else {
     return (
-      <div className={`${styles.main}`} style={{ backgroundImage: 'url(../../../1.gif)', backgroundSize: "cover", backgroundPosition: "center" }}>
+      <div className={`${styles.main}`} style={{ backgroundImage: 'url(../../../1.png)', backgroundSize: "cover", backgroundPosition: "center" }}>
         {loading && (
           <div className={`${styles.overlay}`}>
             <div className={`${styles.loader}`}/>

@@ -7,7 +7,7 @@
   align-items: center;
   height: calc(100vh - 60px); /* 전체 화면 높이에서 topBar 높이를 뺌 */
   margin-top: 60px; /* topBar 높이만큼 여백 추가 */
-  background-image: url('/1.gif'); /* 배경 이미지 설정 */
+  background-image: url('/1.png'); /* 배경 이미지 설정 */
   background-size: cover; /* 배경 이미지를 페이지 전체에 맞춤 */
   background-position: center; /* 배경 이미지를 중앙에 배치 */
   background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */

@@ -20,7 +20,7 @@ export default function Component() {
 
     const fetching = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/result?type=single');
+            const response = await fetch('https://relife-sigma.vercel.app/api/result?type=single');
 
             if (response.ok) {
                 const result = await response.json();
@@ -45,7 +45,7 @@ export default function Component() {
     }
 
     const downloadButton = async () => {
-        const response = await fetch('http://localhost:3000/api/getImage', {
+        const response = await fetch('https://relife-sigma.vercel.app/api/getImage', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ url: `${resultUrl}`})
@@ -84,7 +84,7 @@ export default function Component() {
             };
 
             try {
-                const response = await fetch('http://localhost:3000/api/retry', {
+                const response = await fetch('https://relife-sigma.vercel.app/api/retry', {
                     method: 'POST',
                     body: JSON.stringify(data),
                 });
@@ -122,7 +122,7 @@ export default function Component() {
 
     if(loading) {
         return (
-          <div className={styles.fullscreenCenter} style={{ backgroundImage: 'url(../../../1.gif)', backgroundSize: "cover", backgroundPosition: "center" }}>
+          <div className={styles.fullscreenCenter} style={{ backgroundImage: 'url(../../../1.png)', backgroundSize: "cover", backgroundPosition: "center" }}>
               <div className="text-center" style={{ color: 'white' }}> {/* 텍스트를 중앙에 정렬 */}
                 <p>이미지 로딩 중...</p>
                 <div className="relative">
@@ -140,7 +140,7 @@ export default function Component() {
       }
       else {
         return (
-            <div className={styles.main} style={{ backgroundImage: `url(../../1.gif)`, backgroundSize: "cover", backgroundPosition: "center" }}>
+            <div className={styles.main} style={{ backgroundImage: `url(../../1.png)`, backgroundSize: "cover", backgroundPosition: "center" }}>
               {loading && (
                 <div className={`${styles.overlay}`}>
                   <div className={`${styles.loader}`}/>

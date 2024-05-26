@@ -1,26 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'; //쿠키값을 고유식별자로 성정하기 위해 필요한 기능
 
-//////////////////////////////////////////////////////////////////////////
-///모든 쿠키 즉시 삭제 (테스트를 위한 코드로 테스트 완료시 삭제하시면 됩니다.)
-export const clearAllCookies = () => {
-    if (typeof window !== 'undefined') {
-        const cookies = document.cookie.split(";");
-
-        for (let c of cookies) {
-            const eqPos = c.indexOf('=');
-            const cookieName = eqPos > -1 ? c.substr(0, eqPos) : c.trim();
-            document.cookie = cookieName + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
-        }
-    }
-};
-export const clearLocalStorage = () => {
-    if (typeof window !== 'undefined') {
-        localStorage.clear();
-    }
-};
-
-///////////////////////////////
-
 //id: 사용자 고유의 식별자 또는 데이터로, 쿠키에 저장될 값 (id가 제공되지않으면 빈 문자열이 기본값)
 export const createCookie = (ck_01, id, days=7) => {
     //서버 측 렌더링을 확인(실행환경이 클라이언트 환경일때만 실행)
