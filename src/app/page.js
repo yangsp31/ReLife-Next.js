@@ -1,96 +1,66 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
+"use client";
 // 웹사이트의 최초 진입점 입니다 이 페이지가 가장 먼저 보여지는 페이지 이므로 여기서부터 개발하시면 됩니다.
-export default function first() {
+
+import Link from "next/link";
+import styles from "./page.module.css";
+import CookieConsentBanner from './cookies/permit_banner/banner.client';
+
+
+// 아이콘 컴포넌트
+function LightbulbIcon(props) {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+      <path d="M9 18h6" />
+      <path d="M10 22h4" />
+    </svg>
+  );
+}
+
+// Button 컴포넌트
+const Button = ({ href, className, children }) => {
+  return (
+    <Link href={href} className={`bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}>
+      {children}
+    </Link>
+  );
+};
+
+const Logo = {
+  fontWeight: 'bold',
+  marginLeft: '10px',
+  fontSize: '20px',
+}
+
+const mainLogo = {
+  fontWeight: 'bold',
+  fontSize: '50px',
+  marginBottom : '60px',
+}
+
+export default function CombinedComponent() {
+  const backgroundImage = "/1.gif"; // public 폴더의 이미지 경로
+
+  return (
+    <div className={`${styles.main}`} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+      <CookieConsentBanner />
+      <div className = {`${styles.mainUpper}`}>
+        <div className={`${styles.box}`}>
+        <LightbulbIcon/>
+        <span style = {Logo}>INTERIOR SIMULATOR</span>
         </div>
+        <div className={`${styles.box2}`}/>
+        <nav className={`${styles.box}`}>
+          <Link href="/about" className={`${styles.tab}`}>about</Link>
+          <Link href="/resource" className={`${styles.tab}`}>resource</Link>
+          <Link href="/inquire" className={`${styles.tab}`}>inquiry</Link>
+          <Link href="/stylequiz" className={`${styles.tab}`}>style find</Link>
+          <Button href="/explain" className={`${styles.tab}`}>Start</Button> 
+        </nav>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className = {`${styles.mainCenter}`}>
+        <span style={mainLogo}>인테리어 프로그램 이용</span>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
