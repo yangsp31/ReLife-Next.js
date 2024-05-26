@@ -15,19 +15,19 @@ export async function uploadMultiImage(cookie, files) {
     const fileUrl = []
 
     try {
-        for (const file of files) {
-            const buffer = Buffer.from(await file.arrayBuffer())
+        for (let i = 0; i < files.length; i++) {
+            const buffer = Buffer.from(await files[i].arrayBuffer())
             const params = {
                 Bucket : process.env.AWS_S3_BUCKET_NAME,
-                Key : `${cookie}/panorama/piece/${file.name}`,
+                Key : `${cookie}/panorama/piece/${files[i].name}`,
                 Body : buffer,
-                ContentType : `${file.type}`
+                ContentType : `${files[i].type}`
             }
     
             const command = new PutObjectCommand(params);
             await s3Client.send(command);
     
-            fileUrl.push(`${process.env.NEXT_PUBLIC_AWS_S3_OBJECT_URL}${cookie}/panorama/piece/${file.name}`)
+            fileUrl.push(`${process.env.NEXT_PUBLIC_AWS_S3_OBJECT_URL}${cookie}/panorama/piece/${files[i].name}`)
         }
     
         return fileUrl
