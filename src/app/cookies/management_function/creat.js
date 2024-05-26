@@ -88,4 +88,4 @@ export const giveConsent = () => {
 
 
 //cookies 존재 여부 확인(콘솔창)
-console.log("User consent status: ", readCookie('cookieConsent'));
+//console.log("User consent status: ", readCookie('cookieConsent'));

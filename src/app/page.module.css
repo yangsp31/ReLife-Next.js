@@ -3,10 +3,15 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: rgba(99, 28, 158, 0.6); /* 배경색 조절 */
+  height: calc(100vh - 60px); /* 전체 화면 높이에서 topBar 높이를 뺌 */
+  margin-top: 60px; /* topBar 높이만큼 여백 추가 */
+  background-image: url('/1.gif'); /* 배경 이미지 설정 */
+  background-size: cover; /* 배경 이미지를 페이지 전체에 맞춤 */
+  background-position: center; /* 배경 이미지를 중앙에 배치 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */
+  overflow: hidden; /* 화면을 초과하는 내용을 숨김 */
   color: #ffffff; /* 텍스트 색상을 흰색으로 설정 */
 }
 
@@ -61,9 +66,9 @@
   padding: 20px;
   white-space: nowrap; 
   margin-top: 6%;
-  margin-left: 10%;
+  margin-left: 3%;
   justify-content: space-between;
-  
+
 }
 
 .box5 {
@@ -118,6 +123,28 @@
   margin-top: 5%;
 }
 
+.gallery-item {
+  position: relative;
+  display: inline-block;
+}
+.image-container {
+  position: relative;
+}
+.check-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background: url('/check.jpg') no-repeat center center;
+  background-size: contain;
+  display: none; /* 기본적으로 아이콘을 숨김 */
+}
+
+.gallery-item.selected .check-icon {
+  display: block; /* 선택된 경우 아이콘을 표시 */
+}
+
 .box6 {
   display: flex;
   flex:1;
@@ -129,21 +156,38 @@
   margin-right: 35px;
   font-size: 20px;
 }
+
 .mainUpper {
   display: flex;
-  align-items:flex-start;
-  margin-top:2%;
-  min-width:95%;
-  overflow-x: auto;
+  align-items: center;
+  justify-content: space-between; /* 요소들을 양쪽 끝으로 정렬 */
+  background-color: rgb(237, 226, 255); /* 배경색을 설정 */
+  width: 100%; /* 전체 너비 사용 */
+  padding: 1rem; /* 여백 추가 */
+  position: fixed; /* 페이지 상단에 고정 */
+  top: 0; /* 상단에 붙도록 설정 */
+  z-index: 1000; /* 다른 요소들 위에 오도록 설정 */
+  height: 60px; /* 높이 설정 */
+
+}
+
+.fullscreencenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+   
 }
 
 .mainCenter {
   display: flex;
-  flex: 4;
+  justify-content: center;
   align-items: center;
-  white-space: nowrap; 
+  flex: 1;
+  text-align: center;
+  width: 100%; /* 전체 너비 사용 */
+  padding: 1rem; /* 여백 추가 */
 }
-
 .startUpper {
   display: flex;
   align-items:flex-start;
@@ -160,7 +204,6 @@
   white-space: nowrap;
   flex-direction: column;
 }
-
 .resultCenter {
   display: flex;
   flex: 1;
@@ -207,7 +250,7 @@
 .imageContainer {
   width : 400px;
   height : 400px;
-  background-color: white;
+  background-color: rgb(236, 223, 255);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -335,6 +378,120 @@
   line-height: 1.4; /* 편안한 줄 간격 */
   color: #333333; /* 대비를 위한 어두운 텍스트 */
 }
+
+/* 컨테이너와 박스 스타일 */
+.fullContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 100vh; /* 화면 전체 높이를 차지 */
+  background-image: url('/back.png'); /* 배경 이미지 설정 */
+  background-size: cover; /* 배경 이미지를 페이지 전체에 맞춤 */
+  background-position: center; /* 배경 이미지를 중앙에 배치 */
+  background-repeat: no-repeat; /* 배경 이미지 반복 안 함 */
+  align-items: stretch;
+  height: 100%; 
+  width: 100%; 
+  padding: 2rem;
+
+}
+.fullscreenCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* 화면 전체 높이를 차지 */
+  width: 100%;
+}
+
+.leftBox {
+  flex: 1;
+  display: flex;
+  margin-top: -300px; /* 원하는 만큼 위쪽으로 이동 */
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+.leftBoxResult {
+  flex: 1;
+  display: flex;
+  margin-top: -300px; /* 원하는 만큼 위쪽으로 이동 */
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+.rightBox {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 0px; /* topBar 높이만큼 여백 추가 */
+  padding: 20px;
+  overflow-y: auto; /* 수직 스크롤 가능하게 설정 */
+  max-height: calc(100vh - 210px); /* 전체 높이에서 여백을 뺀 높이 */
+}
+.rightBoxResult {
+  display: flex;
+  flex-wrap: wrap; /* Flex 항목을 여러 줄로 나열 */
+  justify-content: space-between; /* 항목 간의 공간을 균등하게 분배 */
+  padding: 20px;
+  max-height: calc(100vh - 160px); /* 상단과 하단의 패딩을 고려하여 최대 높이를 설정 */
+  max-height: 100vh; /* 최대 높이를 설정하여 스크롤 영역을 제한 */
+}
+.imageContainerstyle {
+  width : 400px;
+  height : 400px;
+  background-color: rgb(236, 223, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+/* 이미지 스타일 */
+.image {
+  flex: 1 0 48%; /* 두 열로 나열되도록 설정, 각 항목의 너비를 48%로 설정 */
+  margin: 1%; /* 항목 간의 간격을 1%로 설정 */
+  box-sizing: border-box; /* 박스 크기를 포함한 모든 요소를 계산 */
+  width: 100%; /* Flex 항목의 너비에 맞게 이미지 크기 조정 */
+  height: 100%; /* 이미지 높이를 자동으로 조정 */
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.btn {
+  background-color: rgb(250, 234, 255);
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+  color: rgba(102, 39, 131, 0.89);
+  font-size: 20px;
+  width: 150px; /* 버튼의 가로 길이를 150px로 설정 */
+
+
+}
+
+.bold-32 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.regular-40 {
+  font-size: 48px;
+  font-weight: normal; 
+}
+
+.regular-18 {
+  font-size: 23px;
+  font-weight: normal;
+}
+
 
 @media (max-width: 700px) {
   .main {
