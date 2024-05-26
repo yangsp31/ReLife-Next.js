@@ -143,7 +143,7 @@ export default function Component() {
 
         setLoading(false)
       }
-    }, 5000);
+    }, 10000);
 
     return () => {
       clearInterval(id);
