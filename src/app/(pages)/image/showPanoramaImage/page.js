@@ -113,7 +113,7 @@ export default function Component() {
         clearInterval(id)
         setRender(false)
         setLoading(false)
-
+        console.log(success)
         const loader = new THREE.TextureLoader();
         loader.load(`${success}`, (loadedTexture) => {
           setImage(loadedTexture);
