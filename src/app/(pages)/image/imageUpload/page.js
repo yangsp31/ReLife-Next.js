@@ -104,7 +104,7 @@ export default function Component() {
     return (
       <div className={`${styles.main}`} style={{ backgroundImage: 'url(../../../1.png)', backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className = {`${styles.startUpper}`}>
-          <span className = {`${styles.startLogo}`}>단일 이미지 만들기</span>
+          <span className = {`${styles.startLogo}`}>한장으로 보기</span>
         </div>
         <div className={`${styles.startImageCenter}`}>
           <div className={`${styles.box5}`}>
