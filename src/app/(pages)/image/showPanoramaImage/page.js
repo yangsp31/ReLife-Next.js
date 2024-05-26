@@ -101,9 +101,10 @@ export default function Component() {
     else {
       const data = {
         prompt : prompt,
+        type : 'panorama',
         setting : false
       }
-      
+
       try {
         const response = await fetch('https://relife-xi.vercel.app/api/retry', {
           method : 'POST',

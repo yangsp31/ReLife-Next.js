@@ -101,6 +101,7 @@ export default function Component() {
         else {
             const data = {
                 prompt : prompt,
+                type: 'single',
                 setting : false
             }
 
