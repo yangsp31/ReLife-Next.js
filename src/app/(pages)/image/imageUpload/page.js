@@ -108,6 +108,9 @@ export default function Component() {
         </div>
         <div className={`${styles.startImageCenter}`}>
           <div className={`${styles.box5}`}>
+          <p className={styles['regular-18']}> 
+                이미지를 넣어주세요.
+            </p>
             <div className={`${styles.imageContainer}`}>
               {showUrl && <Image src={showUrl} alt="Selected" width = {400} height = {400} style={{ objectFit: 'cover' }} />}
             </div>
