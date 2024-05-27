@@ -139,6 +139,7 @@ export default function Component() {
             clearInterval(id);
         };
     }, [render]);
+
     if(loading) {
         return (
           <div className={styles.fullscreenCenter} style={{ backgroundImage: 'url(../../../1.png)', backgroundSize: "cover", backgroundPosition: "center" }}>
@@ -159,8 +160,8 @@ export default function Component() {
       }
       else {
         return (
-            <div className={styles.main}>
-                <div className={styles.startUpper}>
+            <div className={styles.main} style={{ width: '100%'}}>
+                <div className={styles.startUpper2}>
                     <span className={styles.startLogo}>당신의 상상</span>
                 </div>
                 <div className={styles.resultCenter}>
@@ -169,13 +170,12 @@ export default function Component() {
                             <ReactCompareSlider
                                 itemOne={<ReactCompareSliderImage src={selectImage} alt='Image One' />}
                                 itemTwo={<ReactCompareSliderImage src={resultUrl} alt='Image Two' />}
+                                style={{ width: '60%'}}
                             />
                         </div>
-                        <div className={styles.resultItem}>
-                            <button className={styles.generateButton} onClick={downloadButton}>이미지 다운로드</button>
-                        </div>
+                        
                     </div>
-                    <div className={styles.box6}>
+                    <div className={styles.box6_1}>
                         <div className={styles.promptBox}>
                             <input type='text' placeholder='추가 요구사항을 작성하세요.' className={styles.input} value={prompt} onChange={setPromptText} />
                         </div>
@@ -216,6 +216,9 @@ export default function Component() {
                         </div>
                         <div className={styles.itemContainer2}>
                             <button className={styles.generateButton} onClick={handleNewGenerate}>새로 만들기</button>
+                        </div>
+                        <div className={styles.itemContainer2}>
+                        <button className={styles.generateButton} onClick={downloadButton}>이미지 다운로드</button>
                         </div>
                     </div>
                 </div>

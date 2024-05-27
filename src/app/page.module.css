@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 60px); /* 전체 화면 높이에서 topBar 높이를 뺌 */
+  height: 100vh; /* 전체 화면 높이에서 topBar 높이를 뺌 */
   margin-top: 40px; /* topBar 높이만큼 여백 추가 */
   background-image: url('/1.png'); /* 배경 이미지 설정 */
   background-size: cover; /* 배경 이미지를 페이지 전체에 맞춤 */
@@ -161,6 +161,14 @@
   align-items:center;
 }
 
+.box6_1 {
+  display: flex;
+  margin-top: 100px;
+  flex:1;
+  flex-direction: column;
+  align-items:center;
+}
+
 .tab {
   margin-right: 35px;
   font-size: 20px;
@@ -214,6 +222,17 @@
 
 }
 
+.startUpper2 {
+  display: flex;
+  align-items:flex-start;
+  min-width:95%;
+  
+  margin-top: 50px; /* 원하는 만큼 위쪽으로 이동 */
+  overflow: hidden; /* 추가: 스크롤을 숨깁니다 */
+  text-align: center;
+
+}
+
 .startCenter {
   display: flex;
   flex: 1;
@@ -229,6 +248,15 @@
   align-items: flex-start;
   white-space: nowrap;
   flex-direction: row;
+}
+
+.resultCenter2 {
+  display: flex;
+  flex: 1;
+  min-width:100%;
+  align-items: flex-start;
+  white-space: nowrap;
+  flex-direction: column;
 }
 .panoramaCenter {
   display: flex;
@@ -254,6 +282,11 @@
   min-width:100%;
   justify-content:space-around;
   margin-bottom: 2%;
+}
+
+.compare {
+  width: '500px';
+  height: '300px';
 }
 
 .startImageCenter {
