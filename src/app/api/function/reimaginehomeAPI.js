@@ -9,7 +9,7 @@ export async function requestMask(url) {
     try {
         const body = JSON.stringify({
             "image_url" : `${url}`,
-            "webhook_url" : "https://relife-sigma.vercel.app/api/webhook/mask"
+            "webhook_url" : "https://relife-xi.vercel.app/api/webhook/mask"
         });
 
         const requestOption = {
@@ -45,7 +45,7 @@ export async function requestGenerate(jobId, maskUrl) {
             "design_theme" : `${data.designTheme}`,
             "additional_prompt" : `${data.prompt}`,
             "generation_count" : 1,
-            "webhook_url" : "https://relife-sigma.vercel.app/api/webhook/generate"
+            "webhook_url" : "https://relife-xi.vercel.app/api/webhook/generate"
         });
         
         const requestOption = {
@@ -58,7 +58,8 @@ export async function requestGenerate(jobId, maskUrl) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_REIMAGINEHOME_API_URL}/v1/generate_image`, requestOption)
         const result = await response.json()
 
-        return result.data.job_id
+        console.log(result)
+        return result
     }
     catch (error) {
         console.log(error)
@@ -78,7 +79,7 @@ export async function reGenerate(taskData) {
             "design_theme" : `${taskData.designTheme}`,
             "additional_prompt" : `${taskData.prompt}`,
             "generation_count" : 1,
-            "webhook_url" : "https://relife-sigma.vercel.app/api/webhook/generate"
+            "webhook_url" : "https://relife-xi.vercel.app/api/webhook/generate"
         });
         
         const requestOption = {

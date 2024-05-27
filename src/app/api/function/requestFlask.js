@@ -15,9 +15,7 @@ export async function requestPanorama(cookie, fileUrls) {
             body : body,
         }
 
-        console.log(requestOption)
-
-        const response = await fetch('http://15.164.93.209:5000/Flask/Generate', requestOption)
+        const response = await fetch('http://3.37.56.42:5000/Flask/Generate', requestOption)
 
         if(response.ok) {
             const result = await response.json()
@@ -46,7 +44,7 @@ export async function requestDistortion(cookie, fileUrl) {
             body : body,
         }
 
-        const response = await fetch('http://15.164.93.209:5000/Flask/Distortion', requestOption)
+        const response = await fetch('http://3.37.56.42:5000/Flask/Distortion', requestOption)
 
         if(response.ok) {
             const result = await response.json()

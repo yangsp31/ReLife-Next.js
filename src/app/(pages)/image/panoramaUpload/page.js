@@ -58,13 +58,16 @@ export default function Component() {
     if(!selectImage || designTheme != '' || spaceType != '') {
       setLoading(true)
       const formData = new FormData()
-      formData.append('file', selectImage);
+
+      for(let i = 0; i < selectImage.length; i++) {
+        formData.append('file', selectImage[i]);
+      }
       formData.append('prompt',prompt);
       formData.append('designTheme', designTheme);
       formData.append('spaceType', spaceType);
 
       try {
-        const response = await fetch('https://relife-sigma.vercel.app/api/panorama', {
+        const response = await fetch('https://relife-xi.vercel.app/api/panorama', {
           method : 'POST',
           body : formData
         })

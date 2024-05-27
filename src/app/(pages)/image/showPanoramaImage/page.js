@@ -23,7 +23,7 @@ export default function Component() {
 
   const fetching = async () => {
     try {
-      const response = await fetch('https://relife-sigma.vercel.app/api/result?type=panorama');
+      const response = await fetch('https://relife-xi.vercel.app/api/result');
 
       if(response.ok) {
         const result = await response.json();
@@ -45,7 +45,7 @@ export default function Component() {
   }
 
   const downloadButton = async () => {
-    const response = await fetch('https://relife-sigma.vercel.app/api/getImage', {
+    const response = await fetch('https://relife-xi.vercel.app/api/getImage', {
       method : 'POST',
       headers : {'Content-Type' : 'application/json'},
       body : JSON.stringify({url : `${resultUrl}`})
@@ -75,16 +75,39 @@ export default function Component() {
 
   const handleGenerate = async () => {
     setLoading(true)
-    if(designTheme != '' || spaceType != '') {
+    setImage(null)
+    if(designTheme !== '' && spaceType !== '') {
       const data = {
         prompt : prompt,
         designTheme : designTheme,
         spaceType : spaceType,
-        type : 'panorama'
+        type : 'panorama',
+        setting : true
       }
 
       try {
-        const response = await fetch('https://relife-sigma.vercel.app/api/retry', {
+        const response = await fetch('https://relife-xi.vercel.app/api/retry', {
+          method : 'POST',
+          body : JSON.stringify(data),
+        })
+
+        if(response.ok) {
+          setRender(true)
+        }
+      } 
+      catch (error) {
+        console.log(error)
+      }
+    }
+    else {
+      const data = {
+        prompt : prompt,
+        type : 'panorama',
+        setting : false
+      }
+
+      try {
+        const response = await fetch('https://relife-xi.vercel.app/api/retry', {
           method : 'POST',
           body : JSON.stringify(data),
         })
@@ -104,7 +127,7 @@ export default function Component() {
   }
 
   useEffect(() => {
-    let success
+    let success = ''
 
     const id = setInterval(async () => {
       success = await fetching()
@@ -112,21 +135,22 @@ export default function Component() {
       if(success !== '') {
         clearInterval(id)
         setRender(false)
+        console.log(success)
+        const loader = new THREE.TextureLoader();
+        loader.load(`${success}`, (loadedTexture) => {
+          setImage(loadedTexture);
+    });
+
         setLoading(false)
       }
-    }, 5000);
-
-    const loader = new THREE.TextureLoader();
-    loader.load(success, (loadedTexture) => {
-      setImage(loadedTexture);
-    });
+    }, 10000);
 
     return () => {
       clearInterval(id);
     };
   }, [render])
 
-  if(!loading) {
+  if(loading) {
     return (
       <div className={styles.fullscreenCenter} style={{ backgroundImage: 'url(../../../1.png)', backgroundSize: "cover", backgroundPosition: "center" }}>
           <div className="text-center" style={{ color: 'white' }}> {/* 텍스트를 중앙에 정렬 */}
@@ -147,7 +171,7 @@ export default function Component() {
   else {
     return (
       <div className={`${styles.panoramaMain}`} style={{backgroundImage: `url(../../1.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
-        <Canvas style={{ height: '100vh', width : '95%'}}>
+        <Canvas key = {image} style={{ height: '100vh', width : '95%'}}>
         <Sphere args={[500, 50, 50]}>
           <meshBasicMaterial attach="material" 
            map={image}

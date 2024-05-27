@@ -67,8 +67,9 @@ export async function setMaskTaskData(jobId, url) {
 export async function setGenerateTaskData(jobId, url) {
     try {
         const data = await relifeKv.hgetall(`${jobId}`)
+        console.log(data.type)
 
-        if(data.type == 'panorama') {
+        if(data.type === 'panorama') {
             const distortionurl = await requestDistortion(data.cookie, url)
 
             await relifeKv.hset(`${data.cookie}`, {generateUrl : distortionurl})
