@@ -58,6 +58,7 @@ export async function requestGenerate(jobId, maskUrl) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_REIMAGINEHOME_API_URL}/v1/generate_image`, requestOption)
         const result = await response.json()
 
+        console.log(result)
         return result.data.job_id
     }
     catch (error) {
