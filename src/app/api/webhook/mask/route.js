@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { requestGenerate } from "../../function/reimaginehomeAPI";
 import { setGenerateId, setMaskTaskData } from "../../function/kvRedis";
 
+export const maxDuration = 20; // This function can run for a maximum of 5 seconds
+export const dynamic = 'force-dynamic';
+
 //생성된 mask이미지 응답 받는 웹훅
 export async function POST(request) {
     try {
