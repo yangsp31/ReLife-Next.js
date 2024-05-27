@@ -15,7 +15,7 @@ export async function POST(request) {
             requestGenerate(body.data.job_id, urls)
         ])
 
-        await setGenerateId(body.data.job_id, result[1])
+        await setGenerateId(body.data.job_id, result[1].data.job_id)
     }
     else {
         console.log(JSON.stringify(body));

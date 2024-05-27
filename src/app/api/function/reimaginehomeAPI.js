@@ -59,7 +59,7 @@ export async function requestGenerate(jobId, maskUrl) {
         const result = await response.json()
 
         console.log(result)
-        return result.data.job_id
+        return result
     }
     catch (error) {
         console.log(error)
