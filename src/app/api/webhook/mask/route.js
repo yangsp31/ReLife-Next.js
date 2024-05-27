@@ -4,6 +4,7 @@ import { setGenerateId, setMaskTaskData } from "../../function/kvRedis";
 
 //생성된 mask이미지 응답 받는 웹훅
 export async function POST(request) {
+    try {
     const body = await request.json();
     const urls = body.data.masks.map(mask => mask.url);
 
@@ -17,6 +18,10 @@ export async function POST(request) {
     }
     else {
         console.log(JSON.stringify(body));
+    }
+    }
+    catch (error) {
+        console.log(error)
     }
 
     return NextResponse.json({success : "ok"}, {status : 200});
