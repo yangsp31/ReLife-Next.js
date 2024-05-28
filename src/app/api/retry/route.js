@@ -9,7 +9,7 @@ export async function POST (request) {
     try {
         const cookie = cookies();
         const data = await request.json();
-        let prompt
+        let prompt = ''
 
         if(!cookie.has("cookieConsent")) {
             return NextResponse.json({error : "require cookie"}, {status : 400})
