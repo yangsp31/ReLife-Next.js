@@ -72,6 +72,9 @@
   justify-content: space-between;
 
 }
+.marginTop {
+  margin-top: 70px;
+}
 
 .aboutBox {
   margin-bottom: 1%;
@@ -496,7 +499,7 @@
 
 }
 .imageContainerstyle {
-  margin-top: 0px;
+  margin-top: -50px;
   width: 70%;
   height: auto;
   display: flex;
@@ -512,7 +515,7 @@
   height: auto; /* 이미지 높이를 자동으로 조정 */
   object-fit: cover; /* 이미지가 컨테이너를 덮도록 설정 */
   justify-content: center; /*주 축(main axis) 방향의 중앙에 정렬*/
-  margin-top: 50px;
+  margin-top: 20px;
 }
 /* 이미지 스타일 */
 .image1 {

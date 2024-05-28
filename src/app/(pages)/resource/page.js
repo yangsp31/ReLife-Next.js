@@ -22,7 +22,7 @@ export default function Component() {
             </div>
           </div>
           <div>
-              <h1 className="text-2xl font-semibold">사용 기술</h1>
+              <h1 className={`text-2xl font-semibold ${styles.marginTop}`}>사용 기술</h1>
               <h2 className="text-xl">Next.js, React, AWS EC2, AWS S3, Redis, OpenCV, Three.js</h2>
             </div>
         </div>

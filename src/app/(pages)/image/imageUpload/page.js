@@ -120,6 +120,7 @@ export default function Component() {
           </div>
           <div className={`${styles.box6}`}>
             <div className={`${styles.promptBox}`}>
+              {/*placeholder:임시 텍스트나 개체*/}
               <input type = 'text' placeholder = '추가 요구사항을 작성하세요.' className={`${styles.input}`} value = {prompt} onChange = {setPromptText}/>
             </div>
             <div className={`${styles.selectBox}`}>
