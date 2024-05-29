@@ -495,7 +495,7 @@
   padding: 20px;
   max-height: calc(100vh - 160px); /* 상단과 하단의 패딩을 고려하여 최대 높이를 설정 */
   width: 60%; /* 부모 컨테이너의 전체 너비 사용 */
-  margin-top: 200px; 
+  margin-top: 170px; 
 
 }
 .imageContainerstyle {

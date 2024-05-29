@@ -22,7 +22,7 @@ export default function Home() {
   useEffect(() => {
     const allImages = getImages();
     const shuffledImages = shuffleArray(allImages);
-    setImages(shuffledImages.slice(0, 30)); // 무작위로 30개 이미지 선택
+    setImages(shuffledImages.slice(0, 51)); // 무작위로 51개 이미지 선택
     setLoading(false);
   }, []);
 
