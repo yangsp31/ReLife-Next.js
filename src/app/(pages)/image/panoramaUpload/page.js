@@ -137,6 +137,9 @@ export default function Component() {
         </div>
         <div className={`${styles.startImageCenter}`}>
           <div className={`${styles.box5}`}>
+            <p className={styles['regular-18']}> 
+                2개 이상의 이미지를 넣어주세요.
+            </p>
             <div className={`${styles.imageContainer}`}>
               {showUrl && showUrl.map((image, index) => (
                   <div key = {index} className={`${styles.panoramaImage}`} onMouseEnter={() => setShowCancel(index)} onMouseLeave={() => setShowCancel(null)} style={{ position: 'relative' }}>

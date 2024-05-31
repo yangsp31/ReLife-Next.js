@@ -16,13 +16,13 @@ export default function Component() {
   return (
     <div className={`${styles.main}`} style={{ backgroundImage: `url(../../1.png)`, backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className = {`${styles.startUpper}`}>
-        <span className = {`${styles.startLogo}`}>빠르고 안전하게 상상을 눈으로</span>
+        <span className = {`${styles.startLogo}`}>지금의 공간을 상상도 못한 특별한 장소로 바꿔보세요.</span>
       </div>
       <div className = {`${styles.startCenter}`}>
-        <h1 className={`${styles.box3}`}>상상을 실현하기 위한 단계</h1>
+        <h1 className={`${styles.box3}`}>이미지 생성을 위한 단계</h1>
         <h2 className={`${styles.box3}`}>1. 360도로 볼지 단일 이미지로 볼지 결정합니다.</h2>
         <h2 className={`${styles.box3}`}>2. 바꾸고자 하는 방의 사진을 준비하세요.</h2>
-        <h2 className={`${styles.box3}`}>3. 상상을 실현 하세요.</h2>
+        <h2 className={`${styles.box3}`}>3. 당신만의 특별한 장소를 확인해보세요</h2>
         <div className={`${styles.box4}`}>
         <a className={styles.btn} href="/image/imageUpload">
         단일 이미지로 보기

@@ -108,6 +108,9 @@ export default function Component() {
         </div>
         <div className={`${styles.startImageCenter}`}>
           <div className={`${styles.box5}`}>
+          <p className={styles['regular-18']}> 
+                이미지를 넣어주세요.
+            </p>
             <div className={`${styles.imageContainer}`}>
               {showUrl && <Image src={showUrl} alt="Selected" width = {400} height = {400} style={{ objectFit: 'cover' }} />}
             </div>
@@ -117,6 +120,7 @@ export default function Component() {
           </div>
           <div className={`${styles.box6}`}>
             <div className={`${styles.promptBox}`}>
+              {/*placeholder:임시 텍스트나 개체*/}
               <input type = 'text' placeholder = '추가 요구사항을 작성하세요.' className={`${styles.input}`} value = {prompt} onChange = {setPromptText}/>
             </div>
             <div className={`${styles.selectBox}`}>
