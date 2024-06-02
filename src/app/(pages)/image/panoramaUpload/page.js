@@ -33,7 +33,8 @@ export default function Component() {
         });
     };
 
-    for (const file of files) {
+    if(files.length <= 4) {
+      for (const file of files) {
         if (file && validType.includes(file.type)) {
             selectImages.push(file);
             try {
@@ -52,6 +53,10 @@ export default function Component() {
 
     setShowUrl(urls);
     setSelectImage(selectImages)
+    }
+    else {
+      alert('이미지 파일은 1~4개만 넣어 주세요.');
+    }
   }
 
   const handleGenerate = async () => {
@@ -75,6 +80,11 @@ export default function Component() {
         if(response.ok) {
           setLoading(false)
           router.push('/image/showPanoramaImage')
+        }
+        else {
+          setLoading(false)
+          alert('잘못된 이미지 입니다. \n이전 이미지와 각도가 크게 차이나지 않으며, 2분에1이 겹치도록 사진을 촬영 하십시오.');
+
         }
       } 
       catch (error) {
@@ -137,8 +147,8 @@ export default function Component() {
         </div>
         <div className={`${styles.startImageCenter}`}>
           <div className={`${styles.box5}`}>
-            <p className={styles['regular-18']}> 
-                2개 이상의 이미지를 넣어주세요.
+            <p className={styles['regular-18']}>
+              1~4장 사이의 이미지를 넣어주세요.
             </p>
             <div className={`${styles.imageContainer}`}>
               {showUrl && showUrl.map((image, index) => (
