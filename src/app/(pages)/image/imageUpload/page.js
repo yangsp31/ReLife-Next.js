@@ -60,7 +60,6 @@ export default function Component() {
         })
 
         if(response.ok) {
-          setLoading(false)
           router.push('/image/showSingleImage')
         }
       } 

@@ -125,6 +125,7 @@ export default function Component() {
         router.push('/image/imageUpload')
     }
 
+    // 이미지 요청 결과를 받기위한 Polling 로직
     useEffect(() => {
         const id = setInterval(async () => {
             const success = await fetching();

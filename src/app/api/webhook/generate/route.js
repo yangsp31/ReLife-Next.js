@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { setGenerateTaskData } from "../../function/kvRedis";
 
+export const maxDuration = 20; // 처리 가능 시간(Time out 오류 처리) 20초로 설정
+export const dynamic = 'force-dynamic';
+
 // 생성된 이미지 응답 받는 웹훅
 export async function POST(request) {
     try {

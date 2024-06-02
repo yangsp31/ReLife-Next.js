@@ -126,6 +126,7 @@ export default function Component() {
     router.push('/image/panoramaUpload')
   }
 
+  // 파노라마 이미지 요청 결과를 받기위한 Polling 로직
   useEffect(() => {
     let success = ''
 
