@@ -6,6 +6,9 @@ import { requestPanorama, requestDistortion } from "../function/requestFlask";
 import { korToEn } from "../function/translate";
 import { setMaskId, setTaskData } from "../function/kvRedis";
 
+export const maxDuration = 20; // 처리 가능 시간(Time out 오류 처리) 20초로 설정
+export const dynamic = 'force-dynamic';
+
 // 파노라마 이미지 요청 처리
 export async function POST(request) {
     try {
