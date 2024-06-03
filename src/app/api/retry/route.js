@@ -4,6 +4,9 @@ import { reGenerate } from "../function/reimaginehomeAPI";
 import { reGenerateTask, setReGenerateId } from "../function/kvRedis";
 import { korToEn } from "../function/translate";
 
+export const maxDuration = 20; // 처리 가능 시간(Time out 오류 처리) 20초로 설정
+export const dynamic = 'force-dynamic';
+
 //이미지 변환 재요청 처리
 export async function POST (request) {
     try {
