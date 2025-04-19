@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ReLife - 이미지 생성형 A.I와 이미지 처리를 활용한 인테리어 시뮬레이션 서비스 (Full-stack application)
 
-## Getting Started
+* 4인 팀 프로젝트로 진행.
+* 해당 프로젝트를 주제로 논문 작성 결과, 2024년 한국디지털콘텐츠학회 하계종합학술대회 대학생 논문경진대회 발표논문 중 동상 논문으로 선정 됨.
+<br><br><br>
 
-First, run the development server:
+# 개요
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+* 사용자로부터 방 이미지를 입력받아, 이미지 생성형 A.I를 활용해 원하는 색상, 테마, 공간 유형으로 변환된 인테리어 이미지를 제공.
+* 여러 장의 이미지를 이어붙여 파노라마 이미지를 생성 후, 이를 바탕으로 360도 VR 뷰를 제공함으로써 사용자에게 간접적이지만 공간감을 느낄수 있도록 제공하는 인테리어 시뮬레이션 서비스.
+<br><br>
+
+# Architecture
+
+![image](https://github.com/user-attachments/assets/d87800f2-8df6-4512-9da0-579f7ec79ed8)
+![real ReLife Flow](https://github.com/user-attachments/assets/3754fcc4-1024-43e1-911b-976e3a2fadde)
+<br><br>
+
+# Screen
+
+![image](https://github.com/user-attachments/assets/24fe399d-2b4c-414b-aa32-c604a8304fbd)
+<br><br>
+
+# 사용기술
+
+* ### Next.js
+  * 팀원들의 개발 경험이 비교적 적었던 상황에서, 빠르게 익힐 수 있는 React 기반의 Next.js를 활용하면 전체적인 생산성을 높일 수 있다고 판단.
+  * 프론트엔드는 물론 간단한 백엔드 로직까지 커버할 수 있는 풀스택 프레임워크이기 때문에, 팀원들의 학습 곡선과 협업 효율을 고려해 Next.js를 선택.
+ 
+* ### Three.js
+  * 프로젝트 요구사항 중 이미지를  360도 회전 가능한 VR뷰로 출력이 필요하여 선택.
+ 
+* ### AWS EC2
+  *  t2.micro(vCPU : 1, memory : 1GiB)
+ 
+* ### AWS S3
+  * 이미지 변환 과정에서 사용자별 이미지를 관리하고, URL 기반으로 전달함으로써 요청/응답 비용을 줄이기 위해 사용.
+
+* ### Nginx
+  * 리버스 프록시를 사용하기 위해 사용.
+ 
+* ### 외부 API (이미지 변환 A.I서비스 REimagineHome API)
+  * 이미지 변환 A.I 모델을 직접 구축하고 학습시키기에는 리소스가 제한적이었던 상황.
+  * 프로젝트 요구사항에 가장 적합한 기능을 제공하는 서비스라 판단하여 사용.
+<br><br>
+
+# 주요 개발내역
+
+* ### 단일/다중 이미지 처리 로직 구현 ([코드위치](https://github.com/yangsp31/ReLife-Next.js/tree/master/src/app/api))
+  * (직선 : 모든 경우, 점선 : 입력 이미지 2장 이상의 경우)
+
+![relife real api flow](https://github.com/user-attachments/assets/8c36af1d-5378-4cc8-a5ca-2eb0f68a04fe)
+
+----
+
+* ### 이미지 변환 재시도 로직 구현 ([코드위치](https://github.com/yangsp31/ReLife-Next.js/blob/master/src/app/api/retry/route.js))
+  * (직선 : 모든 경우, 점선 : 입력 이미지 2장 이상의 경우)
+ 
+![relife retry](https://github.com/user-attachments/assets/f995c1ca-4e08-492f-8377-952fd144d748)
+
+----
+
+* ### Redis(Vercel KV)를 활용한 사용자 작업정보 관리 구현 ([코드위치](https://github.com/yangsp31/ReLife-Next.js/blob/master/src/app/api/function/kvRedis.js))
+  * 작업 정보 데이터는 빈번하게 조회/업데이트 되기에 MySQL에서 관리 시 병목 현상이 발생하여, Redis로 전환하여 병목 현상 개선.
+  * JSON과 비슷하게 키 하나에 여러 필드를 담을 수 있는 Redis Hash를 사용해, 데이터를 구조화 하여 관리하고, 필드 단위로 쉽게 수정할 수 있도록 구성
+ 
 ```
+Redis(Vercel KV)에서 Job Id와 사용자 식별 코드 구조
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+{jobId} : {
+    cookie : {cookie},
+    type : {type}
+}
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Redis(Vercel KV)에서 사용자 별로 관리되는 작업 정보
 
-## Learn More
+{cookie} : {
+    prompt : {prompt},
+    spaceType : {spaceType},
+    designType : {designType},
+    maskUrl : [{maskUrl}],
+    generateUrl : {generateUrl}
+}
+```
+<br><br>
 
-To learn more about Next.js, take a look at the following resources:
+# 회고 & 개선 필요사항 (회고 원문 : [Velog](https://velog.io/@yang_seongp31/ReLife-Next.js))
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* ### 인테리어 시뮬레이션 방식
+  * 처음엔 사용자에게 받은 방 이미지와 방의 가로 세로 사이즈를 기반으로 3D모델링을 하여 보여주려 함.
+  * 이 방법은 2D To 3D가 가능한 A.I, 혹은 그 이상의 성능을 가진 A.I가 필요.
+  * 2D To 3D가 가능한 A.I 모델은 존재 하였지만 객체 하나를 바꾸는 정도였고, 그마저도 성능이 좋은 편은 아니였음.
+  * 이미지에서 객체 하나만이 아니라 방 이미지 전체를 3D로 바꾸기 위해선 직접 요구사항에 맞는 A.I 모델을 구축할 필요가 있다고 판단.
+  * 프로젝트 당시엔 A.I 모델을 구축할 수 있는 팀원이 없었고, 나 또한 원활하게 구축할 수 있는 실력이 없었음.
+  * 만일 진행 했다면 나 혼자 많은 시간을 투자 했어야 하고, 프로젝트의 다른 부분을 신경쓰지 못하게 되어 결국 프로젝트를 완성하지 못할것이라 판단.
+  * 지금 생각해 보면 NERF 모델과 블랜더 Python Script를 연결하여 구축한다면 비교적 쉽게 구현 가능하다고 생각.
+  * 물론 프로젝트 진행 당시나 지금이나 3D 모델링 까지는 성공 하였다 해도 가구의 배치와 모양 재질, 색상등 커스텀 할 사항들도 많고 자동화 하는데 필요한 데이터나 노하우가 부족하여 쉽지 않은것은 확실.
+  * 차선책인 이미지 합성 A.I를 사용하여 방 이미지를 변경한 후 360도 vr뷰로 출력하여 간접적 이지만 공간감을 줄 수 있는 방법을 사용.
+  * 여기서, 이미지 합성 A.I를 직접 구현하지 않고 외부 서비스 API를 사용하며 이미지 합성 A.I를 사용한것은 아쉬운 선택이라 생각.
+  * A.I를 사용한 이미지 합성은 비교적 모델 구축과, 데이터 수집이 2D to 3D 모델 구축보다 쉽다고 판단.
+  * 오픈소스로 나와있는 모델들도 좋은 성능을 가진 것들도 많고, OpenCV를 사용하여도 자유도는 부족하지만 합성 자체는 충분히 가능하며 필요한 2D 이미지도 굉장이 많기 때문.
+<br><br>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+* ### 외부 A.I 서비스 API의 한계
+  * 기본적으로 서양식 인테리어가 중점적으로 학습되어 있고, 제공되는 데이터가 이미지 하나이기에 현재 자신의 방과 적합한 인테리어를 시뮬레이션 할수 없다고 판단.
+  * 360도 vr뷰로 출력하기 때문에 이미지에 왜곡은 필연적으로 발생.
+  * 이미지의 왜곡은 스마트폰으로 촬영한 파노라마 이미지를 사용한다면 크게 문제될 부분은 아니지만, 촬영한 이미지를 사용하여 A.I 이미지 합성을 진행 한다면 제대로 된 합성이 진행되지 않음.
+  * 기술 탐색할 당시 이 서비스가 가장 프로젝트 성격에 부합하기에 선택함.
+  * 하지만, 이 서비스에 묶여 좀더 다양하게 인테리어 시뮬레이션 방법을 시도하지 못하고, 데이터 선택에 있어서도 제한적으로 생각하게 된 부분이 가장 아쉬운 부분.
+<br><br>
 
-## Deploy on Vercel
+* ### Web Hook 처리
+  * 이 프로젝트에서 사용된 이미지 합성 A.I인 외부 서비스 API는 결과값을 Web Hook방식으로 보내줌.
+  * Web Hook방식으로 결과값을 받는 타이밍은 예측이 불가능 하다 판단 하였기에, 처음엔 클라이언트와 WebSocket을 사용하여 연결된 상태를 유지 하는 방법을 고민 함.
+  * 프로젝트 진행 당시에는 WebSocket 방식은 서버의 부담이 높게 발생한다고 판단함.
+  * 그렇기에 WebSocket을 사용하지 않고, 클라이언트가 Polling 방식으로 결과값 요청을 하게 함.
+  * 클라이언트가 Polling 방식으로 결과값 요청을 한다면 클라이언트 식별자를 사용하여 Redis에서 이미지 URL을 검색하여 반환.
+  * 하지만, 지금은 이 방법보다는 WebSocket을 사용하는 방식이 더 유리하다고 판단.
+  * 이 방법은 사용량이 늘어 나면 Polling방식을 사용하기에 요청량이 급격하게 늘어나여 서버의 부담이 상승한다 판단.
+  * 사용량이 그리 많지 않다 하여도, 결과값을 반환하기 전까진 몇번의 요청이 발생하기 때문에 평균 요청량은 높은 편이라고 판단.
+  * 즉, 클라이언트에서 Polling 방식으로 주기적 요청을 진행하는 방식으로 보단, WebSocket을 사용한 방식이 사용량이 많던 적던 더 합리적인 방법이라 판단.
+<br><br>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* ### 개선사항
+  * 인테리어 시뮬레이션 방식을 외부 A.I서비스의 API에 의존하지 않고 오픈소스를 이용하여 2D to 3D, 혹은 이미지 합성 모델을 구축.
+  * (A.I 모델 구축하지 않을 경우) WebSocket으로 클라이언트와 연결하여 WebHook방식으로 전달되는 결과값을 반환 하도록 구축.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
